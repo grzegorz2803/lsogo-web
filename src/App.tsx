@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div>
-      <h1>LSOgo</h1>
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+      <h1 className="text-4xl font-bold text-yellow-400">LSOgo</h1>
     </div>
   );
 }
