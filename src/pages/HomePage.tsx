@@ -2,7 +2,7 @@ export function HomePage() {
   return (
     <section className="relative min-h-screen w-full">
       {/*Content*/}
-      <div className="relative z-10 mx-auto flex min-h-screen  w-full max-w-6xl items-center px-6 py-24">
+      <div className="relative z-10 mx-auto flex min-h-screen  w-full max-w-6xl items-center px-6 py-20">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
             LSOgo
