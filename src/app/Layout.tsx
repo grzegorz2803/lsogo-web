@@ -4,8 +4,8 @@ type LayoutProps = {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
-      <main className="mx-auto w-full max-w-6xl px-4 py-6">{children}</main>
+    <div className="relative min-h-screen overflow-hidden bg-linear-to-b from-slate-950 via-blue-950 to-slate-950 text-slate-50">
+      {children}
     </div>
   );
 }
