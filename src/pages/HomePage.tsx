@@ -1,3 +1,4 @@
+import { Button } from "../components/Button";
 export function HomePage() {
   return (
     <section className="relative min-h-screen w-full">
@@ -12,12 +13,10 @@ export function HomePage() {
             obecnościami i punktami w jednej aplikacji.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <button className="rounded-xl bg-amber-500 px-8 py-3 text-lg font-semibold text-black shadow-md shadow-amber-500/20 transition hover:bg-amber-400">
-              Zaloguj się
-            </button>
-            <button className="rounded-xl border border-white/20 bg-white/5 px-8 py-3 text-lg font-semibold text-white backdrop-blur-sm transition hover:bg-white/10">
-              Przejdź do kalendarza
-            </button>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Button>Zaloguj się</Button>
+              <Button variant="secondary">Przejdź do kalendarza</Button>
+            </div>
           </div>
         </div>
       </div>
