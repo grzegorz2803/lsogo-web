@@ -1,3 +1,4 @@
+import { Logo } from "./Logo";
 const navLinks = [
   { label: "Kalendarz", href: "#kalendarz" },
   { label: "O systemie", href: "#o-stystemie" },
@@ -11,12 +12,14 @@ export function Navbar() {
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/30 px-4 py-3 backdrop-blur-md">
           {/* Brand */}
-          <a href="#" className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-full border border-amber-400/40 bg-amber-400/10">
-              <span className="text-lg font-bold text-amber-300">✝</span>
+          <a href="#" className="flex items-center gap-4">
+            <div className="grid h-14 w-14 place-items-center rounded-full">
+              <Logo className="h-14 w-14" />
             </div>
-            <span className="text-xl font-semibold tracking-tight text-amber-100">
-              LSOgo
+            <span className="text-3xl font-semibold tracking-[0.08em]">
+              <span className="bg-gradient-to-b from-amber-50 via-amber-300 to-amber-600 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(251,191,36,0.4)]">
+                LSOgo
+              </span>
             </span>
           </a>
           {/*Desktop nav */}
@@ -25,9 +28,10 @@ export function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm font-medium text-slate-200/90 transition hover:text-amber-200"
+                className="group relative text-md font-medium text-slate-200/90 transition hover:text-amber-200"
               >
                 {l.label}
+                <span className="pointer-events-none absolute -bottom-2 left-0 h-px w-0 bg-amber-300/70 transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
