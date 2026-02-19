@@ -5,12 +5,10 @@ export function HomePage() {
       {/*Content*/}
       <div className="relative z-10 mx-auto flex min-h-screen  w-full max-w-6xl items-center px-6 py-20">
         <div className="max-w-2xl">
-          <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
-            <span className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent ">
-              LSOgo
-            </span>
+          <h1 className="font-serif text-6xl md:text-7xl font-bold leading-[1.3] tracking-[0.04em] text-transparent bg-clip-text bg-gradient-to-b from-amber-100 to-amber-500 drop-shadow-[0_0_24px_rgba(255,200,120,0.45)] ">
+            LSOgo
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 md:text-xl">
+          <p className="mt-4 font-serif text-xl md:text-2xl  text-amber-100/90 tracking-[0.03em]">
             System dla Liturgicznej Słubby Ołtarza. Zarządzaj słuzbą,
             obecnościami i punktami w jednej aplikacji.
           </p>

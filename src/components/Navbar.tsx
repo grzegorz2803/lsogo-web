@@ -17,13 +17,13 @@ export function Navbar() {
               <Logo className="h-14 w-14" />
             </div>
             <span className="text-3xl font-semibold tracking-[0.08em]">
-              <span className="bg-gradient-to-b from-amber-50 via-amber-300 to-amber-600 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(251,191,36,0.4)]">
+              <span className="font-serif text-3xl font-semibold tracking-[0.14em] text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
                 LSOgo
               </span>
             </span>
           </a>
           {/*Desktop nav */}
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-8 font-serif text-base text-slate-200/90 md:flex">
             {navLinks.map((l) => (
               <a
                 key={l.href}
