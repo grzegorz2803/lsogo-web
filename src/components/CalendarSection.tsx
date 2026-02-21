@@ -154,32 +154,44 @@ export function CalendarSection() {
 
         {/*Dziś w liturgii */}
         <div className="mt-6 rounded-2xl border border-amber-300/30 bg-slate-900/50 px-4 py-4 shadow-[0_0_20px_rgba(251,191,36,0.15)]">
-          <div className="text-xs md:text-base font-semibold uppercase tracking-[0.22em] text-amber-200 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]">
-            DZIŚ W LITURGII
+          <div className="flex items-baseline justify-between">
+            <div className="text-sm md:text-base font-semibold uppercase tracking-[0.22em] text-amber-200">
+              DZIŚ W LITURGII
+            </div>
+            <div className="text-sm uppercase md:text-base font-semibold text-amber-100">
+              {todayInfoMock.rank}
+            </div>
           </div>
-          <div className="mt-2 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
-            <div>
+          <div className="mt-3 space-y-1">
+            <div className="flex items-baseline justify-between">
               <p className="text-sm text-slate-200/80">
-                {weekdayLabel}, {formatDisplayDate(todayISO)}
+                {weekdayLabel} {formatDisplayDate(todayISO)}
               </p>
-              <p className="mt-1 font-serif text-lg text-amber-50">
-                {todayInfoMock.title}
-              </p>
-            </div>
-            <div className="mt-3 flex flex-col items-start gap-2 text-sm md:mt-0 md:items-end">
-              <span className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-semibold bg-amber-500/20 text-amber-100 shadow-[0_0_14px_rgba(251,191,36,0.45)]">
-                {todayInfoMock.rank}
-              </span>
-              <span className={`text-sm font-semibold ${colorStyles.text}`}>
+              <p
+                className={`text-sm md:text-base font-semibold ${colorStyles.text}`}
+              >
                 Kolor szat: {todayInfoMock.color}
-              </span>
+              </p>
             </div>
+            <p className="font-serif text-lg text-amber-50">
+              {todayInfoMock.title}
+            </p>
           </div>
+
           <div className="mt-4 text-xs md:text-sm text-slate-200/90 space-y-1">
             <p className="font-semibold uppercase tracking-[0.16em] text-slate-300">
               Czytania na dziś:
             </p>
-            <p>{readingsLine}</p>
+            <p className="text-sm md:text-base leading-relaxed">
+              {todayInfoMock.readings.map((reading, index) => (
+                <span key={reading}>
+                  {index > 0 && (
+                    <span className="mx-2 text-amber-400 font-bold">|</span>
+                  )}
+                  <span>{reading}</span>
+                </span>
+              ))}
+            </p>
           </div>
         </div>
         {/*Przycisk */}
