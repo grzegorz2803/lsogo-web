@@ -77,6 +77,7 @@ export function CalendarSection() {
     }
   }
   const colorStyles = getColorStyles(todayInfoMock.color);
+  const readingsLine = todayInfoMock.readings.join(" | ");
   return (
     <section
       id="kalendarz"
@@ -158,11 +159,11 @@ export function CalendarSection() {
           </div>
           <div className="mt-2 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="font-serif text-lg text-amber-50">
-                Św. Józefa, Oblubieńca Najświętsszej Maryi Panny
-              </p>
               <p className="text-sm text-slate-200/80">
                 {weekdayLabel}, {formatDisplayDate(todayISO)}
+              </p>
+              <p className="mt-1 font-serif text-lg text-amber-50">
+                {todayInfoMock.title}
               </p>
             </div>
             <div className="mt-3 flex flex-col items-start gap-2 text-sm md:mt-0 md:items-end">
@@ -173,11 +174,12 @@ export function CalendarSection() {
                 Kolor szat: {todayInfoMock.color}
               </span>
             </div>
-            <div className="mt-4 text-xs md:text-sm text-slate-200/90 space-y-1">
-              {todayInfoMock.readings.map((reading) => (
-                <p key={reading}>{reading}</p>
-              ))}
-            </div>
+          </div>
+          <div className="mt-4 text-xs md:text-sm text-slate-200/90 space-y-1">
+            <p className="font-semibold uppercase tracking-[0.16em] text-slate-300">
+              Czytania na dziś:
+            </p>
+            <p>{readingsLine}</p>
           </div>
         </div>
         {/*Przycisk */}
