@@ -3,14 +3,10 @@ import { useState } from "react";
 import {
   todayLiturgicalInfoMock,
   type TodayLiturgicalInfo,
+  diocesesMock,
 } from "../mocks/calendarMocks";
 import { homeCalendarContent } from "../content/calendar";
-
-const dioceses = [
-  "Archidiecezja Krakowska",
-  "Diecezja Bielsko-Żywiecka",
-  "Diecezja Tarnowska",
-];
+const dioceses = diocesesMock.dioceses;
 function formatTodayISO() {
   const today = new Date();
   // YYY-MM-DD
