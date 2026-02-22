@@ -4,7 +4,7 @@ import {
   todayLiturgicalInfoMock,
   type TodayLiturgicalInfo,
 } from "../mocks/calendarMocks";
-import { homeCalendarContent } from "../content/home";
+import { homeCalendarContent } from "../content/calendar";
 
 const dioceses = [
   "Archidiecezja Krakowska",

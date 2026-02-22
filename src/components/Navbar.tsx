@@ -1,11 +1,7 @@
 import { Logo } from "./Logo";
-const navLinks = [
-  { label: "Kalendarz", href: "#kalendarz" },
-  { label: "O systemie", href: "#o-stystemie" },
-  { label: "Dla parafii", href: "#dla-parafii" },
-  { label: "Kontakt", href: "#kontakt" },
-];
-
+import { navbarContent } from "../content/navbar";
+import { branding } from "../content/branding";
+const navLinks = navbarContent.links;
 export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -18,7 +14,7 @@ export function Navbar() {
             </div>
             <span className="text-3xl font-semibold tracking-[0.08em]">
               <span className="font-serif text-3xl font-semibold tracking-[0.14em] text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
-                LSOgo
+                {branding.logoText}
               </span>
             </span>
           </a>

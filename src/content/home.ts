@@ -5,9 +5,3 @@ export const homeHeroContent = {
   primaryCta: "Zaloguj się",
   secondaryCta: "Przejdź do kalendarza",
 };
-
-export const homeCalendarContent = {
-  heading: "Kalendarz liturgiczny",
-  subheading: "Zobacz rangi dni, kolory szat i czytania w swojej diecezji.",
-  openCalendarLabel: "Otwórz kalendarz",
-};
