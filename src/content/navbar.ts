@@ -7,4 +7,5 @@ export const navbarContent = {
     { label: "Kontakt", href: "#kontakt" },
   ],
   loginButton: "Zaloguj się",
+  menuButton: "Menu",
 };

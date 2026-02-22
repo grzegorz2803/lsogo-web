@@ -37,7 +37,7 @@ export function Navbar() {
               href="#login"
               className="hidden rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-black shadow-sm shadow-amber-500/20 transition hover:bg-amber-400 md:inline-flex"
             >
-              Zaloguj się
+              {navbarContent.loginButton}
             </a>
             {/*Mobile menu placeholder */}
             <button
@@ -45,7 +45,7 @@ export function Navbar() {
               className="inline-flex items-center rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 backdrop-blur-sm transition hover:bg-white/10 md:hidden"
               aria-label="Otwórz menu"
             >
-              Menu
+              {navbarContent.menuButton}
             </button>
           </div>
         </div>

@@ -6,6 +6,7 @@ import {
   diocesesMock,
 } from "../mocks/calendarMocks";
 import { homeCalendarContent } from "../content/calendar";
+import { weekdaysPl } from "../content/i18nWeekdats";
 const dioceses = diocesesMock.dioceses;
 function formatTodayISO() {
   const today = new Date();
@@ -15,16 +16,7 @@ function formatTodayISO() {
 function getWeekdayLabel(dateStr: string): string {
   if (!dateStr) return "";
   const d = new Date(dateStr);
-  const days = [
-    "Niedziela",
-    "Poniedziałek",
-    "Wtorek",
-    "Środa",
-    "Czwartek",
-    "Piątek",
-    "Sobota",
-  ];
-  return days[d.getDay()] ?? "";
+  return weekdaysPl[d.getDay()] ?? "";
 }
 function formatDisplayDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -96,11 +88,11 @@ export function CalendarSection() {
           {/*Diecezja */}
           <div className="flex-1 space-y-2">
             <label className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200/90">
-              Diecezja
+              {homeCalendarContent.fields.diocese}
             </label>
             <div className="flex h-[52px] items-center gap-3 rounded-2xl border border-white/15 bg-slate-900/60 px-4 py-3 transition hover:border-amber-300/60 hover:bg-slate-900/80">
               <div className="grid h-8 w-8 place-items-center rounded-full bg-amber-500/20 text-amber-300 text-lg">
-                ⛪
+                {homeCalendarContent.dioceseLogo}
               </div>
               <select
                 className="w-full bg-transparent text-sm md:text-base font-medium text-slate-50 outline-none"
@@ -122,7 +114,7 @@ export function CalendarSection() {
           {/*Data*/}
           <div className="flex-1 space-y-2">
             <label className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200/90">
-              Data
+              {homeCalendarContent.fields.date}
             </label>
             <div className="flex h-[52px] items-center rounded-2xl border border-white/15 bg-slate-900/60 px-4 py-3">
               <div className="text-sm md:text-base font-medium text-slate-50">
@@ -133,7 +125,7 @@ export function CalendarSection() {
           {/*Dzień tygodnia  */}
           <div className="flex-1 space-y-2 md:max-w-[180px]">
             <label className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200/90">
-              Dzień tygodnia
+              {homeCalendarContent.fields.weekday}
             </label>
             <div className="flex h-[52px] items-center rounded-2xl border border-white/10 bg-slate-900/40 px-4 text-sm md:text-base font-semibold text-slate-100/90">
               {weekdayLabel || "-"}
@@ -145,7 +137,7 @@ export function CalendarSection() {
         <div className="mt-6 rounded-2xl border border-amber-300/30 bg-slate-900/50 px-4 py-4 shadow-[0_0_20px_rgba(251,191,36,0.15)]">
           <div className="flex items-baseline justify-between">
             <div className="text-sm md:text-base font-semibold uppercase tracking-[0.22em] text-amber-200">
-              DZIŚ W LITURGII
+              {homeCalendarContent.liturgicalTodayTitle}
             </div>
             <div className="text-sm uppercase md:text-base font-semibold text-amber-100">
               {todayInfo.rank}
@@ -159,7 +151,7 @@ export function CalendarSection() {
               <p
                 className={`text-sm md:text-base font-semibold ${colorStyles.text}`}
               >
-                Kolor szat: {todayInfo.color}
+                {homeCalendarContent.liturgicalColorTitle} {todayInfo.color}
               </p>
             </div>
             <p className="font-serif text-lg text-amber-50">
@@ -169,7 +161,7 @@ export function CalendarSection() {
 
           <div className="mt-4 text-xs md:text-sm text-slate-200/90 space-y-1">
             <p className="font-semibold uppercase tracking-[0.16em] text-slate-300">
-              Czytania na dziś:
+              {homeCalendarContent.readingsForToday}
             </p>
             <p className="text-sm md:text-base leading-relaxed">
               {todayInfo.readings.map((reading, index) => (
