@@ -5,6 +5,7 @@ export type AudienceCard = {
   roleLabel: string;
   description: string;
   bullets: string[];
+  icon: string;
 };
 export type AudienceSectionContent = {
   title: string;
@@ -28,6 +29,7 @@ export const audienceSectionContent: AudienceSectionContent = {
         "aktualny stan punktów i rankingu",
         "wiadomości od animatora i księdza",
       ],
+      icon: "🕯️",
     },
     {
       id: "animator",
@@ -40,6 +42,7 @@ export const audienceSectionContent: AudienceSectionContent = {
         "sprawdzanie obecności i punktów",
         "szybka komunikacja z ministrantami",
       ],
+      icon: "🔔",
     },
     {
       id: "priest",
@@ -52,6 +55,7 @@ export const audienceSectionContent: AudienceSectionContent = {
         "informacje o frekwencji i zaangażowaniu",
         "wsparcie w organizacji większych wydarzeń",
       ],
+      icon: "⛪",
     },
   ],
 };

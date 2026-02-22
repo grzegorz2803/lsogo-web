@@ -1,11 +1,13 @@
 import { audienceSectionContent } from "../content/audience";
+import { SectionSeparator } from "./SectionSeparator";
 
 export function AudienceSection() {
   const { title, subtitle, cards } = audienceSectionContent;
   return (
-    <section className="mt-24 px-6">
+    <section className="mt-24 px-6 mx-auto max-w-6xl pb-24">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
+          <SectionSeparator />
           <h2 className="font-serif text-3xl md:text-4xl text-amber-50">
             {title}
           </h2>
@@ -21,6 +23,9 @@ export function AudienceSection() {
               className="relative rounded-3xl border border-slate-600/40 bg-slate-950/40 px-6 py-6 shadow-[0_18px_40px_rgba(15,23,42,0.9)] ring-1 ring-slate-900/60 backdrop-blur"
             >
               <div className="mb-4">
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_30px_rgba(250,204,21,0.6)]">
+                  <span className="text-xl text-slate-950">{card.icon}</span>
+                </div>
                 <h3 className="font-serif text-xl text-amber-50">
                   {card.title}
                 </h3>
