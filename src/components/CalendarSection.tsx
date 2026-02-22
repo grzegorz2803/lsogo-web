@@ -1,5 +1,10 @@
 import { Button } from "./Button";
 import { useState } from "react";
+import {
+  todayLiturgicalInfoMock,
+  type TodayLiturgicalInfo,
+} from "../mocks/calendarMocks";
+import { homeCalendarContent } from "../content/home";
 
 const dioceses = [
   "Archidiecezja Krakowska",
@@ -35,19 +40,7 @@ export function CalendarSection() {
   const todayISO = formatTodayISO();
 
   const weekdayLabel = getWeekdayLabel(todayISO);
-  type LiturgicalColor = "biały" | "czerwony" | "zielony" | "fioletowy";
-  const todayInfoMock = {
-    title: "Uroczytość Św. Józefa, Oblubieńca Najświętszej Maryi Panny",
-    rank: "Uroczystość",
-    color: "biały" as LiturgicalColor,
-    readings: [
-      "2 Sm 7, 4-5a. 12-14a. 16",
-      "Ps 89 (88), 2-3. 4-5. 27 i 29",
-      "Rz 4, 13. 16-18. 22",
-      "Mt 1, 16. 18-21. 24a",
-    ],
-  };
-  function getColorStyles(color: LiturgicalColor) {
+  function getColorStyles(color: TodayLiturgicalInfo["color"]) {
     switch (color) {
       case "biały":
         return {
@@ -76,8 +69,8 @@ export function CalendarSection() {
         };
     }
   }
-  const colorStyles = getColorStyles(todayInfoMock.color);
-  const readingsLine = todayInfoMock.readings.join(" | ");
+  const todayInfo = todayLiturgicalInfoMock;
+  const colorStyles = getColorStyles(todayInfo.color);
   return (
     <section
       id="kalendarz"
@@ -95,10 +88,10 @@ export function CalendarSection() {
       {/*Nagłówki */}
       <div className="text-center">
         <h2 className="font-serif text-3xl md:text-4xl font-semibold text-amber-100">
-          Kalendarz liturgiczny
+          {homeCalendarContent.heading}
         </h2>
         <p className="mt-3 text-sm md:text-base text-slate-200/80">
-          Zobacz rangi dni, kolory szat i czytania w swojej diecezji.
+          {homeCalendarContent.subheading}
         </p>
       </div>
       {/* Karta z wyborem  */}
@@ -159,7 +152,7 @@ export function CalendarSection() {
               DZIŚ W LITURGII
             </div>
             <div className="text-sm uppercase md:text-base font-semibold text-amber-100">
-              {todayInfoMock.rank}
+              {todayInfo.rank}
             </div>
           </div>
           <div className="mt-3 space-y-1">
@@ -170,11 +163,11 @@ export function CalendarSection() {
               <p
                 className={`text-sm md:text-base font-semibold ${colorStyles.text}`}
               >
-                Kolor szat: {todayInfoMock.color}
+                Kolor szat: {todayInfo.color}
               </p>
             </div>
             <p className="font-serif text-lg text-amber-50">
-              {todayInfoMock.title}
+              {todayInfo.title}
             </p>
           </div>
 
@@ -183,7 +176,7 @@ export function CalendarSection() {
               Czytania na dziś:
             </p>
             <p className="text-sm md:text-base leading-relaxed">
-              {todayInfoMock.readings.map((reading, index) => (
+              {todayInfo.readings.map((reading, index) => (
                 <span key={reading}>
                   {index > 0 && (
                     <span className="mx-2 text-amber-400 font-bold">|</span>
@@ -196,7 +189,7 @@ export function CalendarSection() {
         </div>
         {/*Przycisk */}
         <div className="mt-8 flex justify-center ">
-          <Button>Otwórz kalendarz</Button>
+          <Button>{homeCalendarContent.openCalendarLabel}</Button>
         </div>
       </div>
     </section>

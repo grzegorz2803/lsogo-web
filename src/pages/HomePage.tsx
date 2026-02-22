@@ -1,5 +1,6 @@
 import { Button } from "../components/Button";
 import { CalendarSection } from "../components/CalendarSection";
+import { homeHeroContent } from "../content/home";
 export function HomePage() {
   return (
     <>
@@ -8,16 +9,17 @@ export function HomePage() {
         <div className="relative z-10 mx-auto flex min-h-screen  w-full max-w-6xl items-center px-6 py-20">
           <div className="max-w-2xl">
             <h1 className="font-serif text-6xl md:text-7xl font-bold leading-[1.3] tracking-[0.04em] text-transparent bg-clip-text bg-gradient-to-b from-amber-100 to-amber-500 drop-shadow-[0_0_24px_rgba(255,200,120,0.45)] ">
-              LSOgo
+              {homeHeroContent.title}
             </h1>
             <p className="mt-4 font-serif text-xl md:text-2xl  text-amber-100/90 tracking-[0.03em]">
-              System dla Liturgicznej Słubby Ołtarza. Zarządzaj słuzbą,
-              obecnościami i punktami w jednej aplikacji.
+              {homeHeroContent.subtitle}
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm: items-center">
-                <Button>Zaloguj się</Button>
-                <Button variant="secondary">Przejdź do kalendarza</Button>
+                <Button>{homeHeroContent.primaryCta}</Button>
+                <Button variant="secondary">
+                  {homeHeroContent.secondaryCta}
+                </Button>
               </div>
             </div>
           </div>
