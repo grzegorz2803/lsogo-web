@@ -1,6 +1,7 @@
 import { Button } from "../components/Button";
 import { CalendarSection } from "../components/CalendarSection";
 import { homeHeroContent } from "../content/home";
+import { AudienceSection } from "../components/AudienceSection";
 export function HomePage() {
   return (
     <>
@@ -33,6 +34,7 @@ export function HomePage() {
         />
       </section>
       <CalendarSection />
+      <AudienceSection />
     </>
   );
 }
