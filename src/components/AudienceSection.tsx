@@ -8,10 +8,10 @@ export function AudienceSection() {
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
           <SectionSeparator />
-          <h2 className="font-serif text-3xl md:text-4xl text-amber-50">
+          <h2 className="font-serif text-3xl md:text-4xl text-amber-100">
             {title}
           </h2>
-          <p className="mt-4 text-sm md:text-base text-slate-200/90 max-w-2xl mx-auto">
+          <p className="mt-4 text-sm md:text-base text-slate-200/80 max-w-2xl mx-auto">
             {subtitle}
           </p>
         </div>
