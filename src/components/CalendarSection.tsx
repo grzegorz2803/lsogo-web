@@ -83,7 +83,7 @@ export function CalendarSection() {
             <label className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200/90">
               {homeCalendarContent.fields.diocese}
             </label>
-            <div className="flex h-[52px] items-center gap-3 rounded-2xl border border-white/15 bg-slate-900/60 px-4 py-3 transition hover:border-amber-300/60 hover:bg-slate-900/80">
+            <div className="flex h-13 items-center gap-3 rounded-2xl border border-white/15 bg-slate-900/60 px-4 py-3 transition hover:border-amber-300/60 hover:bg-slate-900/80">
               <div className="grid h-8 w-8 place-items-center rounded-full bg-amber-500/20 text-amber-300 text-lg">
                 {homeCalendarContent.dioceseLogo}
               </div>
@@ -109,18 +109,18 @@ export function CalendarSection() {
             <label className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200/90">
               {homeCalendarContent.fields.date}
             </label>
-            <div className="flex h-[52px] items-center rounded-2xl border border-white/15 bg-slate-900/60 px-4 py-3">
+            <div className="flex h-13 items-center rounded-2xl border border-white/15 bg-slate-900/60 px-4 py-3">
               <div className="text-sm md:text-base font-medium text-slate-50">
                 {formatDisplayDate(todayISO)}
               </div>
             </div>
           </div>
           {/*Dzień tygodnia  */}
-          <div className="flex-1 space-y-2 md:max-w-[180px]">
+          <div className="flex-1 space-y-2 md:max-w-45">
             <label className="text-xs font-medium uppercase tracking-[0.16em] text-amber-200/90">
               {homeCalendarContent.fields.weekday}
             </label>
-            <div className="flex h-[52px] items-center rounded-2xl border border-white/10 bg-slate-900/40 px-4 text-sm md:text-base font-semibold text-slate-100/90">
+            <div className="flex h-13 items-center rounded-2xl border border-white/10 bg-slate-900/40 px-4 text-sm md:text-base font-semibold text-slate-100/90">
               {weekdayLabel || "-"}
             </div>
           </div>

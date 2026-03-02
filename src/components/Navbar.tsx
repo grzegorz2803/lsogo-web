@@ -15,7 +15,7 @@ export function Navbar() {
               <Logo className="h-14 w-14" />
             </div>
             <span className="text-3xl font-semibold tracking-[0.08em]">
-              <span className="font-serif text-3xl font-semibold tracking-[0.14em] text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
+              <span className="font-serif text-3xl font-semibold tracking-[0.14em] text-transparent bg-clip-text bg-linear-to-b from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
                 {branding.logoText}
               </span>
             </span>

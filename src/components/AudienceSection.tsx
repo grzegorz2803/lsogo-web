@@ -28,7 +28,7 @@ export function AudienceSection() {
                     className="inline-flex h-14 w-14
                           items-center justify-center
                           rounded-full
-                          bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600
+                          bg-linear-to-br from-amber-400 via-amber-500 to-amber-600
                           shadow-[0_0_45px_rgba(251,191,26,0.75)]"
                   >
                     <span className="text-3xl text-slate-950">{card.icon}</span>
@@ -46,7 +46,7 @@ export function AudienceSection() {
               <ul className="mt-4 space-y-1.5 text-sm text-slate-200/80">
                 {card.bullets.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span className="mt-[6px] h-[6px] w-[6px] rounded-full bg-amber-400/90" />
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-amber-400/90" />
                     <span>{item}</span>
                   </li>
                 ))}

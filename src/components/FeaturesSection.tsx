@@ -31,7 +31,7 @@ export function FeaturesSection() {
                           hover:shadow-[0_24px_70px_rgba(251,191,26,0.35)]"
             >
               <div className="mb-4 flex items-center justify-between gap-2">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_32px_rgba(251,191,36,0.7)]">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br from-amber-400 via-amber-500 to-amber-600 shadow-[0_0_32px_rgba(251,191,36,0.7)]">
                   <span className="text-2xl text-slate-950">{card.icon}</span>
                 </div>
                 {card.tag && (
