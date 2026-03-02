@@ -5,7 +5,7 @@ export function FeaturesSection() {
   const { title, subtitle, cards } = featuresSectionContent;
 
   return (
-    <section className="mt-24 px-6 mb-10">
+    <section className="mt-24 px-6 ">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
           <SectionSeparator />
