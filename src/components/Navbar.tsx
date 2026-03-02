@@ -1,8 +1,10 @@
 import { Logo } from "./Logo";
 import { navbarContent } from "../content/navbar";
 import { branding } from "../content/branding";
+import { useState } from "react";
 const navLinks = navbarContent.links;
 export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto w-full max-w-6xl px-6">
@@ -41,14 +43,44 @@ export function Navbar() {
             </a>
             {/*Mobile menu placeholder */}
             <button
+              onClick={() => setMobileOpen(!mobileOpen)}
               type="button"
-              className="inline-flex items-center rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 backdrop-blur-sm transition hover:bg-white/10 md:hidden"
+              className="md:hidden px-4 py-2 border border-amber-300/60 rounded-xl text-amber-200"
               aria-label="Otwórz menu"
             >
               {navbarContent.menuButton}
             </button>
           </div>
         </div>
+        {mobileOpen && (
+          <div
+            className="md:hidden mt-3 w-full rounded-2xl border border-white/10
+               bg-slate-950/95 backdrop-blur-xl
+               shadow-[0_18px_40px_rgba(15,23,42,0.9)]
+               px-4 py-3 space-y-3 animate-fadeIn"
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block text-slate-200 text-lg font-medium hover:text-amber-300"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="/login"
+              className="block w-full text-center mt-2
+             bg-amber-500/90 hover:bg-amber-400
+             text-slate-900 font-semibold text-sm
+             py-2 rounded-lg
+             shadow-[0_0_14px_rgba(248,191,60,0.35)]
+             transition-colors"
+            >
+              {navbarContent.loginButton}
+            </a>
+          </div>
+        )}
       </div>
     </header>
   );
