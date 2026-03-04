@@ -11,7 +11,7 @@ export function Navbar() {
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/30 px-4 py-3 backdrop-blur-md">
           {/* Brand */}
-          <a href="#" className="flex items-center gap-4">
+          <Link to="/" className="flex items-center gap-4">
             <div className="grid h-14 w-14 place-items-center rounded-full">
               <Logo className="h-14 w-14" />
             </div>
@@ -20,7 +20,7 @@ export function Navbar() {
                 {branding.logoText}
               </span>
             </span>
-          </a>
+          </Link>
           {/*Desktop nav */}
           <nav className="hidden items-center gap-8 font-serif text-base text-slate-200/90 md:flex">
             {navLinks.map((l) => (

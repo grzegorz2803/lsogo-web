@@ -9,14 +9,14 @@ export function AboutPage() {
     <div className="relative min-h-screen w-full">
       <section className="relative px-6 pt-20 pb-10">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-3xl border border-slate-700/50 bg-slate-950/60 px-8 py-10 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
-            <h1 className="font-serif text-3xl md:text-5xl text-amber-50">
+          <div className="px-8 py-10 ">
+            <h1 className="font-serif text-3xl md:text-5xl text-amber-100">
               {hero.title}
             </h1>
-            <p className="mt-4 max-w-3xl text-sm md:text-base text-slate-200/90">
+            <p className="mt-4 max-w-3xl text-sm md:text-base text-slate-200/80">
               {hero.subtitle}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col  gap-3 sm:flex-row">
               <a href={hero.primaryCta.href}>
                 <Button variant="primary">{hero.primaryCta.label}</Button>
               </a>
@@ -28,15 +28,15 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mt-10 px-6">
+      <section className="mt-20 px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-3xl border border-slate-700/50 bg-slate-950/60 px-8 py-10 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
+          <div className=" px-8 py-10">
             <div className="text-center">
               <SectionSeparator />
-              <h2 className="font-serif text-2xl md:text-4xl text-amber-50">
+              <h2 className="font-serif text-2xl md:text-4xl text-amber-100">
                 {sections.values.title}
               </h2>
-              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/90">
+              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/80">
                 {sections.values.subtitle}
               </p>
             </div>
@@ -65,15 +65,16 @@ export function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="mt-10 px-6">
+
+      <section className="mt-20 px-6 ">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-3xl border border-slate-700/50 bg-slate-950/60 px-8 py-10 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
+          <div className="px-8 py-10 ">
             <div className="text-center">
               <SectionSeparator />
-              <h2 className="font-serif text-2xl md:text-4xl text-amber-50">
+              <h2 className="font-serif text-2xl md:text-4xl text-amber-100">
                 {sections.howItWorks.title}
               </h2>
-              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/90">
+              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/80">
                 {sections.howItWorks.subtitle}
               </p>
             </div>
@@ -100,15 +101,16 @@ export function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="mt-10 px-6">
+
+      <section className="mt-20 px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-3xl border border-slate-700/50 bg-slate-950/60 px-8 py-10 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
+          <div className="px-8 py-10 ">
             <div className="text-center">
               <SectionSeparator />
-              <h2 className="font-serif text-2xl md:text-4xl text-amber-50">
+              <h2 className="font-serif text-2xl md:text-4xl text-amber-100">
                 {sections.faq.title}
               </h2>
-              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/90">
+              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/80">
                 {sections.faq.subtitle}
               </p>
             </div>
@@ -130,15 +132,16 @@ export function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="mt-10 px-6 pb-16">
+
+      <section className="mt-20 px-6 pb-16">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-3xl border border-amber-400/30 bg-slate-950/60 px-8 py-10 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
+          <div className="px-8 py-10 ">
             <div className="text-center">
               <SectionSeparator />
-              <h2 className="font-serif text-2xl md:text-4xl text-amber-50">
+              <h2 className="font-serif text-2xl md:text-4xl text-amber-100">
                 {sections.finalCta.title}
               </h2>
-              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/90">
+              <p className="mt-4 max-w-3xl mx-auto text-sm md:text-base text-slate-200/80">
                 {sections.finalCta.subtitle}
               </p>
               <div className="mt-8 flex justify-center">
