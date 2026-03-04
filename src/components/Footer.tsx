@@ -4,7 +4,7 @@ export function Footer() {
   const { brand, columns, bottomNote } = footerContent;
 
   return (
-    <footer className="mt-32 border-t border-slate-700/50 ">
+    <footer className="mt-32  bg-linear-to-b from-transparent to-slate-950 ">
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid gap-12 md:grid-cols-4">
           <div>
