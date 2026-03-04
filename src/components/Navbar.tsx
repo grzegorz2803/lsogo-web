@@ -2,6 +2,7 @@ import { Logo } from "./Logo";
 import { navbarContent } from "../content/navbar";
 import { branding } from "../content/branding";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const navLinks = navbarContent.links;
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -23,14 +24,13 @@ export function Navbar() {
           {/*Desktop nav */}
           <nav className="hidden items-center gap-8 font-serif text-base text-slate-200/90 md:flex">
             {navLinks.map((l) => (
-              <a
+              <Link
                 key={l.href}
-                href={l.href}
+                to={l.href}
                 className="group relative text-md font-medium text-slate-200/90 transition hover:text-amber-200"
               >
                 {l.label}
-                <span className="pointer-events-none absolute -bottom-2 left-0 h-px w-0 bg-amber-300/70 transition-all duration-300 group-hover:w-full" />
-              </a>
+              </Link>
             ))}
           </nav>
           {/* Right */}
