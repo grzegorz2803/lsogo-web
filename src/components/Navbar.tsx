@@ -3,6 +3,7 @@ import { navbarContent } from "../content/navbar";
 import { branding } from "../content/branding";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const navLinks = navbarContent.links;
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -24,13 +25,26 @@ export function Navbar() {
           {/*Desktop nav */}
           <nav className="hidden items-center gap-8 font-serif text-base text-slate-200/90 md:flex">
             {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="group relative text-md font-medium text-slate-200/90 transition hover:text-amber-200"
-              >
-                {l.label}
-              </Link>
+              <NavLink key={l.href} to={l.href}>
+                {({ isActive }) => (
+                  <span
+                    className={[
+                      "group relative text-md font-medium transition",
+                      "text-slate-200/90 hover:text-amber-200",
+                      isActive ? "text-amber-200" : "",
+                    ].join(" ")}
+                  >
+                    {l.label}
+
+                    <span
+                      className={[
+                        "pointer-events-none absolute left-0 -bottom-2 h-0.5 w-full origin-left rounded-full transition bg-amber-400",
+                        isActive ? "scale-x-100" : "scale-x-0",
+                      ].join(" ")}
+                    />
+                  </span>
+                )}
+              </NavLink>
             ))}
           </nav>
           {/* Right */}
