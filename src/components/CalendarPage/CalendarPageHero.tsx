@@ -2,13 +2,19 @@ import { calendarPageContent } from "../../content/calendarPage";
 
 type Props = {
   selectedDate: string;
+  selectedDiocese: string;
+  dioceseOptions: string[];
   onDateChange: (value: string) => void;
+  onDioceseChange: (value: string) => void;
   onTodayClick: () => void;
 };
 
 export function CalendarPageHero({
   selectedDate,
+  selectedDiocese,
+  dioceseOptions,
   onDateChange,
+  onDioceseChange,
   onTodayClick,
 }: Props) {
   const { hero } = calendarPageContent;
@@ -23,13 +29,26 @@ export function CalendarPageHero({
           <p className="mt-4 max-w-3xl text-sm md:text-base text-slate-200/80">
             {hero.subtitle}
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 grid gap-3 md:grid-cols-[1.4fr,1fr,auto]">
+            <select
+              value={selectedDiocese}
+              onChange={(e) => onDioceseChange(e.target.value)}
+              className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none focus:border-amber-400"
+            >
+              {dioceseOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+
             <input
-              type="data"
+              type="date"
               value={selectedDate}
               onChange={(e) => onDateChange(e.target.value)}
-              className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none focus:border-amber-400 scheme-dark"
+              className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none focus:border-amber-400 [color-scheme:dark]"
             />
+
             <button
               type="button"
               onClick={onTodayClick}
