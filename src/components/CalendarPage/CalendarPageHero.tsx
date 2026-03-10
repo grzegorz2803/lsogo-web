@@ -46,7 +46,7 @@ export function CalendarPageHero({
               type="date"
               value={selectedDate}
               onChange={(e) => onDateChange(e.target.value)}
-              className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none focus:border-amber-400 [color-scheme:dark]"
+              className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none focus:border-amber-400 scheme-dark"
             />
 
             <button
@@ -54,7 +54,7 @@ export function CalendarPageHero({
               onClick={onTodayClick}
               className="rounded-xl border border-amber-400/40 bg-amber-500/10 px-4 py-3 text-sm font-medium text-amber-200 transition hover:bg-amber-500/20"
             >
-              {hero.todayButton}
+              {/* {hero.todayButton} */}
             </button>
           </div>
         </div>

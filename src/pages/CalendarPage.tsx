@@ -1,72 +1,88 @@
 import { useMemo, useState } from "react";
-import { CalendarPageHero } from "../components/CalendarPage/CalendarPageHero";
-import { calendarDaysMock, dioceseOptions } from "../mocks/calendarPageMock";
-import { CalendarDayCard } from "../components/CalendarPage/CalendarDayCard";
-import { CalendarDayNavigation } from "../components/CalendarPage/CalendarDayNavigation";
 import { calendarPageContent } from "../content/calendarPage";
-function formatTodayISO() {
-  return new Date().toISOString().slice(0, 10);
+import { calendarDaysMock, dioceseOptions } from "../mocks/calendarPageMock";
+import { CalendarToolbar } from "../components/CalendarPage/CalendarToolbar";
+import { CalendarMonthGrid } from "../components/CalendarPage/CalendarMonthGrid";
+import { CalendarDayDetails } from "../components/CalendarPage/CalendarDayDetails";
+
+function formatTodayParts() {
+  const today = new Date();
+  return {
+    year: today.getFullYear(),
+    month: today.getMonth(),
+    day: today.getDate(),
+  };
 }
-// function getWeekdayLabel(dateStr: string): string {
-//   const d = new Date(dateStr);
-//   const days = [
-//     "Niedziela",
-//     "Poniedziałek",
-//     "Wtorek",
-//     "Środa",
-//     "Czwartek",
-//     "Piątek",
-//     "Sobota",
-//   ];
-//   return days[d.getDay()] ?? "";
-// }
-function addDays(dateStr: string, amount: number) {
-  const d = new Date(dateStr);
-  d.setDate(d.getDate() + amount);
-  return d.toISOString().slice(0, 10);
+
+function bulidDateString(year: number, month: number, day: number) {
+  const date = new Date(year, month, day);
+  return date.toISOString().slice(0, 10);
+}
+
+function isPastDate(dateStr: string) {
+  const today = new Date();
+  const selected = new Date(dateStr);
+  today.setHours(0, 0, 0, 0);
+  selected.setHours(0, 0, 0, 0);
+  return selected < today;
 }
 export function CalendarPage() {
-  const [selectedDate, setSelectedDate] = useState<string>(
-    calendarDaysMock[0]?.date || formatTodayISO(),
+  const today = formatTodayParts();
+  const [selectedYear, setSelectedYear] = useState<number>(today.year);
+  const [selectedMonth, setSelectedMonth] = useState<number>(today.month);
+  const [selectedDay, setSelectedDay] = useState<number>(today.day);
+  const [selectedDiocese, setSelectedDiocese] = useState<string>(
+    dioceseOptions[0],
+  );
+  const selectedDate = useMemo(
+    () => bulidDateString(selectedYear, selectedMonth, selectedDay),
+    [selectedYear, selectedMonth, selectedDay],
   );
 
-  const [selectedDiocese, setSelectedDiocese] = useState(dioceseOptions[0]);
-  function isPastDate(dateStr: string) {
-    const today = new Date();
-    const selected = new Date(dateStr);
-
-    today.setHours(0, 0, 0, 0);
-    selected.setHours(0, 0, 0, 0);
-    return selected < today;
-  }
   const matchedDay = useMemo(() => {
     return calendarDaysMock.find((item) => item.date === selectedDate) ?? null;
   }, [selectedDate]);
   const emptyMessage = useMemo(() => {
     if (matchedDay) return "";
-
     if (isPastDate(selectedDate)) {
-      return calendarPageContent.dayCard.noPastDate;
+      return calendarPageContent.dayDetails.noPassDate;
     }
-
-    return calendarPageContent.dayCard.noFutureData;
+    return calendarPageContent.dayDetails.noFutureData;
   }, [matchedDay, selectedDate]);
-  return (
-    <div className="relative min-h-screen w-full">
-      <CalendarPageHero
-        selectedDate={selectedDate}
-        selectedDiocese={selectedDiocese}
-        dioceseOptions={dioceseOptions}
-        onDateChange={setSelectedDate}
-        onDioceseChange={setSelectedDiocese}
-        onTodayClick={() => setSelectedDate(formatTodayISO())}
-      />
 
-      <CalendarDayCard day={matchedDay} emptyMessage={emptyMessage} />
-      <CalendarDayNavigation
-        onPrevious={() => setSelectedDate((prev) => addDays(prev, -1))}
-        onNext={() => setSelectedDate((prev) => addDays(prev, 1))}
-      />
+  return (
+    <div className="relative min-h-screen w-full px-6 pt-20 pb-16">
+      <div className="mx-auto max-w-6xl">
+        <h1 className="font-serif text-3xl md:text-5xl text-amber-100">
+          {calendarPageContent.hero.title}
+        </h1>
+        <p className="mt-4 max-w-3xl text-sm md:text-base text-slate-200/80">
+          {calendarPageContent.hero.subtitle}
+        </p>
+        <div className="mt-10 rounded-3xl border border-slate-700/50 bg-slate-950/60 px-8 py-8 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
+          <CalendarToolbar
+            selectedMonth={selectedMonth}
+            selectedYear={selectedYear}
+            selectedDay={selectedDay}
+            selectedDiocese={selectedDiocese}
+            dioceseOptions={dioceseOptions}
+            onMonthChange={setSelectedMonth}
+            onYearChange={setSelectedYear}
+            onDayChange={setSelectedDay}
+            onDioceseChange={setSelectedDiocese}
+          />
+          <div className="mt-10 grid gap-8 xl:grid-cols-[1.25fr,0.9fr]">
+            <CalendarMonthGrid
+              selectedYear={selectedYear}
+              selectedMonth={selectedMonth}
+              selectedDay={selectedDay}
+              data={calendarDaysMock}
+              onSelectDay={setSelectedDay}
+            />
+            <CalendarDayDetails day={matchedDay} emptyMessage={emptyMessage} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

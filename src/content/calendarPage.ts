@@ -3,24 +3,22 @@ export const calendarPageContent = {
     title: "Kalendarz liturgiczny",
     subtitle:
       "Sprawdź rangę dnia, kolor szat i czytania liturgiczne dla wybranego dnia.",
-    todayButton: "Dzisiaj",
-    dioceseLabel: "Diecezja",
-    dateLabel: "Data",
   },
-  dayCard: {
-    readingsTitle: "Czytania na dziś",
+  toolbar: {
+    monthLabel: "Miesiąc",
+    yearLabel: "Rok",
+    dayLabel: "Dzień",
+    dioceseLabel: "Dicezja",
+  },
+  dayDetails: {
+    readingsTitle: "Czytania",
     colorLabel: "Kolor szat",
-    rankLabel: "Ranga",
-    opticalCelebrationsTitle: "Wspomnienia i obchody dodatkowe",
+    optionalCelebrationsTitle: "Wspomnienia i obchody dodatkowe",
     notesTitle: "Uwagi",
-    noFutureData: "Dane dla tego dnia będą wkrótce dostępne.",
-    noPastDate: "Dla dat przeszłych wybierz dzień bieący lub przyszły.",
-  },
-  navigation: {
-    previousDay: "Poprzedni dzień",
-    nexDay: "Następny dzień",
+    noFutureData: "Dane dla tego dnia będa wkrótce dostępne",
+    noPassDate: "Dla dat przysztłych wybierz dzień bieący lub przyszły",
   },
   monthView: {
-    title: "Widok miesiąca",
+    weekLabels: ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"],
   },
 };
