@@ -15,10 +15,12 @@ function formatTodayParts() {
 }
 
 function bulidDateString(year: number, month: number, day: number) {
-  const date = new Date(year, month, day);
-  return date.toISOString().slice(0, 10);
-}
+  const yyyy = String(year);
+  const mm = String(month + 1).padStart(2, "0");
+  const dd = String(day).padStart(2, "0");
 
+  return `${yyyy}-${mm}-${dd}`;
+}
 function isPastDate(dateStr: string) {
   const today = new Date();
   const selected = new Date(dateStr);
@@ -52,13 +54,12 @@ export function CalendarPage() {
 
   return (
     <div className="relative min-h-screen w-full px-6 pt-20 pb-16">
-      <div className="mx-auto max-w-6xl">
-        <h1 className="font-serif text-3xl md:text-5xl text-amber-100">
-          {calendarPageContent.hero.title}
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm md:text-base text-slate-200/80">
-          {calendarPageContent.hero.subtitle}
-        </p>
+      <div className="mx-auto max-w-6xl ">
+        <div className="text-center ">
+          <h1 className="font-serif text-3xl md:text-5xl text-amber-100">
+            {calendarPageContent.hero.title}
+          </h1>
+        </div>
         <div className="mt-10 rounded-3xl border border-slate-700/50 bg-slate-950/60 px-8 py-8 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
           <CalendarToolbar
             selectedMonth={selectedMonth}
@@ -71,7 +72,7 @@ export function CalendarPage() {
             onDayChange={setSelectedDay}
             onDioceseChange={setSelectedDiocese}
           />
-          <div className="mt-10 grid gap-8 xl:grid-cols-[1.25fr,0.9fr]">
+          <div className="mt-10 grid gap-8 xl:grid-cols-[1.25fr_0.9fr]">
             <CalendarMonthGrid
               selectedYear={selectedYear}
               selectedMonth={selectedMonth}

@@ -15,8 +15,10 @@ export const calendarPageContent = {
     colorLabel: "Kolor szat",
     optionalCelebrationsTitle: "Wspomnienia i obchody dodatkowe",
     notesTitle: "Uwagi",
-    noFutureData: "Dane dla tego dnia będa wkrótce dostępne",
-    noPassDate: "Dla dat przysztłych wybierz dzień bieący lub przyszły",
+    noFutureData:
+      "Dame zostaną uzupełnione niezwłocznie po otrzymaniu nowego kalendarza liturgicznego z Diecezji.",
+    noPassDate:
+      "Dane w kalendarzu przechowywane są od I niedzieli Adwentu roku liturgicznego 2026.",
   },
   monthView: {
     weekLabels: ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"],

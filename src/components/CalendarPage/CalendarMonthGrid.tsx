@@ -9,21 +9,30 @@ type Props = {
   onSelectDay: (day: number) => void;
 };
 function bulidDateString(year: number, month: number, day: number) {
-  const date = new Date(year, month, day);
-  return date.toISOString().slice(0, 10);
+  const yyyy = String(year);
+  const mm = String(month + 1).padStart(2, "0");
+  const dd = String(day).padStart(2, "0");
+
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
 }
-
+function capitalize(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
 function getMonthTitle(year: number, month: number) {
-  return new Intl.DateTimeFormat("pl-PL", {
+  const value = new Intl.DateTimeFormat("pl-PL", {
     month: "long",
     year: "numeric",
   }).format(new Date(year, month, 1));
+  return capitalize(value);
 }
-
+function getMonthStartOffset(year: number, month: number) {
+  const firstDay = new Date(year, month, 1).getDay();
+  return firstDay === 0 ? 6 : firstDay - 1;
+}
 export function CalendarMonthGrid({
   selectedYear,
   selectedMonth,
@@ -33,6 +42,7 @@ export function CalendarMonthGrid({
 }: Props) {
   const daysInMonth = getDaysInMonth(selectedYear, selectedMonth);
   const { monthView } = calendarPageContent;
+  const monthStartOffset = getMonthStartOffset(selectedYear, selectedMonth);
 
   return (
     <div className="rounded-3xl border border-slate-700/50 bg-slate-950/60 px-6 py-8 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
@@ -48,6 +58,12 @@ export function CalendarMonthGrid({
             {label}
           </div>
         ))}
+        {Array.from({ length: monthStartOffset }).map((_, index) => (
+          <div
+            key={`empty-${index}`}
+            className="aspect-square rounded-xl border border-transparent"
+          />
+        ))}
         {Array.from({ length: daysInMonth }, (_, index) => {
           const dayNumber = index + 1;
           const dateString = bulidDateString(
@@ -57,6 +73,7 @@ export function CalendarMonthGrid({
           );
           const hasData = data.some((item) => item.date === dateString);
           const isSelected = dayNumber === selectedDay;
+
           return (
             <button
               key={dateString}
