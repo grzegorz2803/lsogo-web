@@ -28,6 +28,7 @@ function isPastDate(dateStr: string) {
   selected.setHours(0, 0, 0, 0);
   return selected < today;
 }
+
 export function CalendarPage() {
   const today = formatTodayParts();
   const [selectedYear, setSelectedYear] = useState<number>(today.year);
@@ -51,7 +52,11 @@ export function CalendarPage() {
     }
     return calendarPageContent.dayDetails.noFutureData;
   }, [matchedDay, selectedDate]);
-
+  function changeMonthBy(offset: number) {
+    const date = new Date(selectedYear, selectedMonth + offset, 1);
+    setSelectedYear(date.getFullYear());
+    setSelectedMonth(date.getMonth());
+  }
   return (
     <div className="relative min-h-screen w-full px-6 pt-20 pb-16">
       <div className="mx-auto max-w-6xl ">
@@ -78,7 +83,15 @@ export function CalendarPage() {
               selectedMonth={selectedMonth}
               selectedDay={selectedDay}
               data={calendarDaysMock}
-              onSelectDay={setSelectedDay}
+              onSelectCurrentMonthDay={setSelectedDay}
+              onSelectPreviousMonthDay={(day) => {
+                changeMonthBy(-1);
+                setSelectedDay(day);
+              }}
+              onSelectNextMonthDay={(day) => {
+                changeMonthBy(1);
+                setSelectedDay(day);
+              }}
             />
             <CalendarDayDetails day={matchedDay} emptyMessage={emptyMessage} />
           </div>

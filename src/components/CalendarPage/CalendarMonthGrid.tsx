@@ -6,7 +6,9 @@ type Props = {
   selectedMonth: number;
   selectedDay: number;
   data: CalendarDayData[];
-  onSelectDay: (day: number) => void;
+  onSelectCurrentMonthDay: (day: number) => void;
+  onSelectPreviousMonthDay: (day: number) => void;
+  onSelectNextMonthDay: (day: number) => void;
 };
 function bulidDateString(year: number, month: number, day: number) {
   const yyyy = String(year);
@@ -40,8 +42,9 @@ export function CalendarMonthGrid({
   selectedYear,
   selectedMonth,
   selectedDay,
-  data,
-  onSelectDay,
+  onSelectNextMonthDay,
+  onSelectCurrentMonthDay,
+  onSelectPreviousMonthDay,
 }: Props) {
   const daysInMonth = getDaysInMonth(selectedYear, selectedMonth);
   const { monthView } = calendarPageContent;
@@ -69,11 +72,16 @@ export function CalendarMonthGrid({
         {Array.from({ length: monthStartOffset }).map((_, index) => {
           const day = daysInPrevMonth - monthStartOffset + index + 1;
           return (
-            <div className="relative aspect-square border border-slate-700">
+            <button
+              key={`prev-${day}`}
+              type="button"
+              onClick={() => onSelectPreviousMonthDay(day)}
+              className="relative aspect-square border border-slate-700 transition"
+            >
               <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
                 {day}
               </span>
-            </div>
+            </button>
           );
         })}
         {Array.from({ length: daysInMonth }, (_, index) => {
@@ -83,7 +91,6 @@ export function CalendarMonthGrid({
             selectedMonth,
             dayNumber,
           );
-          const hasData = data.some((item) => item.date === dateString);
           const isSelected = dayNumber === selectedDay;
           const sunday = isSunday(selectedYear, selectedMonth, dayNumber);
 
@@ -91,7 +98,7 @@ export function CalendarMonthGrid({
             <button
               key={dateString}
               type="button"
-              onClick={() => onSelectDay(dayNumber)}
+              onClick={() => onSelectCurrentMonthDay(dayNumber)}
               className={[
                 "aspect-square flex items-center justify-center",
                 "border border-slate-700 text-sm transition",
@@ -105,10 +112,6 @@ export function CalendarMonthGrid({
                   <span className="text-3xl font-serif text-amber-50 ">
                     {dayNumber}
                   </span>
-
-                  {hasData && (
-                    <span className="absolute bottom-3 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-amber-400" />
-                  )}
                 </div>
               ) : (
                 <div className="relative h-full w-full">
@@ -120,10 +123,6 @@ export function CalendarMonthGrid({
                   >
                     {dayNumber}
                   </span>
-
-                  {hasData && (
-                    <span className="absolute bottom-3 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-amber-400" />
-                  )}
                 </div>
               )}
             </button>
@@ -132,11 +131,16 @@ export function CalendarMonthGrid({
         {Array.from({ length: trailingDaysCount }).map((_, index) => {
           const nextMonthDay = index + 1;
           return (
-            <div className="relative aspect-square border border-slate-700">
+            <button
+              key={`next-${nextMonthDay}`}
+              type="button"
+              onClick={() => onSelectNextMonthDay(nextMonthDay)}
+              className="relative aspect-square border border-slate-700 transitio hover:bg-slate-900"
+            >
               <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
                 {nextMonthDay}
               </span>
-            </div>
+            </button>
           );
         })}
       </div>
