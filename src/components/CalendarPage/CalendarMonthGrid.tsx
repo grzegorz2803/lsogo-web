@@ -49,7 +49,8 @@ export function CalendarMonthGrid({
   const daysInMonth = getDaysInMonth(selectedYear, selectedMonth);
   const { monthView } = calendarPageContent;
   const monthStartOffset = getMonthStartOffset(selectedYear, selectedMonth);
-  const totalCells = 42;
+  const usedCells = monthStartOffset + daysInMonth;
+  const totalCells = usedCells <= 35 ? 35 : 42;
   const trailingDaysCount = totalCells - monthStartOffset - daysInMonth;
   const prevMonth = selectedMonth === 0 ? 11 : selectedMonth - 1;
   const prevMonthYear = selectedMonth === 0 ? selectedYear - 1 : selectedYear;
