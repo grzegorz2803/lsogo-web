@@ -33,6 +33,9 @@ function getMonthStartOffset(year: number, month: number) {
   const firstDay = new Date(year, month, 1).getDay();
   return firstDay === 0 ? 6 : firstDay - 1;
 }
+function isSunday(year: number, month: number, day: number) {
+  return new Date(year, month, day).getDay() === 0;
+}
 export function CalendarMonthGrid({
   selectedYear,
   selectedMonth,
@@ -66,11 +69,10 @@ export function CalendarMonthGrid({
         {Array.from({ length: monthStartOffset }).map((_, index) => {
           const day = daysInPrevMonth - monthStartOffset + index + 1;
           return (
-            <div
-              key={`prev-${day}`}
-              className="aspect-square border border-slate-700 flex items-center justify-center text-slate-500"
-            >
-              <span className="text-base font-medium opacity-50">{day}</span>
+            <div className="relative aspect-square border border-slate-700">
+              <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
+                {day}
+              </span>
             </div>
           );
         })}
@@ -83,6 +85,7 @@ export function CalendarMonthGrid({
           );
           const hasData = data.some((item) => item.date === dateString);
           const isSelected = dayNumber === selectedDay;
+          const sunday = isSunday(selectedYear, selectedMonth, dayNumber);
 
           return (
             <button
@@ -93,27 +96,44 @@ export function CalendarMonthGrid({
                 "aspect-square flex items-center justify-center",
                 "border border-slate-700 text-sm transition",
                 isSelected
-                  ? "bg-amber-500/20 text-amber-100"
-                  : "bg-slate-900 text-slate-100 hover:bg-slate-800",
+                  ? "border-amber-300 bg-amber-500"
+                  : "border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800",
               ].join(" ")}
             >
-              <div className="flex h-full flex-col items-center justify-center">
-                <span className="text-base font-medium">{dayNumber}</span>
-                {hasData && (
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-400" />
-                )}
-              </div>
+              {isSelected ? (
+                <div className="relative flex h-full w-full items-center justify-center">
+                  <span className="text-3xl font-serif text-amber-50 ">
+                    {dayNumber}
+                  </span>
+
+                  {hasData && (
+                    <span className="absolute bottom-3 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-amber-400" />
+                  )}
+                </div>
+              ) : (
+                <div className="relative h-full w-full">
+                  <span
+                    className={[
+                      "absolute right-3 top-3 text-base font-medium",
+                      sunday ? "text-red-300" : "text-slate-100",
+                    ].join(" ")}
+                  >
+                    {dayNumber}
+                  </span>
+
+                  {hasData && (
+                    <span className="absolute bottom-3 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-amber-400" />
+                  )}
+                </div>
+              )}
             </button>
           );
         })}
         {Array.from({ length: trailingDaysCount }).map((_, index) => {
           const nextMonthDay = index + 1;
           return (
-            <div
-              key={`next-${nextMonthDay}`}
-              className="aspect-square border border-slate-700 flex items-center justify-center text-slate-500"
-            >
-              <span className="text-base font-medium opacity-50">
+            <div className="relative aspect-square border border-slate-700">
+              <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
                 {nextMonthDay}
               </span>
             </div>
