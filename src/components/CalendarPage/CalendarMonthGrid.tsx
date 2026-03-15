@@ -43,13 +43,18 @@ export function CalendarMonthGrid({
   const daysInMonth = getDaysInMonth(selectedYear, selectedMonth);
   const { monthView } = calendarPageContent;
   const monthStartOffset = getMonthStartOffset(selectedYear, selectedMonth);
+  const totalCells = 42;
+  const trailingDaysCount = totalCells - monthStartOffset - daysInMonth;
+  const prevMonth = selectedMonth === 0 ? 11 : selectedMonth - 1;
+  const prevMonthYear = selectedMonth === 0 ? selectedYear - 1 : selectedYear;
+  const daysInPrevMonth = getDaysInMonth(prevMonthYear, prevMonth);
 
   return (
-    <div className="rounded-3xl border border-slate-700/50 bg-slate-950/60 px-6 py-8 shadow-[0_24px_80px_rgba(15,23,42,0.95)] ring-1 ring-slate-900/80">
+    <div className="rounded-3xl px-6 py-8 s">
       <h3 className="text-center font-serif text-2xl text-amber-50">
         {getMonthTitle(selectedYear, selectedMonth)}
       </h3>
-      <div className="mt-6 grid grid-cols-7 gap-2">
+      <div className="mt-6 grid grid-cols-7 ">
         {monthView.weekLabels.map((label) => (
           <div
             key={label}
@@ -58,12 +63,17 @@ export function CalendarMonthGrid({
             {label}
           </div>
         ))}
-        {Array.from({ length: monthStartOffset }).map((_, index) => (
-          <div
-            key={`empty-${index}`}
-            className="aspect-square rounded-xl border border-transparent"
-          />
-        ))}
+        {Array.from({ length: monthStartOffset }).map((_, index) => {
+          const day = daysInPrevMonth - monthStartOffset + index + 1;
+          return (
+            <div
+              key={`prev-${day}`}
+              className="aspect-square border border-slate-700 flex items-center justify-center text-slate-500"
+            >
+              <span className="text-base font-medium opacity-50">{day}</span>
+            </div>
+          );
+        })}
         {Array.from({ length: daysInMonth }, (_, index) => {
           const dayNumber = index + 1;
           const dateString = bulidDateString(
@@ -80,10 +90,11 @@ export function CalendarMonthGrid({
               type="button"
               onClick={() => onSelectDay(dayNumber)}
               className={[
-                "aspect-square rounded-xl border text-sm transition",
+                "aspect-square flex items-center justify-center",
+                "border border-slate-700 text-sm transition",
                 isSelected
-                  ? "border-amber-400 bg-amber-500/20 text-amber-100 shadow-[0_0_20px_rgba(251,191,36,0.25)]"
-                  : "border-amber-700 bg-slate-900 text-slate-100 hover:border-amber-400/40 hover:text-amber-200",
+                  ? "bg-amber-500/20 text-amber-100"
+                  : "bg-slate-900 text-slate-100 hover:bg-slate-800",
               ].join(" ")}
             >
               <div className="flex h-full flex-col items-center justify-center">
@@ -93,6 +104,19 @@ export function CalendarMonthGrid({
                 )}
               </div>
             </button>
+          );
+        })}
+        {Array.from({ length: trailingDaysCount }).map((_, index) => {
+          const nextMonthDay = index + 1;
+          return (
+            <div
+              key={`next-${nextMonthDay}`}
+              className="aspect-square border border-slate-700 flex items-center justify-center text-slate-500"
+            >
+              <span className="text-base font-medium opacity-50">
+                {nextMonthDay}
+              </span>
+            </div>
           );
         })}
       </div>
