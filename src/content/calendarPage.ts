@@ -11,9 +11,12 @@ export const calendarPageContent = {
     dioceseLabel: "Dicezja",
   },
   dayDetails: {
-    readingsTitle: "Czytania",
+    firstReadingTitle: "Pierwsze czytanie",
+    psalmTitle: "Psalm responsoryjny",
+    secondReadingTitle: "Drugie czytanie",
+    gospelTitle: "Ewangelia",
     colorLabel: "Kolor szat",
-    optionalCelebrationsTitle: "Wspomnienia i obchody dodatkowe",
+    optionalCelebrationsTitle: "Wspomnienia dowolne",
     notesTitle: "Uwagi",
     noFutureData:
       "Dame zostaną uzupełnione niezwłocznie po otrzymaniu nowego kalendarza liturgicznego z Diecezji.",

@@ -20,7 +20,12 @@ export type CalendarDayData = {
   mainSubtitle?: string;
   rank: string;
   color: LiturgicalColor;
-  readings: string[];
+  readings: {
+    firstReading?: string;
+    psalm?: string;
+    secondReading?: string;
+    gospel?: string;
+  };
   optionalCelebrations?: OptionalCelebration[];
   notes?: string;
 };
@@ -40,11 +45,11 @@ export const calendarDaysMock: CalendarDayData[] = [
     mainSubtitle: "13. tydzień zwykły",
     rank: "dzień powszedni",
     color: "zielony",
-    readings: [
-      "Rdz 17, 1. 9-10. 15-22",
-      "Ps 128 (127), 1b-2. 3. 4-5",
-      "Mt 8, 1-4",
-    ],
+    readings: {
+      firstReading: "Rdz 17, 1. 9-10. 15-22",
+      psalm: "Ps 128 (127), 1b-2. 3. 4-5",
+      gospel: "Mt 8, 1-4",
+    },
     optionalCelebrations: [
       {
         id: "opt-1",
@@ -65,15 +70,15 @@ export const calendarDaysMock: CalendarDayData[] = [
   {
     date: "2026-03-19",
     weekday: "Czwartek",
-    mainTitle: "Św. Józefa, Oblubieńca Najświętszej Maryi Panny",
-    rank: "uroczystość",
+    mainTitle: "Uroczystość Św. Józefa, Oblubieńca Najświętszej Maryi Panny",
+    rank: "Uroczystość",
     color: "biały",
-    readings: [
-      "2 Sm 7, 4-5a. 12-14a. 16",
-      "Ps 89 (88), 2-3. 4-5. 27 i 29",
-      "Rz 4, 13. 16-18. 22",
-      "Mt 1, 16. 18-21. 24a",
-    ],
+    readings: {
+      firstReading: "2 Sm 7, 4-5a. 12-14a. 16",
+      psalm: "Ps 89 (88), 2-3. 4-5. 27 i 29",
+      secondReading: "Rz 4, 13. 16-18. 22",
+      gospel: "Mt 1, 16. 18-21. 24a",
+    },
   },
   {
     date: "2026-10-18",
@@ -81,12 +86,12 @@ export const calendarDaysMock: CalendarDayData[] = [
     mainTitle: "29. Niedziela zwykła",
     rank: "niedziela",
     color: "zielony",
-    readings: [
-      "Iz 45, 1. 4-6",
-      "Ps 96 (95), 1 i 3. 4-5. 7-8. 9-10ac",
-      "1 Tes 1, 1-5b",
-      "Mt 22, 15-21",
-    ],
+    readings: {
+      firstReading: "Iz 45, 1. 4-6",
+      psalm: "Ps 96 (95), 1 i 3. 4-5. 7-8. 9-10ac",
+      secondReading: "1 Tes 1, 1-5b",
+      gospel: "Mt 22, 15-21",
+    },
   },
   {
     date: "2026-09-15",
@@ -94,11 +99,11 @@ export const calendarDaysMock: CalendarDayData[] = [
     mainTitle: "Najświętszej Maryi Panny Bolesnej",
     rank: "wspomnienie",
     color: "biały",
-    readings: [
-      "Hbr 5, 7-9",
-      "Ps 31 (30), 2 i 6. 12-13. 15-16. 20",
-      "J 19, 25-27 lub Łk 2, 33-35",
-    ],
+    readings: {
+      firstReading: "Hbr 5, 7-9",
+      psalm: "Ps 31 (30), 2 i 6. 12-13. 15-16. 20",
+      gospel: "J 19, 25-27 lub Łk 2, 33-35",
+    },
     notes: "Można po Mszy odprawić nabożeństwo ku czci Matki Bożej Bolesnej.",
   },
 ];
