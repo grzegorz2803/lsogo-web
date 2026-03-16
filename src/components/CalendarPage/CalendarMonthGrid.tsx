@@ -9,6 +9,8 @@ type Props = {
   onSelectCurrentMonthDay: (day: number) => void;
   onSelectPreviousMonthDay: (day: number) => void;
   onSelectNextMonthDay: (day: number) => void;
+  onPreviousMonth: () => void;
+  onNextMonth: () => void;
 };
 function bulidDateString(year: number, month: number, day: number) {
   const yyyy = String(year);
@@ -45,6 +47,8 @@ export function CalendarMonthGrid({
   onSelectNextMonthDay,
   onSelectCurrentMonthDay,
   onSelectPreviousMonthDay,
+  onPreviousMonth,
+  onNextMonth,
 }: Props) {
   const daysInMonth = getDaysInMonth(selectedYear, selectedMonth);
   const { monthView } = calendarPageContent;
@@ -58,9 +62,27 @@ export function CalendarMonthGrid({
 
   return (
     <div className="rounded-3xl px-6 py-8 s">
-      <h3 className="text-center font-serif text-2xl text-amber-50">
-        {getMonthTitle(selectedYear, selectedMonth)}
-      </h3>
+      <div className="flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={onPreviousMonth}
+          className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 text-amber-200 transition hover:border-amber-400/50 hover:text-amber-100"
+          aria-label="Poprzedni miesiąc"
+        >
+          ‹
+        </button>
+        <h3 className="text-center font-serif text-2xl text-amber-50">
+          {getMonthTitle(selectedYear, selectedMonth)}
+        </h3>
+        <button
+          type="button"
+          onClick={onNextMonth}
+          className="rounded-full border  border-slate-700 bg-slate-900/80 px-3 py-1 text-amber-200 transition hover:border-amber-400/50 hover:text-amber-100"
+          aria-label="Następny miesiąc"
+        >
+          ›
+        </button>
+      </div>
       <div className="mt-6 grid grid-cols-7 ">
         {monthView.weekLabels.map((label) => (
           <div
@@ -77,7 +99,7 @@ export function CalendarMonthGrid({
               key={`prev-${day}`}
               type="button"
               onClick={() => onSelectPreviousMonthDay(day)}
-              className="relative aspect-square border border-slate-700 transition"
+              className="relative aspect-square border border-slate-700 transition hover:bg-slate-800/30"
             >
               <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
                 {day}
@@ -136,7 +158,7 @@ export function CalendarMonthGrid({
               key={`next-${nextMonthDay}`}
               type="button"
               onClick={() => onSelectNextMonthDay(nextMonthDay)}
-              className="relative aspect-square border border-slate-700 transitio hover:bg-slate-900"
+              className="relative aspect-square border border-slate-700 transitio hover:bg-slate-800/30"
             >
               <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
                 {nextMonthDay}
