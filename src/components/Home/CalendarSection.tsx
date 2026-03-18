@@ -1,13 +1,14 @@
-import { Button } from "./Button";
+import { Button } from "../Button";
 import { useState } from "react";
 import {
   todayLiturgicalInfoMock,
   type TodayLiturgicalInfo,
   diocesesMock,
-} from "../mocks/calendarMocks";
-import { homeCalendarContent } from "../content/calendar";
-import { weekdaysPl } from "../content/i18nWeekdats";
-import { SectionSeparator } from "./SectionSeparator";
+} from "../../mocks/calendarMocks";
+
+import { homeCalendarContent } from "../../content/calendar";
+import { weekdaysPl } from "../../content/i18nWeekdats";
+import { SectionSeparator } from "../SectionSeparator";
 const dioceses = diocesesMock.dioceses;
 function formatTodayISO() {
   const today = new Date();

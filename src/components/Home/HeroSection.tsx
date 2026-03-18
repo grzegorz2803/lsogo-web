@@ -1,5 +1,5 @@
-import { Button } from "./Button";
-import { homeHeroContent } from "../content/home";
+import { Button } from "../Button";
+import { homeHeroContent } from "../../content/home";
 export function HeroSection() {
   return (
     <section className="relative min-h-screen w-full">

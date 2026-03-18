@@ -1,8 +1,8 @@
-import { CalendarSection } from "../components/CalendarSection";
-import { AudienceSection } from "../components/AudienceSection";
-import { HeroSection } from "../components/HeroSection";
-import { FeaturesSection } from "../components/FeaturesSection";
-import { HomeCtaSection } from "../components/HomeCtaSection";
+import { CalendarSection } from "../components/Home/CalendarSection";
+import { AudienceSection } from "../components/Home/AudienceSection";
+import { HeroSection } from "../components/Home/HeroSection";
+import { FeaturesSection } from "../components/Home/FeaturesSection";
+import { HomeCtaSection } from "../components/Home/HomeCtaSection";
 
 export function HomePage() {
   return (
