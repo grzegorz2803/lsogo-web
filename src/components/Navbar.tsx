@@ -50,7 +50,7 @@ export function Navbar() {
           {/* Right */}
           <div className="flex items-center gap-3">
             <NavLink
-              to="#login"
+              to="/login"
               className="hidden rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-black shadow-sm shadow-amber-500/20 transition hover:bg-amber-400 lg:inline-flex"
             >
               {navbarContent.loginButton}
@@ -85,7 +85,7 @@ export function Navbar() {
               </NavLink>
             ))}
             <NavLink
-              to="#login"
+              to="/login"
               className="block w-full text-center mt-2
              bg-amber-500/90 hover:bg-amber-400
              text-slate-900 font-semibold text-sm

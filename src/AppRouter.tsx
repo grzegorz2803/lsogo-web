@@ -4,6 +4,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { ParishPage } from "./pages/ParishPage";
 import { ContactPage } from "./pages/ContactPage";
 import { CalendarPage } from "./pages/CalendarPage";
+import { LoginPage } from "./pages/LoginPage";
 
 export function AppRouter() {
   return (
@@ -13,6 +14,7 @@ export function AppRouter() {
       <Route path="/o-systemie" element={<AboutPage />} />
       <Route path="/dla-parafii" element={<ParishPage />} />
       <Route path="/kontakt" element={<ContactPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }
