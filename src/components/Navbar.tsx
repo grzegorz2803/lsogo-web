@@ -23,7 +23,7 @@ export function Navbar() {
             </span>
           </Link>
           {/*Desktop nav */}
-          <nav className="hidden items-center gap-8 font-serif text-base text-slate-200/90 md:flex">
+          <nav className="hidden items-center gap-8 font-serif text-base text-slate-200/90 lg:flex">
             {navLinks.map((l) => (
               <NavLink key={l.href} to={l.href}>
                 {({ isActive }) => (
@@ -51,7 +51,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href="#login"
-              className="hidden rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-black shadow-sm shadow-amber-500/20 transition hover:bg-amber-400 md:inline-flex"
+              className="hidden rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-black shadow-sm shadow-amber-500/20 transition hover:bg-amber-400 lg:inline-flex"
             >
               {navbarContent.loginButton}
             </a>
@@ -59,7 +59,7 @@ export function Navbar() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               type="button"
-              className="md:hidden px-4 py-2 border border-amber-300/60 rounded-xl text-amber-200"
+              className="lg:hidden px-4 py-2 border border-amber-300/60 rounded-xl text-amber-200"
               aria-label="Otwórz menu"
             >
               {navbarContent.menuButton}
@@ -68,7 +68,7 @@ export function Navbar() {
         </div>
         {mobileOpen && (
           <div
-            className="md:hidden mt-3 w-full rounded-2xl border border-white/10
+            className="lg:hidden mt-3 w-full rounded-2xl border border-white/10
                bg-slate-950/95 backdrop-blur-xl
                shadow-[0_18px_40px_rgba(15,23,42,0.9)]
                px-4 py-3 space-y-3 animate-fadeIn"
