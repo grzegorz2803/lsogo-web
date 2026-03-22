@@ -1,5 +1,6 @@
 import { Button } from "../Button";
 import { homeHeroContent } from "../../content/home";
+import { Link } from "react-router-dom";
 export function HeroSection() {
   return (
     <section className="relative min-h-screen w-full">
@@ -14,10 +15,14 @@ export function HeroSection() {
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm: items-center">
-              <Button>{homeHeroContent.primaryCta}</Button>
-              <Button variant="secondary">
-                {homeHeroContent.secondaryCta}
-              </Button>
+              <Link to={homeHeroContent.primaryCta.href}>
+                <Button>{homeHeroContent.primaryCta.label}</Button>
+              </Link>
+              <Link to={homeHeroContent.secondaryCta.href}>
+                <Button variant="secondary">
+                  {homeHeroContent.secondaryCta.label}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

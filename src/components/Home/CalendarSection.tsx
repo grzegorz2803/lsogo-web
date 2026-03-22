@@ -6,9 +6,10 @@ import {
   diocesesMock,
 } from "../../mocks/calendarMocks";
 
-import { homeCalendarContent } from "../../content/calendar";
+import { homeCalendarContent } from "../../content/home";
 import { weekdaysPl } from "../../content/i18nWeekdats";
 import { SectionSeparator } from "../SectionSeparator";
+import { Link } from "react-router-dom";
 const dioceses = diocesesMock.dioceses;
 function formatTodayISO() {
   const today = new Date();
@@ -171,7 +172,9 @@ export function CalendarSection() {
         </div>
         {/*Przycisk */}
         <div className="mt-8 flex justify-center ">
-          <Button>{homeCalendarContent.openCalendarLabel}</Button>
+          <Link to={homeCalendarContent.openCalendarLabel.href}>
+            <Button>{homeCalendarContent.openCalendarLabel.label}</Button>
+          </Link>
         </div>
       </div>
     </section>
