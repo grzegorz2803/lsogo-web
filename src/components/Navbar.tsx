@@ -49,12 +49,13 @@ export function Navbar() {
           </nav>
           {/* Right */}
           <div className="flex items-center gap-3">
-            <a
-              href="#login"
+            <NavLink
+              to="#login"
               className="hidden rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-black shadow-sm shadow-amber-500/20 transition hover:bg-amber-400 lg:inline-flex"
             >
               {navbarContent.loginButton}
-            </a>
+            </NavLink>
+
             {/*Mobile menu placeholder */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -74,16 +75,17 @@ export function Navbar() {
                px-4 py-3 space-y-3 animate-fadeIn"
           >
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.href}
-                href={link.href}
+                to={link.href}
+                onClick={() => setMobileOpen(false)}
                 className="block text-slate-200 text-lg font-medium hover:text-amber-300"
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
-            <a
-              href="/login"
+            <NavLink
+              to="#login"
               className="block w-full text-center mt-2
              bg-amber-500/90 hover:bg-amber-400
              text-slate-900 font-semibold text-sm
@@ -92,7 +94,7 @@ export function Navbar() {
              transition-colors"
             >
               {navbarContent.loginButton}
-            </a>
+            </NavLink>
           </div>
         )}
       </div>
