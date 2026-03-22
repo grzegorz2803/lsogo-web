@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "../Button";
 import { mockLogin } from "../../mocks/authMock";
+import { loginContent } from "../../content/login";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -28,37 +28,58 @@ export function LoginForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-3xl border border-slate-700/50 bg-slate-950/60 px-8 py-10 shadow-[0_24px_80px_rgba(15,23,42,0.95)]"
-    >
-      <h1 className="text-2xl font-serif text-amber-100 text-center">
-        Logowanie
-      </h1>
-      <div className="mt-6 flex flex-col gap-4">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none focus:border-amber-400"
-        />
-        <input
-          type="password"
-          placeholder="Hasło"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-slate-100 outline-none focus:border-amber-400"
-        />
+    <form onSubmit={handleSubmit}>
+      <h2 className="text-4xl font-serif text-slate-800">
+        {loginContent.form.title}
+      </h2>
+      <p className="mt-3 text-sm leading-relaxed text-slate-700/80">
+        {loginContent.form.subtitle}
+      </p>
+      <div className="mt-5 h-px w-full bg-linear-to-r from-amber-300/80 via-amber-200/50 to-transparent" />
+      <div className="mt-6 space-y-5">
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-800">
+            {loginContent.form.emailLabel}
+          </label>
+          <input
+            type="email"
+            placeholder="np. animator@parafia.pl"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-xl border border-amber-900/10 bg-white/85 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-500/70  focus:ring-2 focus:ring-amber-300/35"
+          />
+        </div>
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-800">
+            {loginContent.form.passwordLabel}
+          </label>
+          <input
+            type="password"
+            placeholder="Hasło"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded-xl border border-amber-900/10 bg-white/85 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-500/70  focus:ring-2 focus:ring-amber-300/35"
+          />
+        </div>
       </div>
       {error && (
-        <p className="mt-4 text-sm text-red-400 text-center">{error}</p>
+        <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </p>
       )}
-      <div className="mt-6">
-        <Button variant="primary" disabled={loading}>
-          {loading ? "Logowanie..." : "Zaloguj się"}
-        </Button>
-      </div>
+      <button
+        type="submit"
+        disabled={loading}
+        className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-linear-to-b from-amber-500 via-amber-600 to-amber-700 px-5 py-3.5 text-lg font-semibold text-white shadow-[0_10px_24px_rgba(180,120,20,0.35)] transition hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {loading ? "Logowanie..." : "Zaloguj się"}
+      </button>
+      <button
+        type="button"
+        className="mt-4 w-full text-center text-sm font-medium text-slate-700 transition hover:text-amber-700"
+      >
+        {loginContent.form.secondaryCta}
+      </button>
     </form>
   );
 }
