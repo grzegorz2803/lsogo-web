@@ -1,21 +1,31 @@
 import React, { useState } from "react";
-import { mockLogin } from "../../mocks/authMock";
 import { loginContent } from "../../content/login";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
+
     try {
-      const user = await mockLogin(email, password);
-      console.log("Zalogowany", user);
-      //TODO
+      const loggedUser = await login(email, password);
+
+      console.log("Zalogowany", loggedUser);
+      if (loggedUser.role === "user") {
+        navigate("/panel/user");
+      } else if (loggedUser.role === "moderator") {
+        navigate("/panel/moderator");
+      } else if (loggedUser.role === "admin") {
+        navigate("/panel/admin");
+      }
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);

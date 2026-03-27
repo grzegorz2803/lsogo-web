@@ -7,6 +7,9 @@ export const navbarContent = {
     { label: "Dla parafii", href: "/dla-parafii" },
     { label: "Kontakt", href: "/kontakt" },
   ],
-  loginButton: "Zaloguj się",
+  loginButton: {
+    label: "Zaloguj się",
+    href: "/login",
+  },
   menuButton: "Menu",
 };
