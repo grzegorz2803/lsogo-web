@@ -8,6 +8,7 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -16,7 +17,7 @@ export function LoginForm() {
     setLoading(true);
 
     try {
-      const loggedUser = await login(email, password);
+      const loggedUser = await login(email, password, rememberMe);
 
       console.log("Zalogowany", loggedUser);
       if (loggedUser.role === "user") {
@@ -70,6 +71,15 @@ export function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-xl border border-amber-900/10 bg-white/85 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-500/70  focus:ring-2 focus:ring-amber-300/35"
           />
+          <label className="mt-2 flex items-center gap-3 text-sm text-slate-700/80">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              className="h-4 w-4 border-slate-300 rounded text-amber-600 focus:ring-amber-400"
+            />
+            Zapamiętaj mnie
+          </label>
         </div>
       </div>
       {error && (

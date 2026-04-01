@@ -11,7 +11,11 @@ export type SafeUser = {
 export type AuthContextValue = {
   user: SafeUser | null;
   isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<SafeUser>;
+  login: (
+    email: string,
+    password: string,
+    rememberME: boolean,
+  ) => Promise<SafeUser>;
   logout: () => void;
 };
 
