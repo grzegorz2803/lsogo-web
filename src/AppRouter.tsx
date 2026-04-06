@@ -11,6 +11,7 @@ import { UserDashboardPage } from "./pages/user/UserDashboardPage";
 import { ModeratorDashboardPage } from "./pages/moderator/ModeratorBashboardPage";
 import { AdminDashboardPage } from "./pages/admin/AdminDashboardPage";
 import { AccessDeniedPage } from "./pages/AccessDenidedPage";
+import { DashboardLayout } from "./layouts/DashboardLayout";
 
 export function AppRouter() {
   return (
@@ -24,14 +25,19 @@ export function AppRouter() {
       <Route path="/brak-dostepu" element={<AccessDeniedPage />} />
 
       <Route element={<ProtectedRoute />}>
-        <Route element={<RoleRoute allowedRoles={["user"]} />}>
-          <Route path="/panel/user" element={<UserDashboardPage />} />
-        </Route>
-        <Route element={<RoleRoute allowedRoles={["moderator"]} />}>
-          <Route path="/panel/moderator" element={<ModeratorDashboardPage />} />
-        </Route>
-        <Route element={<RoleRoute allowedRoles={["admin"]} />}>
-          <Route path="/panel/admin" element={<AdminDashboardPage />} />
+        <Route element={<DashboardLayout />}>
+          <Route element={<RoleRoute allowedRoles={["user"]} />}>
+            <Route path="/panel/user" element={<UserDashboardPage />} />
+          </Route>
+          <Route element={<RoleRoute allowedRoles={["moderator"]} />}>
+            <Route
+              path="/panel/moderator"
+              element={<ModeratorDashboardPage />}
+            />
+          </Route>
+          <Route element={<RoleRoute allowedRoles={["admin"]} />}>
+            <Route path="/panel/admin" element={<AdminDashboardPage />} />
+          </Route>
         </Route>
       </Route>
     </Routes>
