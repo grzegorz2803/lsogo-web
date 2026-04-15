@@ -1,144 +1,102 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { Logo } from "../Logo";
-const baseLinkClass =
-  "rounded-xl px-4 py-3 text-sm text-slate-300 transition hover:bg-amber-500/10 hover:text-amber-200";
+function getLinkClass(isActive: boolean) {
+  return [
+    "block rounded-2xl px-4 py-3 text-sm font-medium transition",
+    isActive
+      ? "border border-amber-400/20 bg-linear-to-r from-amber-500/18 to-amber-400/5 text-amber-200 shadow-[0_0_18px_rgba(251,191,36,0.12)]"
+      : "text-slate-300 hover:border hover:border-white/8 hover:bg-white/4 hover:text-amber-100",
+  ].join(" ");
+}
+
 export function Sidebar() {
   const { user } = useAuth();
   const role = user?.role;
 
   return (
-    <aside
-      className="w-64 border-r border-slate-800/80 bg-slate-950/80 backdrop-blur-xl
-shadow-[inset_-1px_0_0_rgba(255,255,255,0.05)] px-6 py-8 "
-    >
-      <div className="mb-10 flex items-center gap-4">
+    <aside className="w-72 border-r border-slate-800/80 bg-slate-950/80 backdrop-blur-xl px-6 py-8 ">
+      <div className="mb-8 flex items-center gap-4 rounded-[1.75rem] border border-slate-700/50 bg-slate-950/60 px-5 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.45)]">
         <Logo className="h-12 w-12 shrink-0" />
-        <span className="font-serif text-2xl font-semibold tracking-[0.12em] text-transparent bg-clip-text bg-linear-to-b from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(251,191,36,0.25)]">
+        <span className="font-serif text-3xl font-semibold tracking-[0.12em] text-transparent bg-clip-text bg-linear-to-b from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(251,191,36,0.25)]">
           LSOgo
         </span>
       </div>
 
-      <nav className="flex flex-col gap-2">
-        {role === "user" && (
-          <>
-            <NavLink
-              to="/panel/user"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-              end
-            >
-              Dashboard
-            </NavLink>
+      <div className="rounded-[1.75rem] border border-slate-700/40 bg-slate-950/50 p-3 shadow-[0_20px_50px_rgba(15,23,42,0.35)]">
+        <p className="px-3 pb-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+          Menu
+        </p>
+        <nav className="flex flex-col gap-2">
+          {role === "user" && (
+            <>
+              <NavLink
+                to="/panel/user"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Dashboard
+              </NavLink>
 
-            <NavLink
-              to="/panel/user/profile"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-            >
-              Profil
-            </NavLink>
-          </>
-        )}
+              <NavLink
+                to="/panel/user/profile"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Profil
+              </NavLink>
+            </>
+          )}
 
-        {role === "moderator" && (
-          <>
-            <NavLink
-              to="/panel/moderator"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-              end
-            >
-              Dashboard
-            </NavLink>
+          {role === "moderator" && (
+            <>
+              <NavLink
+                to="/panel/moderator"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Dashboard
+              </NavLink>
 
-            <NavLink
-              to="/panel/moderator/attendance"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-            >
-              Obecności
-            </NavLink>
+              <NavLink
+                to="/panel/moderator/attendance"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Obecności
+              </NavLink>
 
-            <NavLink
-              to="/panel/moderator/schedule"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-            >
-              Harmonogram
-            </NavLink>
-          </>
-        )}
+              <NavLink
+                to="/panel/moderator/schedule"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Harmonogram
+              </NavLink>
+            </>
+          )}
 
-        {role === "admin" && (
-          <>
-            <NavLink
-              to="/panel/admin"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-              end
-            >
-              Dashboard
-            </NavLink>
+          {role === "admin" && (
+            <>
+              <NavLink
+                to="/panel/admin"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Dashboard
+              </NavLink>
 
-            <NavLink
-              to="/panel/admin/users"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-            >
-              Użytkownicy
-            </NavLink>
+              <NavLink
+                to="/panel/admin/users"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Użytkownicy
+              </NavLink>
 
-            <NavLink
-              to="/panel/admin/settings"
-              className={({ isActive }) =>
-                `${baseLinkClass} ${
-                  isActive
-                    ? "bg-amber-500/12 text-amber-200 ring-1 ring-amber-400/20"
-                    : ""
-                }`
-              }
-            >
-              Ustawienia
-            </NavLink>
-          </>
-        )}
-      </nav>
+              <NavLink
+                to="/panel/admin/settings"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Ustawienia
+              </NavLink>
+            </>
+          )}
+        </nav>
+      </div>
     </aside>
   );
 }

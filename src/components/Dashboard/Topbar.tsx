@@ -4,10 +4,7 @@ export function Topbar() {
   const { user, logout } = useAuth();
 
   return (
-    <header
-      className="border-b border-slate-800/80  px-6 py-5 bg-slate-950/80 backdrop-blur-xl
-shadow-[0_10px_40px_rgba(2,6,23,0.6)]"
-    >
+    <header className="border-b border-slate-800/70  px-6 py-5 bg-slate-950/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(2,6,23,0.6)]">
       <div className="flex items-center justify-between">
         <div className="font-serif text-2xl text-amber-200">
           Panel {user?.role}
@@ -18,7 +15,7 @@ shadow-[0_10px_40px_rgba(2,6,23,0.6)]"
 
           <button
             onClick={logout}
-            className="rounded-xl border border-amber-400/20 bg-amber-500/10 px-4 py-2 text-sm text-amber-200 transition hover:bg-amber-500/20"
+            className="rounded-2xl cursor-pointer border border-amber-400/20 bg-linear-to-b from-amber-400 via-amber-500 to-amber-600 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-[0_0_24px_rgba(251,191,36,0.28)]"
           >
             Wyloguj
           </button>
