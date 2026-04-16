@@ -1,6 +1,7 @@
 import { userDashboardContent } from "../../../content/userDashboard";
 
 import type { NotificationItem } from "../../../mocks/userDashboardMock";
+import { Link } from "react-router-dom";
 
 type Props = {
   items: NotificationItem[];
@@ -25,9 +26,17 @@ export function NotificationsCard({ items }: Props) {
 
   return (
     <section className="rounded-3xl border border-slate-700/40 bg-slate-950/55 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.35)]">
-      <h2 className="font-serif text-2xl text-amber-100">
-        {notifications.title}
-      </h2>
+      <div className="flex items-center justify-between gap-4">
+        <h2 className="font-serif text-2xl text-amber-100">
+          {notifications.title}
+        </h2>
+        <Link
+          to="/panel/user/notifications"
+          className="text-sm font-medium text-amber-200 transition hover:text-amber-100"
+        >
+          {notifications.button}
+        </Link>
+      </div>
       {items.length === 0 ? (
         <p className="mt-4 text-sm text-slate-400">{notifications.empty}</p>
       ) : (

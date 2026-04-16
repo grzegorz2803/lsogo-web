@@ -2,14 +2,23 @@ export const userDashboardContent = {
   pageTitle: "Dashboard",
   pageSubtitle: "Witaj w panelu użytkownika.",
 
-  nextService: {
-    title: "Najbliższa służba",
+  upcomingServices: {
+    title: "Najbliższe służby",
     todayBadge: "DZIŚ",
     tomorrowBadge: "JUTRO",
+    upcomingBadge: "NADCHODZI",
+    empty: "Nie masz obecnie przypisanych najbliższych służb.",
     button: "Zobacz harmonogram",
-    empty: "Nie masz obecnie przypisanej najbliższej służby.",
   },
 
+  liturgyToday: {
+    title: "Dziś w liturgii",
+    dateLabel: "Data",
+    rankLabel: "Obchód",
+    colorLabel: "Kolor",
+    button: "Przejdź do kalendarza",
+    empty: "Brak danych liturgicznych na dziś.",
+  },
   ranking: {
     title: "Twój ranking",
     monthlyTitle: "Miesiąc",

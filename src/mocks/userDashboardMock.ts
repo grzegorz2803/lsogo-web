@@ -1,9 +1,29 @@
-export type NextService = {
+export type UpcomingServiceStatus = "today" | "tomorrow" | "upcoming";
+
+export type UpcomingServiceItem = {
+  id: number;
   dateLabel: string;
   time: string;
   serviceName: string;
-  status: "today" | "tomorrow" | "upcoming";
+  status: UpcomingServiceStatus;
+  dateISO: string;
 };
+
+export type WeeklyScheduleItem = {
+  id: number;
+  dayOfWeek: number; // 0 niedziela ... 6 sobota
+  time: string; // HH:mm
+  serviceName: string;
+  roleLabel?: string;
+};
+
+export type LiturgyTodayItem = {
+  dateLabel: string;
+  title: string;
+  rank: string;
+  color: "biały" | "czerwony" | "zielony" | "fioletowy" | "różowy" | "czarny";
+};
+
 export type RankingStats = {
   monthly: {
     position: number;
@@ -42,14 +62,119 @@ export type NotificationItem = {
   title: string;
   dateLabel: string;
 };
+export const userWeeklyScheduleMock: WeeklyScheduleItem[] = [
+  {
+    id: 1,
+    dayOfWeek: 0,
+    time: "09:30",
+    serviceName: "Msza święta",
+  },
+  {
+    id: 2,
+    dayOfWeek: 3,
+    time: "18:00",
+    serviceName: "Nabożeństwo",
+  },
+  {
+    id: 3,
+    dayOfWeek: 5,
+    time: "06:30",
+    serviceName: "Msza poranna",
+  },
+];
+
+function formatPolishDate(date: Date) {
+  const weekdays = [
+    "Niedziela",
+    "Poniedziałek",
+    "Wtorek",
+    "Środa",
+    "Czwartek",
+    "Piątek",
+    "Sobota",
+  ];
+
+  const months = [
+    "stycznia",
+    "lutego",
+    "marca",
+    "kwietnia",
+    "maja",
+    "czerwca",
+    "lipca",
+    "sierpnia",
+    "września",
+    "października",
+    "listopada",
+    "grudnia",
+  ];
+
+  return `${weekdays[date.getDay()]}, ${date.getDate()} ${
+    months[date.getMonth()]
+  }`;
+}
+
+function getStatus(target: Date): UpcomingServiceStatus {
+  const now = new Date();
+
+  const todayStart = new Date(now);
+  todayStart.setHours(0, 0, 0, 0);
+
+  const tomorrowStart = new Date(todayStart);
+  tomorrowStart.setDate(todayStart.getDate() + 1);
+
+  const dayAfterTomorrow = new Date(todayStart);
+  dayAfterTomorrow.setDate(todayStart.getDate() + 2);
+
+  if (target >= todayStart && target < tomorrowStart) return "today";
+  if (target >= tomorrowStart && target < dayAfterTomorrow) return "tomorrow";
+  return "upcoming";
+}
+function getNextOccurrence(dayOfWeek: number, time: string, from = new Date()) {
+  const [hours, minutes] = time.split(":").map(Number);
+  const candidate = new Date(from);
+
+  const currentDay = candidate.getDay();
+  let diff = dayOfWeek - currentDay;
+
+  if (diff < 0) diff += 7;
+
+  candidate.setDate(candidate.getDate() + diff);
+  candidate.setHours(hours, minutes, 0, 0);
+  if (candidate <= from) {
+    candidate.setDate(candidate.getDate() + 7);
+  }
+  return candidate;
+}
+export function getUpcomingServices(
+  schedule: WeeklyScheduleItem[],
+  count = 2,
+): UpcomingServiceItem[] {
+  return schedule
+    .map((item) => {
+      const nextDate = getNextOccurrence(item.dayOfWeek, item.time);
+      return {
+        id: item.id,
+        dateLabel: formatPolishDate(nextDate),
+        time: item.time,
+        serviceName: item.roleLabel
+          ? `${item.serviceName} • ${item.roleLabel}`
+          : item.serviceName,
+        status: getStatus(nextDate),
+        dateISO: nextDate.toISOString(),
+      };
+    })
+    .sort((a, b) => a.dateISO.localeCompare(b.dateISO))
+    .slice(0, count);
+}
 
 export const userDashboardMock = {
-  nextService: {
-    dateLabel: "Niedziela, 12 maja",
-    time: "9:30",
-    serviceName: "Msza święta",
-    status: "tomorrow",
-  } satisfies NextService,
+  liturgyToday: {
+    dateLabel: "Wtorek, 15 kwietnia",
+    title: "Wtorek Wielkiego Tygodnia",
+    rank: "Dzień powszedni okresu Wielkiego Tygodnia",
+    color: "fioletowy",
+  } satisfies LiturgyTodayItem,
 
   ranking: {
     monthly: {
