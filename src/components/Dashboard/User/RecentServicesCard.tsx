@@ -38,8 +38,8 @@ export function RecentServicesCard({ items }: Props) {
               className="flex items-center justify-between rounded-2xl border border-slate-700/30 bg-slate-950/40 px-4 py-3"
             >
               <div>
-                <p className="text-sm text-slate-200">{item.serviceName}</p>
-                <p className="mt-1 text-xs text-slate-400">
+                <p className="text-base text-slate-200">{item.serviceName}</p>
+                <p className="mt-1 text-sm text-slate-400">
                   {item.dateLabel} • {item.time}
                 </p>
               </div>

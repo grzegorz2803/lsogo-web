@@ -97,6 +97,13 @@ export function Sidebar() {
           )}
         </nav>
       </div>
+      <div className="mt-10 h-px bg-linear-to-r from-transparent via-slate-700/70 to-transparent" />
+      <div className="mt-6 text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          LSOgo
+        </p>
+        <p className="mt-1 text-xs text-slate-600">v1.0</p>
+      </div>
     </aside>
   );
 }

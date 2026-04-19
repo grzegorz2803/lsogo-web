@@ -22,6 +22,7 @@ export type LiturgyTodayItem = {
   title: string;
   rank: string;
   color: "biały" | "czerwony" | "zielony" | "fioletowy" | "różowy" | "czarny";
+  readings: string[];
 };
 
 export type RankingStats = {
@@ -174,6 +175,7 @@ export const userDashboardMock = {
     title: "Wtorek Wielkiego Tygodnia",
     rank: "Dzień powszedni okresu Wielkiego Tygodnia",
     color: "fioletowy",
+    readings: ["Iz 49, 1-6", "Ps 71", "J 13, 21-33. 36-38"],
   } satisfies LiturgyTodayItem,
 
   ranking: {

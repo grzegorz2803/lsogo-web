@@ -1,5 +1,5 @@
 export const userDashboardContent = {
-  pageTitle: "Dashboard",
+  pageTitle: "Twój panel",
   pageSubtitle: "Witaj w panelu użytkownika.",
 
   upcomingServices: {
@@ -13,9 +13,8 @@ export const userDashboardContent = {
 
   liturgyToday: {
     title: "Dziś w liturgii",
-    dateLabel: "Data",
-    rankLabel: "Obchód",
     colorLabel: "Kolor",
+    readingsLabel: "Czytania",
     button: "Przejdź do kalendarza",
     empty: "Brak danych liturgicznych na dziś.",
   },
@@ -27,10 +26,6 @@ export const userDashboardContent = {
     meetingPoints: "Zbiórki",
     totalPoints: "Suma",
     position: "Pozycja",
-    missingToLeader: "Do 1 miejsca brakuje",
-    missingToPodium: "Do podium brakuje",
-    missingToPrevious: "Do poprzednika brakuje",
-    leadOverNext: "Przewaga nad kolejnym",
     pointsSuffix: "pkt",
     button: "Zobacz ranking",
   },

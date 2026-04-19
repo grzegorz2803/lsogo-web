@@ -21,6 +21,42 @@ function getTypeLabel(type: NotificationItem["type"]) {
       return "Powiadomienie";
   }
 }
+function getTypeClass(type: NotificationItem["type"]) {
+  switch (type) {
+    case "message":
+      return "text-slate-200";
+
+    case "schedule":
+      return "text-sky-300";
+
+    case "justification":
+      return "text-amber-200";
+
+    case "info":
+      return "text-violet-300";
+
+    default:
+      return "text-slate-200";
+  }
+}
+function getBorderClass(type: NotificationItem["type"]) {
+  switch (type) {
+    case "message":
+      return "border-l-slate-500";
+
+    case "schedule":
+      return "border-l-sky-400";
+
+    case "justification":
+      return "border-l-amber-400";
+
+    case "info":
+      return "border-l-violet-400";
+
+    default:
+      return "border-l-slate-500";
+  }
+}
 export function NotificationsCard({ items }: Props) {
   const { notifications } = userDashboardContent;
 
@@ -44,13 +80,15 @@ export function NotificationsCard({ items }: Props) {
           {items.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl border border-slate-700/30 bg-slate-950/40 px-4 py-3"
+              className={`rounded-2xl border border-slate-700/30 border-l-2 ${getBorderClass(item.type)} bg-slate-950/40 px-4 py-4 transition-all duration-300 hover:bg-white/5`}
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
+              <p
+                className={`text-sm font-semibold uppercase tracking-[0.16em] ${getTypeClass(item.type)}`}
+              >
                 {getTypeLabel(item.type)}
               </p>
-              <p className="mt-2 tetx-sm text-slate-200">{item.title}</p>
-              <p className="mt-1 text-xs text-slate-400">{item.dateLabel}</p>
+              <p className="mt-2 tetx-base text-slate-200">{item.title}</p>
+              <p className="mt-2 text-xs text-slate-400">{item.dateLabel}</p>
             </div>
           ))}
         </div>
