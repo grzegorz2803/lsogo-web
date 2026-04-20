@@ -24,9 +24,12 @@ export function ScheduleAssistsCard({ assists }: { assists: AssistDuty[] }) {
               <p className="text-sm text-slate-200 font-medium">
                 {a.celebrationName}
               </p>
-              <p className="text-xs text-amber-300 mt-1">
-                Funkcja: {a.functionName}
-              </p>
+              <div className="mt-3 flex items-center gap-3">
+                <span className="text-sm text-slate-400">Funckja:</span>
+                <span className="rounded-full border border-amber-400/20 bg-amber-500/10 px-3 py-1 text-sm font-semibold text-amber-200">
+                  {a.functionName}
+                </span>
+              </div>
             </div>
           ))}
         </div>

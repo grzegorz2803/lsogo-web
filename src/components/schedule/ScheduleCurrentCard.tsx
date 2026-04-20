@@ -13,7 +13,8 @@ export function ScheduleCurrentCard({ schedule }: { schedule: UserSchedule }) {
             {schedule.validFrom} - {schedule.validTo}
           </p>
         </div>
-        <span className="text-xs px-3 py-1 rounded-full border border-amber-400/30 text-amber-300">
+        <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-300">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
           {scheduleContent.current.badge}
         </span>
       </div>
@@ -23,8 +24,8 @@ export function ScheduleCurrentCard({ schedule }: { schedule: UserSchedule }) {
             key={duty.id}
             className="rounded-xl border border-white/10 p-4 bg-slate-900/60"
           >
-            <p className="text-sm text-slate-400">{duty.dayLabel}</p>
-            <p className="text-xl font-semibold text-amber-200">{duty.time}</p>
+            <p className="text-sm text-slate-300">{duty.dayLabel}</p>
+            <p className="text-3xl font-semibold text-amber-200">{duty.time}</p>
             <p className="text-xs text-slate-400">{duty.serviceName}</p>
           </div>
         ))}

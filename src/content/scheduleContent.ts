@@ -1,5 +1,5 @@
 export const scheduleContent = {
-  title: "Harmonogram",
+  title: "Twój plan służy",
 
   subtitle: "Twój aktualny plan służby oraz przyszłe przydziały.",
 
