@@ -29,6 +29,7 @@ const pageTitles: Record<string, string> = {
   "/panel/admin/users": "Użytkownicy",
 
   "/panel/admin/settings": "Ustawienia",
+  "/panel/user/calendar": "Kalendarz",
 };
 
 function getPageTitle(pathname: string) {

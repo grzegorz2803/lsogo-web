@@ -38,6 +38,12 @@ export function Sidebar() {
                 Dashboard
               </NavLink>
               <NavLink
+                to="/panel/user/calendar"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Kalendarz
+              </NavLink>
+              <NavLink
                 to="/panel/user/schedule"
                 className={({ isActive }) => getLinkClass(isActive)}
               >

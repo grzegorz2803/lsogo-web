@@ -11,6 +11,7 @@ type Props = {
   onSelectNextMonthDay: (day: number) => void;
   onPreviousMonth: () => void;
   onNextMonth: () => void;
+  compact?: boolean;
 };
 function bulidDateString(year: number, month: number, day: number) {
   const yyyy = String(year);
@@ -49,6 +50,7 @@ export function CalendarMonthGrid({
   onSelectPreviousMonthDay,
   onPreviousMonth,
   onNextMonth,
+  compact = false,
 }: Props) {
   const daysInMonth = getDaysInMonth(selectedYear, selectedMonth);
   const { monthView } = calendarPageContent;
@@ -61,7 +63,9 @@ export function CalendarMonthGrid({
   const daysInPrevMonth = getDaysInMonth(prevMonthYear, prevMonth);
 
   return (
-    <div className="rounded-3xl px-6 py-8 s">
+    <div
+      className={["rounded-3xl", compact ? "px-3 py-4" : "px-6 py-8"].join(" ")}
+    >
       <div className="flex items-center justify-center gap-4">
         <button
           type="button"
@@ -71,7 +75,12 @@ export function CalendarMonthGrid({
         >
           ‹
         </button>
-        <h3 className="text-center font-serif text-2xl text-amber-50">
+        <h3
+          className={[
+            "text-center font-serif text-amber-50",
+            compact ? "text-xl" : "text-2xl",
+          ].join(" ")}
+        >
           {getMonthTitle(selectedYear, selectedMonth)}
         </h3>
         <button
@@ -83,7 +92,9 @@ export function CalendarMonthGrid({
           ›
         </button>
       </div>
-      <div className="mt-6 grid grid-cols-7 ">
+      <div
+        className={["grid grid-cols-7", compact ? "mt-4" : "mt-6"].join(" ")}
+      >
         {monthView.weekLabels.map((label) => (
           <div
             key={label}
@@ -99,9 +110,17 @@ export function CalendarMonthGrid({
               key={`prev-${day}`}
               type="button"
               onClick={() => onSelectPreviousMonthDay(day)}
-              className="relative aspect-square border border-slate-700 transition hover:bg-slate-800/30"
+              className={[
+                "relative border border-slate-700 transition hover:bg-slate-800/30",
+                compact ? "h-20" : "aspect-square",
+              ].join(" ")}
             >
-              <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
+              <span
+                className={[
+                  "absolute font-medium text-slate-500/50",
+                  compact ? "right-2 top-2 text-sm" : "right-3 top-3 text-base",
+                ].join(" ")}
+              >
                 {day}
               </span>
             </button>
@@ -123,7 +142,8 @@ export function CalendarMonthGrid({
               type="button"
               onClick={() => onSelectCurrentMonthDay(dayNumber)}
               className={[
-                "aspect-square flex items-center justify-center",
+                "flex items-center justify-center",
+                compact ? "h-20" : "aspect-square",
                 "border border-slate-700 text-sm transition",
                 isSelected
                   ? "border-amber-300 bg-amber-500"
@@ -132,7 +152,12 @@ export function CalendarMonthGrid({
             >
               {isSelected ? (
                 <div className="relative flex h-full w-full items-center justify-center">
-                  <span className="text-3xl font-serif text-amber-50 ">
+                  <span
+                    className={[
+                      "font-serif text-amber-50",
+                      compact ? "text-2xl" : "text-3xl",
+                    ].join(" ")}
+                  >
                     {dayNumber}
                   </span>
                 </div>
@@ -140,7 +165,9 @@ export function CalendarMonthGrid({
                 <div className="relative h-full w-full">
                   <span
                     className={[
-                      "absolute right-3 top-3 text-base font-medium",
+                      compact
+                        ? "absolute right-2 top-2 text-sm font-medium"
+                        : "absolute right-3 top-3 text-base font-medium",
                       sunday ? "text-red-300" : "text-slate-100",
                     ].join(" ")}
                   >
@@ -158,9 +185,17 @@ export function CalendarMonthGrid({
               key={`next-${nextMonthDay}`}
               type="button"
               onClick={() => onSelectNextMonthDay(nextMonthDay)}
-              className="relative aspect-square border border-slate-700 transitio hover:bg-slate-800/30"
+              className={[
+                "relative border border-slate-700 transition hover:bg-slate-800/30",
+                compact ? "h-20" : "aspect-square",
+              ].join(" ")}
             >
-              <span className="absolute right-3 top-3 text-base font-medium text-slate-500/50">
+              <span
+                className={[
+                  "absolute font-medium text-slate-500/50",
+                  compact ? "right-2 top-2 text-sm" : "right-3 top-3 text-base",
+                ].join(" ")}
+              >
                 {nextMonthDay}
               </span>
             </button>

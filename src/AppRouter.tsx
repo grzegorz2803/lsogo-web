@@ -13,6 +13,7 @@ import { AdminDashboardPage } from "./pages/admin/AdminDashboardPage";
 import { AccessDeniedPage } from "./pages/AccessDenidedPage";
 import { DashboardLayout } from "./layouts/DashboardLayout";
 import { SchedulePage } from "./pages/user/SchedulePage";
+import { UserCalendarPage } from "./pages/user/UserCAlendarPage";
 
 export function AppRouter() {
   return (
@@ -30,6 +31,7 @@ export function AppRouter() {
           <Route element={<RoleRoute allowedRoles={["user"]} />}>
             <Route path="/panel/user" element={<UserDashboardPage />} />
             <Route path="/panel/user/schedule" element={<SchedulePage />} />
+            <Route path="/panel/user/calendar" element={<UserCalendarPage />} />
           </Route>
           <Route element={<RoleRoute allowedRoles={["moderator"]} />}>
             <Route

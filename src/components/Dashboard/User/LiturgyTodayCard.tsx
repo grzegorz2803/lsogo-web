@@ -65,7 +65,7 @@ export function LiturgyTodayCard({ liturgy }: Props) {
           {liturgyToday.title}
         </h2>
         <Link
-          to="/kalendarz"
+          to="/panel/user/calendar"
           className="text-sm font-medium text-amber-200 transition hover:text-amber-100"
         >
           {liturgyToday.button}
