@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { profileContent } from "../../content/profileContent";
+import { Eye, EyeOff } from "lucide-react";
 export function ChangePasswordCard() {
   const { security } = profileContent;
 
@@ -7,7 +8,9 @@ export function ChangePasswordCard() {
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [message, setMessage] = useState("");
-
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setMessage("");
@@ -33,37 +36,67 @@ export function ChangePasswordCard() {
           <label className="mb-2 block text-sm font-medium text-slate-300">
             {security.currentPasswordLabel}
           </label>
-          <input
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            placeholder={security.currentPasswordPlaceholder}
-            className="w-full rounded-xl border border-slate-700 bg-slate-900/70 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30"
-          />
+          <div className="relative">
+            <input
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              placeholder={security.currentPasswordPlaceholder}
+              className="w-full rounded-xl border border-slate-700 bg-slate-900/70 px-4 py-3 pr-12 text-sm text-slate-100 outline-none transition focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30"
+            />
+            <button
+              type="button"
+              onClick={() => setShowCurrentPassword((value) => !value)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-slate-500 transition hover:text-amber-200"
+              aria-label={showCurrentPassword ? "Ukryj hasło" : "Pokaż hasło"}
+            >
+              {showCurrentPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
         </div>
         <div>
           <label className="mb-2 block text-sm font-medium text-slate-300">
             {security.newPasswordLabel}
           </label>
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            placeholder={security.newPasswordPlaceholder}
-            className="w-full rounded-xl border border-slate-700 bg-slate-900/70 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30"
-          />
+          <div className="relative">
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder={security.newPasswordPlaceholder}
+              className="w-full rounded-xl border border-slate-700 bg-slate-900/70 px-4 py-3 pr-12 text-sm text-slate-100 outline-none transition focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30"
+            />
+            <button
+              type="button"
+              onClick={() => setShowNewPassword((value) => !value)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-slate-500 transition hover:text-amber-200"
+              aria-label={showNewPassword ? "Ukryj hasło" : "Pokaż hasło"}
+            >
+              {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
         </div>
         <div>
           <label className="mb-2 block text-sm font-medium text-slate-300">
             {security.repeatPasswordLabel}
           </label>
-          <input
-            type="password"
-            value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
-            placeholder={security.repeatPasswordPlaceholder}
-            className="w-full rounded-xl border border-slate-700 bg-slate-900/70 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30"
-          />
+          <div className="relative">
+            <input
+              type="password"
+              value={repeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
+              placeholder={security.repeatPasswordPlaceholder}
+              className="w-full rounded-xl border border-slate-700 bg-slate-900/70 px-4 py-3 pr-12 text-sm text-slate-100 outline-none transition focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30"
+            />
+            <button
+              type="button"
+              onClick={() => setShowRepeatPassword((value) => !value)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-slate-500 transition hover:text-amber-200"
+              aria-label={showRepeatPassword ? "Ukryj hasło" : "Pokaż hasło"}
+            >
+              {showRepeatPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
         </div>
         {message && <p className="text-sm text-amber-200">{message}</p>}
 
