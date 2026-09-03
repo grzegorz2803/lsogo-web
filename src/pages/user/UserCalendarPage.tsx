@@ -1,4 +1,5 @@
 import { CalendarView } from "../../components/CalendarPage/CalendarView";
+import { profileMock } from "../../mocks/profileMock";
 export function UserCalendarPage() {
   return (
     <section>
@@ -9,7 +10,11 @@ export function UserCalendarPage() {
         Sprawdz liturgię i czytania na wybrany dzień
       </p>
       <div className="mt-8">
-        <CalendarView compact />
+        <CalendarView
+          compact
+          fixedDiocese={profileMock.diocese}
+          allowDioceseChange={false}
+        />
       </div>
     </section>
   );

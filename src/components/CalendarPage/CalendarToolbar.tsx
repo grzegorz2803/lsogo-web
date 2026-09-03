@@ -10,6 +10,7 @@ type Props = {
   onYearChange: (value: number) => void;
   onDayChange: (value: number) => void;
   onDioceseChange: (vlaue: string) => void;
+  allowDioceseChange?: boolean;
 };
 
 const monthOptions = [
@@ -50,6 +51,7 @@ export function CalendarToolbar({
   onYearChange,
   onDayChange,
   onDioceseChange,
+  allowDioceseChange = true,
 }: Props) {
   const { toolbar } = calendarPageContent;
   const yearOptions = Array.from({ length: 6 }, (_, i) => 2025 + i);
@@ -125,20 +127,28 @@ export function CalendarToolbar({
           {toolbar.dioceseLabel}
         </label>
         <div className="relative">
-          <select
-            value={selectedDiocese}
-            onChange={(e) => onDioceseChange(e.target.value)}
-            className="appearance-none w-full rounded-xl border border-slate-700 bg-slate-900 px-4 pr-10 py-3 text-sm text-slate-100 outline-none focus:border-amber-400"
-          >
-            {dioceseOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
-            ▼
-          </span>
+          {allowDioceseChange ? (
+            <>
+              <select
+                value={selectedDiocese}
+                onChange={(e) => onDioceseChange(e.target.value)}
+                className="appearance-none w-full rounded-xl border border-slate-700 bg-slate-900 px-4 pr-10 py-3 text-sm text-slate-100 outline-none focus:border-amber-400"
+              >
+                {dioceseOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+                ▼
+              </span>
+            </>
+          ) : (
+            <div className="flex h-11.5 items-center rounded-xl border border-slate-700 bg-slate-900/70 px-4 text-sm text-slate-200">
+              {selectedDiocese}
+            </div>
+          )}
         </div>
       </div>
     </div>

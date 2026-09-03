@@ -6,6 +6,8 @@ import { CalendarMonthGrid } from "./CalendarMonthGrid";
 import { CalendarDayDetails } from "./CalendarDayDetails";
 type CalendarViewProps = {
   compact?: boolean;
+  fixedDiocese?: string;
+  allowDioceseChange?: boolean;
 };
 
 function formatTodayParts() {
@@ -34,13 +36,17 @@ function isPastDate(dateStr: string) {
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
 }
-export function CalendarView({ compact = false }: CalendarViewProps) {
+export function CalendarView({
+  compact = false,
+  fixedDiocese,
+  allowDioceseChange = true,
+}: CalendarViewProps) {
   const today = formatTodayParts();
   const [selectedYear, setSelectedYear] = useState<number>(today.year);
   const [selectedMonth, setSelectedMonth] = useState<number>(today.month);
   const [selectedDay, setSelectedDay] = useState<number>(today.day);
   const [selectedDiocese, setSelectedDiocese] = useState<string>(
-    dioceseOptions[0],
+    fixedDiocese ?? dioceseOptions[0],
   );
   const selectedDate = useMemo(
     () => buildDateString(selectedYear, selectedMonth, selectedDay),
@@ -87,6 +93,7 @@ export function CalendarView({ compact = false }: CalendarViewProps) {
         onYearChange={setSelectedYear}
         onDayChange={setSelectedDay}
         onDioceseChange={setSelectedDiocese}
+        allowDioceseChange={allowDioceseChange}
       />
       <div
         className={[
