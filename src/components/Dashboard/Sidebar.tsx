@@ -50,6 +50,12 @@ export function Sidebar() {
                 Harmonogram
               </NavLink>
               <NavLink
+                to="/panel/user/ranking"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                Ranking
+              </NavLink>
+              <NavLink
                 to="/panel/user/profile"
                 className={({ isActive }) => getLinkClass(isActive)}
               >
