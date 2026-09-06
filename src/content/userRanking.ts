@@ -11,11 +11,14 @@ export const userRankingContent = {
     position: "Pozycja",
     participantsPrefix: "z",
     points: "pkt",
+    hash: "#",
   },
 
   details: {
     monthTitle: "Ranking miesięczny",
     yearTitle: "Ranking roczny",
+
+    subtitle: "Punkty",
 
     service: "Służba",
     meetings: "Zbiórki",
