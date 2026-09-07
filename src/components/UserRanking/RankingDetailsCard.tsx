@@ -11,6 +11,8 @@ export function RankingDetailsCard({
   ranking,
 }: RankingDetailsCardProps) {
   const { details } = userRankingContent;
+  const isFirst = ranking.position === 1;
+  const isOnPodium = ranking.position >= 1 && ranking.position <= 3;
   return (
     <section className="rounded-3xl border border-white/10 bg-white/3 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.18)] backdrop-blur-sm">
       <h2 className="font-serif text-2xl font-medium text-amber-100">
@@ -46,24 +48,32 @@ export function RankingDetailsCard({
           {details.situationTitle}
         </p>
         <div className="mt-4 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-400">{details.toFirst}</span>
-            <span className="font-medium text-slate-200">
-              {ranking.pointsToFirst} {userRankingContent.position.points}
-            </span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-400">{details.toPodium}</span>
-            <span className="font-medium text-slate-200">
-              {ranking.pointsToPodium} {userRankingContent.position.points}
-            </span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-400">{details.toPrevious}</span>
-            <span className="font-medium text-slate-200">
-              {ranking.pointsToPrevious} {userRankingContent.position.points}
-            </span>
-          </div>
+          {!isFirst && (
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-400">{details.toFirst}</span>
+              <span className="font-medium text-slate-200">
+                {ranking.pointsToFirst} {userRankingContent.position.points}
+              </span>
+            </div>
+          )}
+          {!isOnPodium && (
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-400">{details.toPodium}</span>
+              <span className="font-medium text-slate-200">
+                {ranking.pointsToPodium} {userRankingContent.position.points}
+              </span>
+            </div>
+          )}
+          {!isFirst && (
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-400">
+                {details.toPrevious}
+              </span>
+              <span className="font-medium text-slate-200">
+                {ranking.pointsToPrevious} {userRankingContent.position.points}
+              </span>
+            </div>
+          )}
           <div className="mt-4 flex items-center justify-between rounded-2xl border border-emerald-400/10 bg-emerald-400/5 px-4 py-3">
             <span className="text-sm text-slate-300">
               {details.advantageOverNext}

@@ -17,7 +17,7 @@ export type UserRankingMock = {
 
 export const userRankingMock: UserRankingMock = {
   month: {
-    position: 5,
+    position: 2,
     participants: 42,
     servicePoints: 40,
     meetingPoints: 16,
@@ -28,7 +28,7 @@ export const userRankingMock: UserRankingMock = {
     advantageOverNext: 4,
   },
   year: {
-    position: 7,
+    position: 3,
     participants: 42,
     servicePoints: 180,
     meetingPoints: 42,
