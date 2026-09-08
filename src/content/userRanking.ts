@@ -30,4 +30,19 @@ export const userRankingContent = {
     toPrevious: "Do poprzednika",
     advantageOverNext: "Przewaga nad kolejnym",
   },
+
+  podium: {
+    first: {
+      label: "1. miejsce",
+      message: "Prowadzisz w rankingu!",
+    },
+    second: {
+      label: "2. miejsce",
+      message: "Jesteś o krok od prowadzenia",
+    },
+    third: {
+      label: "3. miejsce",
+      message: "Jesteś na podium",
+    },
+  },
 };
