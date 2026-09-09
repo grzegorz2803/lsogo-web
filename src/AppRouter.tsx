@@ -16,6 +16,7 @@ import { SchedulePage } from "./pages/user/SchedulePage";
 import { UserCalendarPage } from "./pages/user/UserCalendarPage";
 import { ProfilePage } from "./pages/user/ProfilePage";
 import { UserRankingPage } from "./pages/user/UserRankingPage";
+import { UserHistoryPage } from "./pages/user/UserHistoryPage";
 
 export function AppRouter() {
   return (
@@ -36,6 +37,7 @@ export function AppRouter() {
             <Route path="/panel/user/calendar" element={<UserCalendarPage />} />
             <Route path="/panel/user/profile" element={<ProfilePage />} />
             <Route path="/panel/user/ranking" element={<UserRankingPage />} />
+            <Route path="/panel/user/history" element={<UserHistoryPage />} />
           </Route>
           <Route element={<RoleRoute allowedRoles={["moderator"]} />}>
             <Route

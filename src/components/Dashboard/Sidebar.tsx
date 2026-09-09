@@ -57,6 +57,12 @@ export function Sidebar() {
                 {sidebarContent.ranking}
               </NavLink>
               <NavLink
+                to="/panel/user/history"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                {sidebarContent.history}
+              </NavLink>
+              <NavLink
                 to="/panel/user/profile"
                 className={({ isActive }) => getLinkClass(isActive)}
               >
