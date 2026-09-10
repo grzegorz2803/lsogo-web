@@ -1,6 +1,6 @@
 import { parishContent } from "../../content/parish";
-import { SectionSeparator } from "../SectionSeparator";
-import { Button } from "../Button";
+import { SectionSeparator } from "../UI/SectionSeparator";
+import { Button } from "../UI/Button";
 import { Link } from "react-router-dom";
 
 export function ParishFaqAndCtaSection() {

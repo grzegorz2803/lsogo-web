@@ -1,5 +1,6 @@
 import { featuresSectionContent } from "../../content/features";
-import { SectionSeparator } from "../SectionSeparator";
+
+import { SectionSeparator } from "../UI/SectionSeparator";
 
 export function FeaturesSection() {
   const { title, subtitle, cards } = featuresSectionContent;

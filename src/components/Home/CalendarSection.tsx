@@ -1,4 +1,5 @@
-import { Button } from "../Button";
+import { SectionSeparator } from "../UI/SectionSeparator";
+import { Button } from "../UI/Button";
 import { useState } from "react";
 import {
   todayLiturgicalInfoMock,
@@ -7,8 +8,7 @@ import {
 } from "../../mocks/calendarMocks";
 
 import { homeCalendarContent } from "../../content/home";
-import { weekdaysPl } from "../../content/i18nWeekdats";
-import { SectionSeparator } from "../SectionSeparator";
+import { weekdaysPl } from "../../content/i18nWeekdays";
 import { Link } from "react-router-dom";
 const dioceses = diocesesMock.dioceses;
 function formatTodayISO() {

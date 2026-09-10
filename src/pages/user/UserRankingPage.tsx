@@ -1,4 +1,4 @@
-import { PanelPageHeader } from "../../components/panel/PanelPageHeader";
+import { PanelPageHeader } from "../../components/Panel/PanelPageHeader";
 import { userRankingContent } from "../../content/userRanking";
 import { userRankingMock } from "../../mocks/userRankingMock";
 import { RankingPositionCard } from "../../components/UserRanking/RankingPositionCard";

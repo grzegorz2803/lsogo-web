@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { profileContent } from "../../content/profileContent";
+import { profileContent } from "../../content/profile";
 import { Eye, EyeOff } from "lucide-react";
 export function ChangePasswordCard() {
   const { security } = profileContent;

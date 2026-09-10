@@ -1,5 +1,5 @@
 import { aboutContent } from "../../content/about";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 
 export function HeroSection() {
   const { hero } = aboutContent;

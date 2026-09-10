@@ -9,7 +9,7 @@ import {
 } from "../../mocks/userDashboardMock";
 import { UpcomingServicesCard } from "../../components/Dashboard/User/UpcomingServicesCard";
 import { LiturgyTodayCard } from "../../components/Dashboard/User/LiturgyTodayCard";
-import { PanelPageHeader } from "../../components/panel/PanelPageHeader";
+import { PanelPageHeader } from "../../components/Panel/PanelPageHeader";
 
 export function UserDashboardPage() {
   const upcomingServices = getUpcomingServices(userWeeklyScheduleMock, 2);

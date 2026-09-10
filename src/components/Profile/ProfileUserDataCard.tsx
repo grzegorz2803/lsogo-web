@@ -1,4 +1,4 @@
-import { profileContent } from "../../content/profileContent";
+import { profileContent } from "../../content/profile";
 import type { UserProfileData } from "../../mocks/profileMock";
 
 type Props = {

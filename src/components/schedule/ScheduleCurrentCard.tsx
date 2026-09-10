@@ -1,5 +1,5 @@
 import type { UserSchedule } from "../../mocks/scheduleMock";
-import { scheduleContent } from "../../content/scheduleContent";
+import { scheduleContent } from "../../content/schedule";
 
 export function ScheduleCurrentCard({ schedule }: { schedule: UserSchedule }) {
   return (

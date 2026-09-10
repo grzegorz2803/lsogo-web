@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ExcuseModal } from "../../components/UserHistory/ExcuseModal";
-import { PanelPageHeader } from "../../components/panel/PanelPageHeader";
+import { PanelPageHeader } from "../../components/Panel/PanelPageHeader";
 import { userHistoryContent } from "../../content/userHistory";
 import { UserHistoryList } from "../../components/UserHistory/UserHistoryList";
 import {

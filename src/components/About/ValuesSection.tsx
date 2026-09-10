@@ -1,5 +1,6 @@
 import { aboutContent } from "../../content/about";
-import { SectionSeparator } from "../SectionSeparator";
+
+import { SectionSeparator } from "../UI/SectionSeparator";
 
 export function ValuesSection() {
   const { sections } = aboutContent;

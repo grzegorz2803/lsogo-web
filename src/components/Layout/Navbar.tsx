@@ -1,6 +1,6 @@
-import { Logo } from "./Logo";
-import { navbarContent } from "../content/navbar";
-import { branding } from "../content/branding";
+import { Logo } from "../UI/Logo";
+import { navbarContent } from "../../content/navbar";
+import { branding } from "../../content/branding";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { UserSchedule } from "../../mocks/scheduleMock";
-import { scheduleContent } from "../../content/scheduleContent";
+import { scheduleContent } from "../../content/schedule";
 
 export function ScheduleNextAccordion({
   schedule,

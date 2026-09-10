@@ -1,8 +1,8 @@
-import { PanelPageHeader } from "../../components/panel/PanelPageHeader";
-import { ScheduleAssistsCard } from "../../components/schedule/ScheduleAssistsCard";
-import { ScheduleCurrentCard } from "../../components/schedule/ScheduleCurrentCard";
-import { ScheduleNextAccordion } from "../../components/schedule/ScheduleNexAccordion";
-import { scheduleContent } from "../../content/scheduleContent";
+import { PanelPageHeader } from "../../components/Panel/PanelPageHeader";
+import { ScheduleAssistsCard } from "../../components/Schedule/ScheduleAssistsCard";
+import { ScheduleCurrentCard } from "../../components/Schedule/ScheduleCurrentCard";
+import { ScheduleNextAccordion } from "../../components/Schedule/ScheduleNextAccordion";
+import { scheduleContent } from "../../content/schedule";
 import { currentSchedule, nextSchedule } from "../../mocks/scheduleMock";
 
 export function SchedulePage() {

@@ -1,8 +1,7 @@
 import { aboutContent } from "../../content/about";
 
-import { SectionSeparator } from "../SectionSeparator";
-
-import { Button } from "../Button";
+import { SectionSeparator } from "../UI/SectionSeparator";
+import { Button } from "../UI/Button";
 
 export function FinalCtaSection() {
   const { sections } = aboutContent;

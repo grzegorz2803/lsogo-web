@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { Logo } from "../Logo";
+import { Logo } from "../UI/Logo";
 import { sidebarContent } from "../../content/sidebar";
 function getLinkClass(isActive: boolean) {
   return [

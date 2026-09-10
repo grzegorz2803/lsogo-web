@@ -1,5 +1,6 @@
 import { audienceSectionContent } from "../../content/audience";
-import { SectionSeparator } from "../SectionSeparator";
+
+import { SectionSeparator } from "../UI/SectionSeparator";
 
 export function AudienceSection() {
   const { title, subtitle, cards } = audienceSectionContent;

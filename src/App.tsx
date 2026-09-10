@@ -1,6 +1,6 @@
 import { Layout } from "./app/Layout";
 import { AppRouter } from "./AppRouter";
-import { ScrollToTop } from "./components/ScrollToTop";
+import { ScrollToTop } from "./components/Layout/ScrollToTop";
 function App() {
   return (
     <Layout>

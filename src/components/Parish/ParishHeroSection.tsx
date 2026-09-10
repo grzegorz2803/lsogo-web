@@ -1,5 +1,5 @@
 import { parishContent } from "../../content/parish";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 import { Link } from "react-router-dom";
 
 export function ParishHeroSection() {

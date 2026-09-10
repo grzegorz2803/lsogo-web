@@ -1,4 +1,4 @@
-import { footerContent } from "../content/footer";
+import { footerContent } from "../../content/footer";
 
 export function Footer() {
   const { brand, columns, bottomNote } = footerContent;

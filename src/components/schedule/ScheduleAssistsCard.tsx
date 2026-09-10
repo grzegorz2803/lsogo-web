@@ -1,5 +1,5 @@
 import type { AssistDuty } from "../../mocks/scheduleMock";
-import { scheduleContent } from "../../content/scheduleContent";
+import { scheduleContent } from "../../content/schedule";
 
 export function ScheduleAssistsCard({ assists }: { assists: AssistDuty[] }) {
   return (

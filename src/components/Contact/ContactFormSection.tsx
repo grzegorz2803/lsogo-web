@@ -1,6 +1,6 @@
 import { contactContent } from "../../content/contact";
-import { SectionSeparator } from "../SectionSeparator";
-import { Button } from "../Button";
+import { SectionSeparator } from "../UI/SectionSeparator";
+import { Button } from "../UI/Button";
 import { ContactInfoCard } from "./ContactInfoCard";
 
 export function ContactFormSection() {

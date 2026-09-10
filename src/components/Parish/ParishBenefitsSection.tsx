@@ -1,5 +1,6 @@
 import { parishContent } from "../../content/parish";
-import { SectionSeparator } from "../SectionSeparator";
+
+import { SectionSeparator } from "../UI/SectionSeparator";
 
 export function ParishBenefitsSection() {
   const { benefits } = parishContent;

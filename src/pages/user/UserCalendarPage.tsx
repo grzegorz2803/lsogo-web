@@ -1,7 +1,7 @@
 import { CalendarView } from "../../components/CalendarPage/CalendarView";
 import { profileMock } from "../../mocks/profileMock";
-import { userCalendarContent } from "../../content/userCalendarContent";
-import { PanelPageHeader } from "../../components/panel/PanelPageHeader";
+import { userCalendarContent } from "../../content/userCalendar";
+import { PanelPageHeader } from "../../components/Panel/PanelPageHeader";
 export function UserCalendarPage() {
   return (
     <section>

@@ -1,4 +1,4 @@
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 import { homeHeroContent } from "../../content/home";
 import { Link } from "react-router-dom";
 export function HeroSection() {

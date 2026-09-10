@@ -1,9 +1,9 @@
-import { profileContent } from "../../content/profileContent";
+import { profileContent } from "../../content/profile";
 import { profileMock } from "../../mocks/profileMock";
 import { ProfileUserDataCard } from "../../components/Profile/ProfileUserDataCard";
 import { ProfileCommunityCard } from "../../components/Profile/ProfileCommunityCard";
 import { ChangePasswordCard } from "../../components/Profile/ChangePasswordCard";
-import { PanelPageHeader } from "../../components/panel/PanelPageHeader";
+import { PanelPageHeader } from "../../components/Panel/PanelPageHeader";
 
 export function ProfilePage() {
   return (

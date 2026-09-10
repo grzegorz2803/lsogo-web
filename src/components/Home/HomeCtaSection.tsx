@@ -1,7 +1,7 @@
 import { homeCta } from "../../content/home";
-import { Button } from "../Button";
+import { SectionSeparator } from "../UI/SectionSeparator";
+import { Button } from "../UI/Button";
 import { Link } from "react-router-dom";
-import { SectionSeparator } from "../SectionSeparator";
 
 export function HomeCtaSection() {
   const { title, subtitle, primaryButton, secondaryButton } = homeCta;

@@ -1,5 +1,5 @@
-import { Footer } from "../components/Footer";
-import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Layout/Footer";
+import { Navbar } from "../components/Layout/Navbar";
 import { useAuth } from "../hooks/useAuth";
 type LayoutProps = {
   children: React.ReactNode;
