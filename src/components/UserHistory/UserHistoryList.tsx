@@ -3,6 +3,7 @@ import { userHistoryContent } from "../../content/userHistory";
 
 type UserHistoryListProps = {
   items: UserHistoryItem[];
+  onExcuseClick: (item: UserHistoryItem) => void;
 };
 
 function getPointsClass(points: number) {
@@ -28,7 +29,10 @@ function formatPoints(points: number) {
   return `${points}`;
 }
 
-export function UserHistoryList({ items }: UserHistoryListProps) {
+export function UserHistoryList({
+  items,
+  onExcuseClick,
+}: UserHistoryListProps) {
   const { history } = userHistoryContent;
 
   return (
@@ -63,6 +67,7 @@ export function UserHistoryList({ items }: UserHistoryListProps) {
                 {item.points < 0 && item.excuseStatus === "none" && (
                   <button
                     type="button"
+                    onClick={() => onExcuseClick(item)}
                     className="cursor-pointer rounded-xl border border-amber-400/20 bg-amber-400/8 px-4 py-2 text-sm font-medium text-amber-200 transition hover:bg-amber-400/12"
                   >
                     {history.excuse}
