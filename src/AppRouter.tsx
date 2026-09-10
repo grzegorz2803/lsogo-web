@@ -17,6 +17,7 @@ import { UserCalendarPage } from "./pages/user/UserCalendarPage";
 import { ProfilePage } from "./pages/user/ProfilePage";
 import { UserRankingPage } from "./pages/user/UserRankingPage";
 import { UserHistoryPage } from "./pages/user/UserHistoryPage";
+import UserNotificationsPage from "./pages/user/UserNotificationsPage";
 
 export function AppRouter() {
   return (
@@ -38,6 +39,10 @@ export function AppRouter() {
             <Route path="/panel/user/profile" element={<ProfilePage />} />
             <Route path="/panel/user/ranking" element={<UserRankingPage />} />
             <Route path="/panel/user/history" element={<UserHistoryPage />} />
+            <Route
+              path="/panel/user/notifications"
+              element={<UserNotificationsPage />}
+            />
           </Route>
           <Route element={<RoleRoute allowedRoles={["moderator"]} />}>
             <Route

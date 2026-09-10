@@ -9,4 +9,5 @@ export const sidebarContent = {
   profile: "Profil",
   footer: "LSOGO",
   version: "v1.0",
+  notifications: "Powiadomienia",
 };
