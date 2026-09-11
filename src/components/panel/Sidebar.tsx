@@ -63,6 +63,12 @@ export function Sidebar() {
                 {sidebarContent.history}
               </NavLink>
               <NavLink
+                to="/panel/user/messages"
+                className={({ isActive }) => getLinkClass(isActive)}
+              >
+                {sidebarContent.messages}
+              </NavLink>
+              <NavLink
                 to="/panel/user/notifications"
                 className={({ isActive }) => getLinkClass(isActive)}
               >

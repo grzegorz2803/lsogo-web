@@ -18,6 +18,7 @@ import { ProfilePage } from "./pages/user/ProfilePage";
 import { UserRankingPage } from "./pages/user/UserRankingPage";
 import { UserHistoryPage } from "./pages/user/UserHistoryPage";
 import UserNotificationsPage from "./pages/user/UserNotificationsPage";
+import UserMessagesPage from "./pages/user/UserMessagesPage";
 
 export function AppRouter() {
   return (
@@ -43,6 +44,7 @@ export function AppRouter() {
               path="/panel/user/notifications"
               element={<UserNotificationsPage />}
             />
+            <Route path="/panel/user/messages" element={<UserMessagesPage />} />
           </Route>
           <Route element={<RoleRoute allowedRoles={["moderator"]} />}>
             <Route

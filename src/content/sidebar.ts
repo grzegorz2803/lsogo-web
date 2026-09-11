@@ -10,4 +10,5 @@ export const sidebarContent = {
   footer: "LSOGO",
   version: "v1.0",
   notifications: "Powiadomienia",
+  messages: "Wiadomości",
 };
