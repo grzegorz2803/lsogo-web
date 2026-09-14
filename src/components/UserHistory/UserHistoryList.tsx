@@ -4,6 +4,7 @@ import { userHistoryContent } from "../../content/userHistory";
 type UserHistoryListProps = {
   items: UserHistoryItem[];
   onExcuseClick: (item: UserHistoryItem) => void;
+  onAppealClick: (item: UserHistoryItem) => void;
 };
 
 function getPointsClass(points: number) {
@@ -32,6 +33,7 @@ function formatPoints(points: number) {
 export function UserHistoryList({
   items,
   onExcuseClick,
+  onAppealClick,
 }: UserHistoryListProps) {
   const { history } = userHistoryContent;
 
@@ -46,7 +48,7 @@ export function UserHistoryList({
         {items.map((item) => (
           <div
             key={item.id}
-            className="grid gap-4 rounded-2xl border border-white/8 bg-slate-950/20 px-5 py-4 md:grid-cols-[1fr_100px_240px] md:items-center"
+            className="flex gap-6 items-center justify-between rounded-2xl border border-white/8 bg-slate-950/20 px-5 py-4 md:grid-cols-[1fr_100px_240px] md:items-center"
           >
             <div>
               <p className="font-medium text-slate-100">{item.serviceName}</p>
@@ -54,35 +56,63 @@ export function UserHistoryList({
                 {item.date} • {item.time}
               </p>
             </div>
-            <div className="md:text-right">
-              <p
-                className={`text-lg font-semibold ${getPointsClass(item.points)}`}
-              >
-                {formatPoints(item.points)}{" "}
-                <span className="text-sm font-normal">{history.points}</span>
-              </p>
-            </div>
-            <div className="md:min-w-48 md:text-right">
-              <div className="flex justify-end md:min-w-56">
-                {item.points < 0 && item.excuseStatus === "none" && (
-                  <button
-                    type="button"
-                    onClick={() => onExcuseClick(item)}
-                    className="cursor-pointer rounded-xl border border-amber-400/20 bg-amber-400/8 px-4 py-2 text-sm font-medium text-amber-200 transition hover:bg-amber-400/12"
-                  >
-                    {history.excuse}
-                  </button>
-                )}
-                {item.excuseStatus !== "none" && (
-                  <span
-                    className={[
-                      "rounded-xl border px-4 py-2 text-sm font-medium",
-                      getExcuseStatusClass(item.excuseStatus),
-                    ].join(" ")}
-                  >
-                    {userHistoryContent.excuseStatus[item.excuseStatus]}
-                  </span>
-                )}
+            <div className="grid grid-cols-[80px_280px] items-center gap-6">
+              <div className="text-right">
+                <p
+                  className={`text-lg font-semibold ${getPointsClass(item.points)}`}
+                >
+                  {formatPoints(item.points)}{" "}
+                  <span className="text-sm font-normal">{history.points}</span>
+                </p>
+              </div>
+              <div className="flex justify-end">
+                <div className="flex justify-end md:min-w-56">
+                  {item.points < 0 && item.excuseStatus === "none" && (
+                    <button
+                      type="button"
+                      onClick={() => onExcuseClick(item)}
+                      className="cursor-pointer rounded-xl border border-amber-400/20 bg-amber-400/8 px-4 py-2 text-sm font-medium text-amber-200 transition hover:bg-amber-400/12"
+                    >
+                      {history.excuse}
+                    </button>
+                  )}
+                  {item.excuseStatus !== "none" &&
+                    (!item.appealStatus || item.appealStatus === "none") && (
+                      <span
+                        className={[
+                          "rounded-xl border px-4 py-2 text-sm font-medium",
+                          getExcuseStatusClass(item.excuseStatus),
+                        ].join(" ")}
+                      >
+                        {userHistoryContent.excuseStatus[item.excuseStatus]}
+                      </span>
+                    )}
+                  {item.excuseStatus === "rejected" &&
+                    (!item.appealStatus || item.appealStatus === "none") && (
+                      <button
+                        type="button"
+                        onClick={() => onAppealClick(item)}
+                        className="cursor-pointer rounded-xl border border-amber-400/25 bg-amber-400/10 px-4 py-2 text-sm font-medium text-amber-300 transition hover:bg-amber-400/15"
+                      >
+                        Zgłoś sprzeciw
+                      </button>
+                    )}
+                  {item.appealStatus === "pending" && (
+                    <span className="whitespace-nowrap rounded-xl border border-amber-400/25 bg-amber-400/10 px-4 py-2 text-center text-sm font-medium text-amber-300">
+                      Sprzeciw oczekuje na rozpatrzenie
+                    </span>
+                  )}
+                  {item.appealStatus === "accepted" && (
+                    <span className="whitespace-nowrap rounded-xl border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-center text-sm font-medium text-emerald-400">
+                      Sprzeciw zaakceptowany
+                    </span>
+                  )}
+                  {item.appealStatus === "rejected" && (
+                    <span className="whitespace-nowrap rounded-xl border border-red-400/25 bg-red-400/10 px-4 py-2 text-center text-sm font-medium text-red-400">
+                      Sprzeciw odrzucony
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>

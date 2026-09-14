@@ -2,13 +2,13 @@ import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 import type { UserHistoryItem } from "../../mocks/userHistoryMock";
 
-type ExcuseModalProps = {
+type AppealModalProps = {
   item: UserHistoryItem;
   onClose: () => void;
   onSubmit: (reason: string) => void;
 };
 
-export function ExcuseModal({ item, onClose, onSubmit }: ExcuseModalProps) {
+export function AppealModal({ item, onClose, onSubmit }: AppealModalProps) {
   const [reason, setReason] = useState("");
   const MIN_REASON_LENGTH = 20;
   const MAX_REASON_LENGTH = 500;
@@ -19,9 +19,9 @@ export function ExcuseModal({ item, onClose, onSubmit }: ExcuseModalProps) {
 
   function handleSubmit() {
     if (!canSubmit) return;
+
     onSubmit(trimmedReason);
   }
-
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -46,10 +46,11 @@ export function ExcuseModal({ item, onClose, onSubmit }: ExcuseModalProps) {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h2 className="font-serif text-2xl font-medium text-amber-100">
-              Wyślij usprawiedliwienie
+              Zgłoś sprzeciw
             </h2>
             <p className="mt-1 text-sm text-slate-400">
-              Podaj powód spojej nieobecności.
+              Twoje usprawiedliwienie zostało odrzucone. Możesz jednorazowo
+              przesłać dodatkowe wyjaśnienie.
             </p>
           </div>
           <button
@@ -69,18 +70,18 @@ export function ExcuseModal({ item, onClose, onSubmit }: ExcuseModalProps) {
         </div>
         <div className="mt-6">
           <label
-            htmlFor="excuse-reason"
+            htmlFor="appeal-reason"
             className="tetx-sm font-medium text-slate-300"
           >
-            Powód usprawiedliwienia
+            [Dodatkowe wyjaśnienie...]
           </label>
           <textarea
-            id="excuse-reason"
+            id="appeal-reason"
             value={reason}
             onChange={(event) => setReason(event.target.value)}
             rows={5}
             maxLength={MAX_REASON_LENGTH}
-            placeholder="Wpisz krótko powód swojej nieobecności..."
+            placeholder="Wpisz dodatkowe wyjaśnienia"
             className="mt-2 w-full resize-none rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 tetx-sm text-slate-100 outline-none transition placeholder:text-slate-600 focus:border-amber-400/30"
           />
           <div className="mt-1 flex items-center justify-between">
@@ -106,7 +107,7 @@ export function ExcuseModal({ item, onClose, onSubmit }: ExcuseModalProps) {
             disabled={!canSubmit}
             className="cursor-pointer rounded-xl bg-amber-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-amber-300 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Wyślij
+            Wyślij sprzeciw
           </button>
         </div>
       </div>

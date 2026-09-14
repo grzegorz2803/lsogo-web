@@ -7,12 +7,31 @@ import {
   userHistoryMock,
   type UserHistoryItem,
 } from "../../mocks/userHistoryMock";
+import { AppealModal } from "../../components/UserHistory/AppealModal";
 export function UserHistoryPage() {
   const [historyItems, setHistoryItems] =
     useState<UserHistoryItem[]>(userHistoryMock);
+  const [selectedAppealItem, setSelectedAppealItem] =
+    useState<UserHistoryItem | null>(null);
   const [selectedItem, setSelectedItem] = useState<UserHistoryItem | null>(
     null,
   );
+  function handleSubmitAppeal(reason: string) {
+    if (!setSelectedAppealItem) return;
+
+    setHistoryItems((currentItems) =>
+      currentItems.map((item) =>
+        item.id === selectedAppealItem?.id
+          ? {
+              ...item,
+              appealStatus: "pending",
+              appealReason: reason,
+            }
+          : item,
+      ),
+    );
+    setSelectedAppealItem(null);
+  }
   function handleSubmitExcuse(reason: string) {
     if (!selectedItem) return;
     console.log("Excuse reason:", reason);
@@ -40,6 +59,7 @@ export function UserHistoryPage() {
           <UserHistoryList
             items={historyItems}
             onExcuseClick={setSelectedItem}
+            onAppealClick={setSelectedAppealItem}
           />
         </div>
       </div>
@@ -48,6 +68,13 @@ export function UserHistoryPage() {
           item={selectedItem}
           onClose={() => setSelectedItem(null)}
           onSubmit={handleSubmitExcuse}
+        />
+      )}
+      {selectedAppealItem && (
+        <AppealModal
+          item={selectedAppealItem}
+          onClose={() => setSelectedAppealItem(null)}
+          onSubmit={handleSubmitAppeal}
         />
       )}
     </>

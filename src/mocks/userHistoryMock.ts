@@ -7,6 +7,8 @@ export type UserHistoryItem = {
   time: string;
   points: number;
   excuseStatus: ExcuseStatus;
+  appealStatus?: "none" | "pending" | "accepted" | "rejected";
+  appealReason?: string;
 };
 
 export const userHistoryMock: UserHistoryItem[] = [
@@ -65,5 +67,6 @@ export const userHistoryMock: UserHistoryItem[] = [
     time: "17:00",
     points: -2,
     excuseStatus: "rejected",
+    appealStatus: "none",
   },
 ];
