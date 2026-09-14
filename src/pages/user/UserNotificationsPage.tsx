@@ -6,6 +6,7 @@ import {
   userNotificationsMock,
   type UserNotification,
 } from "../../mocks/userNotificationsMock";
+import { useNavigate } from "react-router-dom";
 
 export default function UserNotificationsPage() {
   const [notifications, setNotifications] = useState<UserNotification[]>(
@@ -14,12 +15,20 @@ export default function UserNotificationsPage() {
   const unreadCount = notifications.filter(
     (notification) => !notification.read,
   ).length;
+  const navigate = useNavigate();
   function handleNotificationCLick(id: number) {
+    const notification = notifications.find(
+      (notification) => notification.id === id,
+    );
+
     setNotifications((currentNotifications) =>
       currentNotifications.map((notification) =>
         notification.id === id ? { ...notification, read: true } : notification,
       ),
     );
+    if (notification?.link) {
+      navigate(notification.link);
+    }
   }
   function handelMarkAllAsRead() {
     setNotifications((currentNotifications) =>

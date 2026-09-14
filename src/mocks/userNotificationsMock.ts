@@ -12,6 +12,7 @@ export type UserNotification = {
   date: string;
   time: string;
   read: boolean;
+  link?: string;
 };
 
 export const userNotificationsMock: UserNotification[] = [
@@ -53,5 +54,16 @@ export const userNotificationsMock: UserNotification[] = [
     date: "07.09.2026",
     time: "19:05",
     read: true,
+    link: "/panel/user/messages?thread=guardian",
+  },
+  {
+    id: 5,
+    type: "message",
+    title: "Nowa wiadomość od animatora",
+    message: "Animator wysłał Ci nową wiadomość.",
+    date: "11.09.2026",
+    time: "15:10",
+    read: false,
+    link: "/panel/user/messages?thread=animator",
   },
 ];

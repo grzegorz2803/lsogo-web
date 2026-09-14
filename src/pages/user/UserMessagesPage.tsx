@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MessageThreadList } from "../../components/UserMessages/MessageThreadList";
 import { PanelPageHeader } from "../../components/Panel/PanelPageHeader";
 import { userMessagesContent } from "../../content/userMessages";
-
+import { useSearchParams } from "react-router-dom";
 import {
   userMessagesMock,
   type MessageThreadType,
@@ -11,9 +11,13 @@ import { MessageThreadView } from "../../components/UserMessages/MessageThreadVi
 
 export default function UserMessagesPage() {
   const [threads, setThreads] = useState(userMessagesMock);
-  const [selectedThread, setSelectedThread] =
-    useState<MessageThreadType>("guardian");
+  const [searchParams] = useSearchParams();
+  const threadFromUrl = searchParams.get("thread");
+  const [selectedThread, setSelectedThread] = useState<MessageThreadType>(
+    threadFromUrl === "animator" ? "animator" : "guardian",
+  );
   const activeThread = threads.find((thread) => thread.id === selectedThread);
+
   function handleSendMessage(content: string) {
     setThreads((currentThreads) =>
       currentThreads.map((thread) =>
