@@ -79,7 +79,7 @@ export function CalendarView({
       className={[
         " rounded-3xl border border-slate-700/50 bg-slate-950/60  ring-1 ring-slate-900/80",
         compact
-          ? "px-6 py-6"
+          ? "px-3 py-5 sm:px-6 sm:py-6 "
           : "px-8 py-8 shadow-[0_24px_80px_rgba(15,23,42,0.95)]",
       ].join(" ")}
     >
@@ -98,7 +98,7 @@ export function CalendarView({
       <div
         className={[
           "grid xl:grid-cols-[1.25fr_0.9fr]",
-          compact ? "mt-6 gap-6" : "mt-10 gap-8",
+          compact ? "mt-5 gap-5 sm:mt-6 sm:gap-6" : "mt-10 gap-8",
         ].join(" ")}
       >
         <CalendarMonthGrid

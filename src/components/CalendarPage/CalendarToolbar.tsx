@@ -9,7 +9,7 @@ type Props = {
   onMonthChange: (value: number) => void;
   onYearChange: (value: number) => void;
   onDayChange: (value: number) => void;
-  onDioceseChange: (vlaue: string) => void;
+  onDioceseChange: (value: string) => void;
   allowDioceseChange?: boolean;
 };
 

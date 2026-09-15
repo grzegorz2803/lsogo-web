@@ -13,7 +13,7 @@ type Props = {
   onNextMonth: () => void;
   compact?: boolean;
 };
-function bulidDateString(year: number, month: number, day: number) {
+function buildDateString(year: number, month: number, day: number) {
   const yyyy = String(year);
   const mm = String(month + 1).padStart(2, "0");
   const dd = String(day).padStart(2, "0");
@@ -64,13 +64,16 @@ export function CalendarMonthGrid({
 
   return (
     <div
-      className={["rounded-3xl", compact ? "px-3 py-4" : "px-6 py-8"].join(" ")}
+      className={[
+        "rounded-3xl",
+        compact ? "px-0 py-3 sm:px-3 sm:py-4" : "px-6 py-8",
+      ].join(" ")}
     >
       <div className="flex items-center justify-center gap-4">
         <button
           type="button"
           onClick={onPreviousMonth}
-          className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 text-amber-200 transition hover:border-amber-400/50 hover:text-amber-100"
+          className="cursor-pointer rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 text-amber-200 transition hover:border-amber-400/50 hover:text-amber-100"
           aria-label="Poprzedni miesiąc"
         >
           ‹
@@ -86,7 +89,7 @@ export function CalendarMonthGrid({
         <button
           type="button"
           onClick={onNextMonth}
-          className="rounded-full border  border-slate-700 bg-slate-900/80 px-3 py-1 text-amber-200 transition hover:border-amber-400/50 hover:text-amber-100"
+          className="cursor-pointer rounded-full border  border-slate-700 bg-slate-900/80 px-3 py-1 text-amber-200 transition hover:border-amber-400/50 hover:text-amber-100"
           aria-label="Następny miesiąc"
         >
           ›
@@ -128,7 +131,7 @@ export function CalendarMonthGrid({
         })}
         {Array.from({ length: daysInMonth }, (_, index) => {
           const dayNumber = index + 1;
-          const dateString = bulidDateString(
+          const dateString = buildDateString(
             selectedYear,
             selectedMonth,
             dayNumber,

@@ -33,7 +33,7 @@ type Props = {
 };
 function DaySectionSeparator() {
   return (
-    <div className="my-6 flex items-center justify-center">
+    <div className="my-5 flex items-center justify-center sm:my-6">
       <div className="h-px w-full bg-linear-to-r from-transparent via-amber-300/50 to-transparent" />
     </div>
   );
@@ -43,8 +43,8 @@ export function CalendarDayDetails({ day, emptyMessage }: Props) {
 
   if (!day) {
     return (
-      <div className=" flex h-full min-h-105 items-center justify-center rounded-3xl  px-10 py-10 text-center ">
-        <p className="max-w-md text-xl leading-relaxed text-slate-300/80">
+      <div className="flex min-h-48 items-center justify-center rounded-3xl px-4 py-8 text-center sm:min-h-64 sm:px-6 xl:min-h-105 xl:px-10 xl:py-10">
+        <p className="max-w-md text-base leading-relaxed text-slate-300/80 sm:text-lg xl:text-xl">
           {emptyMessage || "Brak danych dla wybranego dnia."}
         </p>
       </div>
@@ -52,13 +52,13 @@ export function CalendarDayDetails({ day, emptyMessage }: Props) {
   }
   const colorBarCLass = getColorBarClass(day.color);
   return (
-    <div className="rounded-3xl px-6 py-8  ">
+    <div className="rounded-3xl px-1 py-5 sm:px-3 sm:py-6 xl:px-6 xl:py-8 ">
       <DaySectionSeparator />
-      <p className="text-sm uppercase trecking-[0.08em] text-slate-300/80">
+      <p className="text-sm uppercase tracking-[0.08em] text-slate-300/80">
         {day.weekday}, {formatDisplayDate(day.date)}
       </p>
       <div className="mt-4 border-t border-slate-700/40 pt-4">
-        <h2 className="leading-tight font-serif text-2xl text-amber-50">
+        <h2 className="font-serif text-xl leading-tight text-amber-50 sm:text-2xl">
           {day.mainTitle}
         </h2>
 
@@ -68,7 +68,9 @@ export function CalendarDayDetails({ day, emptyMessage }: Props) {
       </div>
 
       <div className="mt-5">
-        <p className="text-xl font-semibold text-amber-100">{day.rank}</p>
+        <p className="text-lg font-semibold text-amber-100 sm:text-xl">
+          {day.rank}
+        </p>
         <div
           className={`mt-3 rounded-lg px-4 py-2 text-sm font-medium ${colorBarCLass}`}
         >
@@ -79,7 +81,7 @@ export function CalendarDayDetails({ day, emptyMessage }: Props) {
       <div className="space-y-4">
         {day.readings.firstReading && (
           <div className="border-b border-slate-700/30 pb-3">
-            <p className="text-base font-semibold uppercase tracking-[0.08em] text-amber-100">
+            <p className="text-sm font-semibold uppercase tracking-[0.08em] text-amber-100">
               {dayDetails.firstReadingTitle}
             </p>
             <p className="mt-2 text-base text-slate-200/90">
