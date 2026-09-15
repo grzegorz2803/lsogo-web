@@ -60,7 +60,7 @@ export function LiturgyTodayCard({ liturgy }: Props) {
 
   return (
     <section className="rounded-3xl border border-slate-700/40 bg-slate-950/55 p-6 shadow-[0_20px_50px_rgba(15,23,42,0.35)] transition-all duration-300 hover:border-amber-400/10">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="font-serif text-2xl text-amber-100">
           {liturgyToday.title}
         </h2>

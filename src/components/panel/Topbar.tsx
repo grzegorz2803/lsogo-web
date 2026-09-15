@@ -60,7 +60,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-slate-400">{user?.name}</span>
+          <span className="hidden sm:inline text-sm text-slate-400">
+            {user?.name}
+          </span>
 
           <button
             onClick={logout}
