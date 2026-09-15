@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components/Panel/Sidebar";
 import { Topbar } from "../components/Panel/Topbar";
+import { useState } from "react";
 
 export function DashboardLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div className="relative isolate min-h-screen w-full overflow-hidden bg-linear-to-b from-slate-950 via-blue-950 to-slate-950 text-slate-100">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -10,10 +12,13 @@ export function DashboardLayout() {
         <div className="absolute bottom-0 right-0 w-125 h-125 bg-blue-500/10 blur-[120px] rounded-full" />
       </div>
       <div className="relative flex min-h-screen">
-        <Sidebar />
+        <Sidebar
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
         <div className="flex flex-1 flex-col">
-          <Topbar />
-          <main className="flex-1 p-6 md:p-8">
+          <Topbar onMenuClick={() => setIsSidebarOpen(true)} />
+          <main className="flex-1 p-4 lg:p-8">
             <Outlet />
           </main>
         </div>
