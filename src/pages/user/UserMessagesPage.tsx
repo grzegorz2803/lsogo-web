@@ -11,13 +11,18 @@ import { MessageThreadView } from "../../components/UserMessages/MessageThreadVi
 
 export default function UserMessagesPage() {
   const [threads, setThreads] = useState(userMessagesMock);
+  const [isMobileThreadOpen, setIsMobileThreadOpen] = useState(false);
   const [searchParams] = useSearchParams();
   const threadFromUrl = searchParams.get("thread");
   const [selectedThread, setSelectedThread] = useState<MessageThreadType>(
     threadFromUrl === "animator" ? "animator" : "guardian",
   );
-  const activeThread = threads.find((thread) => thread.id === selectedThread);
 
+  const activeThread = threads.find((thread) => thread.id === selectedThread);
+  function handleSelectThread(thread: MessageThreadType) {
+    setSelectedThread(thread);
+    setIsMobileThreadOpen(true);
+  }
   function handleSendMessage(content: string) {
     setThreads((currentThreads) =>
       currentThreads.map((thread) =>
@@ -44,22 +49,31 @@ export default function UserMessagesPage() {
   }
   return (
     <>
-      <div>
+      <div className="min-w-0">
         <PanelPageHeader
           title={userMessagesContent.title}
           subtitle={userMessagesContent.subtitle}
         />
-        <div className="mt-8 grid grid-cols-[320px_1fr] gap-6">
-          <MessageThreadList
-            threads={threads}
-            selectedThread={selectedThread}
-            onSelectThread={setSelectedThread}
-          />
-          {activeThread && (
-            <MessageThreadView
-              thread={activeThread}
-              onSendMessage={handleSendMessage}
+        <div className="mt-6 grid min-w-0 grid-cols-1 gap-6 md:mt-8 md:grid-cols-[320px_minmax(0,1fr)]">
+          <div
+            className={
+              isMobileThreadOpen ? "hidden min-w-0 md:block" : "block min-w-0"
+            }
+          >
+            <MessageThreadList
+              threads={threads}
+              selectedThread={selectedThread}
+              onSelectThread={handleSelectThread}
             />
+          </div>
+          {activeThread && (
+            <div className={isMobileThreadOpen ? "block" : "hidden md:block"}>
+              <MessageThreadView
+                thread={activeThread}
+                onSendMessage={handleSendMessage}
+                onBack={() => setIsMobileThreadOpen(false)}
+              />
+            </div>
           )}
         </div>
       </div>

@@ -15,7 +15,7 @@ export function MessageThreadList({
   onSelectThread,
 }: MessageThreadListProps) {
   return (
-    <div className="space-y-3">
+    <div className="min-w-0 space-y-3">
       {threads.map((thread) => {
         const lastMessage = thread.messages.at(-1);
         const isActive = selectedThread === thread.id;
@@ -25,7 +25,7 @@ export function MessageThreadList({
             key={thread.id}
             type="button"
             onClick={() => onSelectThread(thread.id)}
-            className={`w-full cursor-pointer rounded-2xl border p-4 text-left transition ${
+            className={`min-w-0 w-full cursor-pointer overflow-hidden rounded-2xl border p-4 text-left transition ${
               isActive
                 ? "border-amber-400/25 bg-amber-400/5"
                 : "border-white/10 bg-slate-950/25 hover:border-white/20"
