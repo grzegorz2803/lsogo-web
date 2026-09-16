@@ -44,29 +44,29 @@ export function Topbar({ onMenuClick }: TopbarProps) {
   const location = useLocation();
 
   return (
-    <header className="border-b border-slate-800/70  px-6 py-5 bg-slate-950/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(2,6,23,0.6)]">
+    <header className="border-b border-slate-800/70 bg-slate-950/80 px-4 py-4 shadow-[0_10px_40px_rgba(2,6,23,0.6)] backdrop-blur-xl sm:px-6 sm:py-5">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <button
             type="button"
             onClick={onMenuClick}
-            className="flex size-10 cursor-pointer items-center justify-center rounded-xl border border-slate-700/60 text-amber-200 transition hover:border-amber-400/30 hover:bg-amber-400/5 lg:hidden"
+            className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-slate-700/60 text-amber-200 transition hover:border-amber-400/30 hover:bg-amber-400/5 sm:size-10 lg:hidden"
             aria-label="Otwórz menu"
           >
             <Menu className="size-5" />
           </button>
-          <div className="font-serif text-2xl text-amber-200">
+          <div className="truncate font-serif text-xl text-amber-200 sm:text-2xl">
             {getPageTitle(location.pathname)}
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="ml-2 flex shrink-0 items-center gap-4">
           <span className="hidden sm:inline text-sm text-slate-400">
             {user?.name}
           </span>
 
           <button
             onClick={logout}
-            className="rounded-2xl cursor-pointer bg-linear-to-b from-amber-400 via-amber-500 to-amber-600 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-[0_0_24px_rgba(251,191,36,0.28)] transition hover:from-amber-300 hover:via-amber-400 hover:to-amber-500"
+            className="cursor-pointer rounded-2xl bg-linear-to-b from-amber-400 via-amber-500 to-amber-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_0_24px_rgba(251,191,36,0.28)] transition hover:from-amber-300 hover:via-amber-400 hover:to-amber-500 sm:px-5 sm:py-2.5"
           >
             Wyloguj
           </button>

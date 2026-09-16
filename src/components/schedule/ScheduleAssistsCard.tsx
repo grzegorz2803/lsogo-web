@@ -3,7 +3,7 @@ import { scheduleContent } from "../../content/schedule";
 
 export function ScheduleAssistsCard({ assists }: { assists: AssistDuty[] }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-6">
+    <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-4 sm:p-6">
       <h2 className="text-lg font-serif text-amber-200 mb-4">
         {scheduleContent.assists.title}
       </h2>
@@ -24,8 +24,8 @@ export function ScheduleAssistsCard({ assists }: { assists: AssistDuty[] }) {
               <p className="text-sm text-slate-200 font-medium">
                 {a.celebrationName}
               </p>
-              <div className="mt-3 flex items-center gap-3">
-                <span className="text-sm text-slate-400">Funckja:</span>
+              <div className="mt-3 flex flex-wrap items-center gap-2 sm:gap-3">
+                <span className="text-sm text-slate-400">Funkcja:</span>
                 <span className="rounded-full border border-amber-400/20 bg-amber-500/10 px-3 py-1 text-sm font-semibold text-amber-200">
                   {a.functionName}
                 </span>

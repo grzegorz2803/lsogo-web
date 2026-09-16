@@ -3,8 +3,8 @@ import { scheduleContent } from "../../content/schedule";
 
 export function ScheduleCurrentCard({ schedule }: { schedule: UserSchedule }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-4 sm:p-6">
+      <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-lg font-serif text-amber-200">
             {scheduleContent.current.title}
@@ -18,11 +18,11 @@ export function ScheduleCurrentCard({ schedule }: { schedule: UserSchedule }) {
           {scheduleContent.current.badge}
         </span>
       </div>
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid gap-4 md:grid-cols-3">
         {schedule.weeklyDuties.map((duty) => (
           <div
             key={duty.id}
-            className="rounded-xl border border-white/10 p-4 bg-slate-900/60"
+            className="rounded-xl border border-white/10 bg-slate-900/60 p-4"
           >
             <p className="text-sm text-slate-300">{duty.dayLabel}</p>
             <p className="text-3xl font-semibold text-amber-200">{duty.time}</p>

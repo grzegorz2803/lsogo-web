@@ -10,8 +10,8 @@ export function ScheduleNextAccordion({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-6">
-      <div className="flex justify-between items-center mb-4">
+    <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-4 sm:p-6">
+      <div className="mb-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-lg font-serif text-amber-200">
             {scheduleContent.next.title}
@@ -21,6 +21,7 @@ export function ScheduleNextAccordion({
           </p>
         </div>
         <button
+          type="button"
           onClick={() => setOpen(!open)}
           className="cursor-pointer rounded-full border border-amber-400/15 bg-amber-500/5 px-4 py-2 text-sm font-medium text-amber-200 transition hover:bg-amber-500/10"
         >
@@ -28,7 +29,7 @@ export function ScheduleNextAccordion({
         </button>
       </div>
       {open && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 opacity-80">
+        <div className="mt-4 grid grid-cols-1 gap-4 opacity-80 md:grid-cols-3">
           {schedule.weeklyDuties.map((duty) => (
             <div
               key={duty.id}
