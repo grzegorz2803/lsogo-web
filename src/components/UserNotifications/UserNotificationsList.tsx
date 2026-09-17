@@ -42,7 +42,7 @@ export function UserNotificationList({
           <div
             key={notification.id}
             onClick={() => onNotificationClick(notification.id)}
-            className={`rounded-2xl border p-5 transition cursor-pointer ${
+            className={`rounded-2xl border p-4 transition cursor-pointer sm:p-5 ${
               notification.read
                 ? "border-white/10 bg-slate-950/25"
                 : "border-amber-400/25 bg-amber-400/5"
@@ -54,21 +54,22 @@ export function UserNotificationList({
               </div>
 
               <div className="min-w-0 flex-1">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2 ">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                  <div className="min-w-0">
+                    <div className="flex items-start">
                       <h3 className="font-medium text-slate-100">
                         {notification.title}
                       </h3>
+
                       {!notification.read && (
-                        <span className="h-2 w-2 rounded-full bg-amber-400" />
+                        <span className="mt-2 ml-2 hidden h-2 w-2 shrink-0 rounded-full bg-amber-400 sm:block" />
                       )}
                     </div>
                     <p className="mt-1 text-sm leading-6 text-slate-400">
                       {notification.message}
                     </p>
                   </div>
-                  <span className="shrink-0 text-xs text-slate-500">
+                  <span className="sm:shrink-0 text-xs text-slate-500">
                     {notification.date} · {notification.time}
                   </span>
                 </div>

@@ -45,7 +45,7 @@ export default function UserNotificationsPage() {
         subtitle={userNotificationsContent.subtitle}
       />
       <div className="mt-8">
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-slate-400">
             Nieprzeczytane:{" "}
             <span className="font-medium text-amber-300">{unreadCount}</span>
@@ -54,7 +54,7 @@ export default function UserNotificationsPage() {
             <button
               type="button"
               onClick={handelMarkAllAsRead}
-              className="cursor-pointer text-sm text-amber-300 transition hover:text-amber-200"
+              className="cursor-pointer self-start text-sm text-amber-300 transition hover:text-amber-200 sm:self-auto"
             >
               Oznacz wszystkie jako przeczytane
             </button>
