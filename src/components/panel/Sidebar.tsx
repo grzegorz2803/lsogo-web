@@ -162,10 +162,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               </>
             )}
 
-            {role === "admin" && (
+            {role === "parish_admin" && (
               <>
                 <NavLink
-                  to="/panel/admin"
+                  to="/panel/parish-admin"
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >
@@ -173,7 +173,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </NavLink>
 
                 <NavLink
-                  to="/panel/admin/users"
+                  to="/panel/parish-admin/users"
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >
@@ -181,7 +181,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </NavLink>
 
                 <NavLink
-                  to="/panel/admin/settings"
+                  to="/panel/parish-admin/settings"
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >

@@ -33,7 +33,7 @@ type Props = {
 };
 
 export function CalendarDayCard({ day, emptyMessage }: Props) {
-  const { dayCard } = calendarPageContent;
+  const { dayDetails } = calendarPageContent;
   if (!day) {
     return (
       <section className="px-6">
@@ -47,7 +47,12 @@ export function CalendarDayCard({ day, emptyMessage }: Props) {
   }
 
   const colorClass = getColorTextClass(day.color);
-
+  const readings = [
+    day.readings.firstReading,
+    day.readings.psalm,
+    day.readings.secondReading,
+    day.readings.gospel,
+  ].filter((reading): reading is string => Boolean(reading));
   return (
     <section className="px-6">
       <div className="mx-auto max-w-6xl">
@@ -66,7 +71,7 @@ export function CalendarDayCard({ day, emptyMessage }: Props) {
                 {day.rank}
               </p>
               <p className={`text-sm md:text-base font-semibold ${colorClass}`}>
-                {dayCard.colorLabel}: {day.color}
+                {dayDetails.colorLabel}: {day.color}
               </p>
             </div>
           </div>
@@ -84,7 +89,7 @@ export function CalendarDayCard({ day, emptyMessage }: Props) {
                     <p
                       className={`mt-1 text-sm font-medium ${getColorTextClass(celebration.color)}`}
                     >
-                      {dayCard.colorLabel}: {celebration.color}
+                      {dayDetails.colorLabel}: {celebration.color}
                     </p>
                   </div>
                 ))}
@@ -94,10 +99,10 @@ export function CalendarDayCard({ day, emptyMessage }: Props) {
 
           <div className="mt-2">
             <p className="text-sm md:text-base font-semibold uppercase tracking-[0.18em] text-amber-200">
-              {dayCard.readingsTitle}
+              {dayDetails.readingsTitle}
             </p>
             <div className="mt-4 text-sm md:text-base leading-relaxed text-slate-200/90">
-              {day.readings.map((reading, index) => (
+              {readings.map((reading, index) => (
                 <span key={reading}>
                   {index > 0 && (
                     <span className="mx-2 font-bold text-amber-400">|</span>
@@ -110,7 +115,7 @@ export function CalendarDayCard({ day, emptyMessage }: Props) {
           {day.notes && (
             <div className="mt-8 border-t py-5">
               <p className="text-sm md:text-base font-semibold uppercase tracking-[0.18em] text-amber-200">
-                {dayCard.notesTitle}
+                {dayDetails.notesTitle}
               </p>
               <p className="mt-3 text-sm md:text-base leading-relaxed text-slate-200/90">
                 {day.notes}
