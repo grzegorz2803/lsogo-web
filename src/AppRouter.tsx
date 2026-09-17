@@ -52,8 +52,11 @@ export function AppRouter() {
               element={<ModeratorDashboardPage />}
             />
           </Route>
-          <Route element={<RoleRoute allowedRoles={["admin"]} />}>
-            <Route path="/panel/admin" element={<AdminDashboardPage />} />
+          <Route element={<RoleRoute allowedRoles={["parish_admin"]} />}>
+            <Route
+              path="/panel/parish-admin"
+              element={<AdminDashboardPage />}
+            />
           </Route>
         </Route>
       </Route>

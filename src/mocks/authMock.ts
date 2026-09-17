@@ -20,7 +20,7 @@ export const mockUsers: AuthUser[] = [
     email: "admin@test.pl",
     password: "1234",
     name: "Grzegorz Admin",
-    role: "admin",
+    role: "parish_admin",
   },
 ];
 
