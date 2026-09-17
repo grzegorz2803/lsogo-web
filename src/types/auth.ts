@@ -1,3 +1,7 @@
+import type {
+  ModeratorPermission,
+  ModeratorPermissionPreset,
+} from "./moderator";
 export type UserRole = "user" | "moderator" | "parish_admin" | "system_admin";
 
 export type AuthUser = {
@@ -6,4 +10,6 @@ export type AuthUser = {
   password: string;
   name: string;
   role: UserRole;
+  moderatorPreset?: ModeratorPermissionPreset;
+  permissions?: ModeratorPermission[];
 };

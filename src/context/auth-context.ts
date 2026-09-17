@@ -1,11 +1,17 @@
 import { createContext } from "react";
 import type { UserRole } from "../types/auth";
+import type {
+  ModeratorPermission,
+  ModeratorPermissionPreset,
+} from "../types/moderator";
 
 export type SafeUser = {
   id: number;
   email: string;
   name: string;
   role: UserRole;
+  moderatorPreset?: ModeratorPermissionPreset;
+  permissions?: ModeratorPermission[];
 };
 
 export type AuthContextValue = {
