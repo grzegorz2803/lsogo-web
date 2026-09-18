@@ -19,6 +19,9 @@ import { UserRankingPage } from "./pages/user/UserRankingPage";
 import { UserHistoryPage } from "./pages/user/UserHistoryPage";
 import UserNotificationsPage from "./pages/user/UserNotificationsPage";
 import UserMessagesPage from "./pages/user/UserMessagesPage";
+import { ModeratorPermissionRoute } from "./guards/ModeratorPermissionRoute";
+import { ModeratorPlaceholderPage } from "./pages/moderator/ModeratorPlaceholderPage";
+import { moderatorContent } from "./content/moderator";
 
 export function AppRouter() {
   return (
@@ -51,7 +54,156 @@ export function AppRouter() {
               path="/panel/moderator"
               element={<ModeratorDashboardPage />}
             />
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["users.view"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/users"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.users}
+                  />
+                }
+              />
+            </Route>
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["ranking.view"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/ranking"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.ranking}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ModeratorPermissionRoute
+                  permissions={[
+                    "attendance.service.check",
+                    "attendance.meeting.check",
+                    "attendance.history.view",
+                  ]}
+                />
+              }
+            >
+              <Route
+                path="/panel/moderator/attendance"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.attendance}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["schedule.view"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/schedule"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.schedule}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["services.manage"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/services"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.services}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["calendar.view"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/calendar"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.calendar}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["messages.view"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/messages"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.messages}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["excuses.manage"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/notifications"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.notifications}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              element={
+                <ModeratorPermissionRoute permissions={["reports.view"]} />
+              }
+            >
+              <Route
+                path="/panel/moderator/reports"
+                element={
+                  <ModeratorPlaceholderPage
+                    title={moderatorContent.pages.reports}
+                  />
+                }
+              />
+            </Route>
+
+            <Route
+              path="/panel/moderator/profile"
+              element={
+                <ModeratorPlaceholderPage
+                  title={moderatorContent.pages.profile}
+                />
+              }
+            />
           </Route>
+
           <Route element={<RoleRoute allowedRoles={["parish_admin"]} />}>
             <Route
               path="/panel/parish-admin"
