@@ -34,7 +34,7 @@ export const moderatorContent = {
       title: "Harmonogram",
       current: "Aktualny",
       next: "Następny",
-      editAction: "Przejdź do harmonogramu",
+      action: "Przejdź do harmonogramu",
       status: {
         published: "Opublikowany",
         draft: "Szkic",
@@ -45,12 +45,22 @@ export const moderatorContent = {
       title: "Najbliższe asysty",
       assigned: "Przypisanych",
       empty: "Brak najbliższych asyst.",
+      action: "Zobacz harmonogram",
     },
 
     attendance: {
       title: "Ostatnie obecności",
       allAction: "Zobacz historię",
       empty: "Brak ostatnich obecności.",
+      status: {
+        present: "Obecny",
+        absent: "Nieobecny",
+      },
+      source: {
+        rfid: "RFID",
+        manual: "Ręcznie",
+      },
+      action: "Zobacz historię",
     },
 
     messages: {

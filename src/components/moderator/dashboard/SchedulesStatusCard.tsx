@@ -1,13 +1,22 @@
 import { ModeratorDashboardCard } from "./ModeratorDashboardCard";
 import { moderatorContent } from "../../../content/moderator";
 import { moderatorDashboardMock } from "../../../mocks/moderatorDashboardMock";
+import { ModeratorDaschboardAction } from "./ModeratorDashboardAction";
 
 export function SchedulesStatusCard() {
   const { schedule } = moderatorContent.dashboard;
   const { schedule: data } = moderatorDashboardMock;
 
   return (
-    <ModeratorDashboardCard title={schedule.title}>
+    <ModeratorDashboardCard
+      title={schedule.title}
+      action={
+        <ModeratorDaschboardAction
+          to="/panel/moderator/schedule"
+          label={schedule.action}
+        />
+      }
+    >
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="rounded-xl bg-white/5 p-4">
           <p className="text-sm text-white/60">{schedule.current}</p>
