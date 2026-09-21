@@ -70,4 +70,39 @@ export const moderatorContent = {
       empty: "Brak nowych wiadomości.",
     },
   },
+  users: {
+    title: "Użytkownicy",
+    subtitle: "Członkowie Liturgicznej Służby Ołtarza w Twojej wspólnocie.",
+
+    search: {
+      placeholder: "Szukaj użytkownika...",
+    },
+
+    filters: {
+      all: "Wszyscy",
+      ministrant: "Ministranci",
+      lektor: "Lektorzy",
+      animator: "Animatorzy",
+    },
+
+    table: {
+      user: "Użytkownik",
+      function: "Funkcja",
+      points: "Punkty",
+      attendance: "Obecność",
+      actions: "Akcje",
+    },
+
+    action: {
+      details: "Szczegóły",
+    },
+
+    empty: "Nie znaleziono użytkowników.",
+
+    functions: {
+      ministrant: "Ministrant",
+      lektor: "Lektor",
+      animator: "Animator",
+    },
+  },
 };

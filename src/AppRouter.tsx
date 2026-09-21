@@ -22,6 +22,8 @@ import UserMessagesPage from "./pages/user/UserMessagesPage";
 import { ModeratorPermissionRoute } from "./guards/ModeratorPermissionRoute";
 import { ModeratorPlaceholderPage } from "./pages/moderator/ModeratorPlaceholderPage";
 import { moderatorContent } from "./content/moderator";
+import { ModeratorUsersPage } from "./pages/moderator/ModeratorUsersPage";
+import { ModeratorUserDetailsPage } from "./pages/moderator/ModeratorUserDetailsPage";
 
 export function AppRouter() {
   return (
@@ -61,11 +63,11 @@ export function AppRouter() {
             >
               <Route
                 path="/panel/moderator/users"
-                element={
-                  <ModeratorPlaceholderPage
-                    title={moderatorContent.pages.users}
-                  />
-                }
+                element={<ModeratorUsersPage />}
+              />
+              <Route
+                path="/panel/moderator/users/:userId"
+                element={<ModeratorUserDetailsPage />}
               />
             </Route>
             <Route
