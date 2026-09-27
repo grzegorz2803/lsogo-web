@@ -12,7 +12,9 @@ export type ModeratorPermission =
   | "messages.send"
   | "excuses.manage"
   | "services.manage"
-  | "reports.view";
+  | "reports.view"
+  | "users.manage"
+  | "users.password.reset";
 
 export type ModeratorPermissionPreset = "basic" | "moderator" | "full";
 
@@ -51,5 +53,7 @@ export const ModeratorPermissionPresets: Record<
     "excuses.manage",
     "services.manage",
     "reports.view",
+    "users.manage",
+    "users.password.reset",
   ],
 };

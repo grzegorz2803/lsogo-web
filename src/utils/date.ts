@@ -1,3 +1,7 @@
 export function formatDate(date: string): string {
-  return new Intl.DateTimeFormat("pl-PL").format(new Date(`${date}T00:00:00`));
+  return new Intl.DateTimeFormat("pl-PL", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(new Date(`${date}T00:00:00`));
 }
