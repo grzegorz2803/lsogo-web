@@ -24,6 +24,7 @@ import { ModeratorPlaceholderPage } from "./pages/moderator/ModeratorPlaceholder
 import { moderatorContent } from "./content/moderator";
 import { ModeratorUsersPage } from "./pages/moderator/ModeratorUsersPage";
 import { ModeratorUserDetailsPage } from "./pages/moderator/ModeratorUserDetailsPage";
+import { ModeratorRankingPage } from "./pages/moderator/ModeratorRankingPage";
 
 export function AppRouter() {
   return (
@@ -77,11 +78,7 @@ export function AppRouter() {
             >
               <Route
                 path="/panel/moderator/ranking"
-                element={
-                  <ModeratorPlaceholderPage
-                    title={moderatorContent.pages.ranking}
-                  />
-                }
+                element={<ModeratorRankingPage />}
               />
             </Route>
 

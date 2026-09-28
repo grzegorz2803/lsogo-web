@@ -217,4 +217,53 @@ export const moderatorContent = {
       },
     },
   },
+  ranking: {
+    title: "Ranking",
+    description:
+      "Ranking użytkowników na podstawie punktów zdobytych w wybranym okresie.",
+
+    filters: {
+      period: "Okres",
+      periodMonth: "Miesiąc",
+      periodYear: "Rok",
+      month: "Miesiąc",
+      year: "Rok",
+      function: "Funkcja",
+      allFunctions: "Wszystkie funkcje",
+      rankingBy: "Ranking według",
+    },
+
+    rankingBy: {
+      total: "Sumy punktów",
+      service: "Służby",
+      meetings: "Zbiórek",
+    },
+    months: [
+      { value: 1, label: "Styczeń" },
+      { value: 2, label: "Luty" },
+      { value: 3, label: "Marzec" },
+      { value: 4, label: "Kwiecień" },
+      { value: 5, label: "Maj" },
+      { value: 6, label: "Czerwiec" },
+      { value: 7, label: "Lipiec" },
+      { value: 8, label: "Sierpień" },
+      { value: 9, label: "Wrzesień" },
+      { value: 10, label: "Październik" },
+      { value: 11, label: "Listopad" },
+      { value: 12, label: "Grudzień" },
+    ],
+
+    table: {
+      position: "Miejsce",
+      user: "Imię i nazwisko",
+      function: "Funkcja",
+      service: "Służba",
+      meetings: "Zbiórki",
+      total: "Suma",
+      actions: "Akcje",
+      details: "Szczegóły",
+    },
+
+    empty: "Brak danych rankingowych dla wybranego okresu.",
+  },
 };
