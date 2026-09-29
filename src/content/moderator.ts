@@ -266,4 +266,58 @@ export const moderatorContent = {
 
     empty: "Brak danych rankingowych dla wybranego okresu.",
   },
+  attendance: {
+    title: "Obecności",
+    description:
+      "Historia obecności użytkowników na nabożeństwach i zbiórkach.",
+
+    history: {
+      title: "Historia obecności",
+
+      filters: {
+        dateFrom: "Data od",
+        dateTo: "Data do",
+        user: "Użytkownik",
+        allUsers: "Wszyscy użytkownicy",
+        event: "Wydarzenie",
+        allEvents: "Wszystkie wydarzenia",
+        eventType: "Typ wydarzenia",
+        allEventTypes: "Wszystkie typy",
+        status: "Status",
+        allStatuses: "Wszystkie statusy",
+        source: "Źródło",
+        allSources: "Wszystkie źródła",
+        clear: "Wyczyść filtry",
+      },
+
+      eventTypes: {
+        service: "Nabożeństwo",
+        meeting: "Zbiórka",
+      },
+
+      statuses: {
+        present: "Obecny",
+        absent: "Nieobecny",
+        excused: "Usprawiedliwiony",
+      },
+
+      sources: {
+        rfid: "RFID",
+        manual: "Ręcznie",
+      },
+
+      table: {
+        user: "Użytkownik",
+        function: "Funkcja",
+        event: "Wydarzenie",
+        date: "Data",
+        time: "Godzina",
+        status: "Status",
+        source: "Źródło",
+        points: "Punkty",
+      },
+
+      empty: "Brak wpisów obecności dla wybranych filtrów.",
+    },
+  },
 };
