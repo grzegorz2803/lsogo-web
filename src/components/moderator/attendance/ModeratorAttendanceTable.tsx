@@ -8,6 +8,8 @@ import { formatDate } from "../../../utils/date";
 
 type ModeratorAttendanceTableProps = {
   entries: ModeratorAttendanceEntry[];
+  onExcuse: (entry: ModeratorAttendanceEntry) => void;
+  canManageExcuses: boolean;
 };
 
 function getStatusLabel(status: AttendanceStatus) {
@@ -42,6 +44,8 @@ function getSourceLabel(source: AttendanceSource) {
 
 export function ModeratorAttendanceTable({
   entries,
+  canManageExcuses,
+  onExcuse,
 }: ModeratorAttendanceTableProps) {
   const { history } = moderatorContent.attendance;
 
@@ -67,6 +71,7 @@ export function ModeratorAttendanceTable({
               <th className="px-5 py-4">{history.table.status}</th>
               <th className="px-5 py-4">{history.table.source}</th>
               <th className="px-5 py-4 text-right">{history.table.points}</th>
+              <th className="px-5 py-4 text-right">{history.table.action}</th>
             </tr>
           </thead>
 
@@ -116,6 +121,17 @@ export function ModeratorAttendanceTable({
                 >
                   {entry.points > 0 ? "+" : ""}
                   {entry.points}
+                </td>
+                <td className="px-5 py-4 text-right">
+                  {canManageExcuses && entry.status === "ABSENT" && (
+                    <button
+                      type="button"
+                      onClick={() => onExcuse(entry)}
+                      className="cursor-pointer text-sm font-medium text-amber-300 transition hover:text-amber-200"
+                    >
+                      {history.actions.excuse}
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

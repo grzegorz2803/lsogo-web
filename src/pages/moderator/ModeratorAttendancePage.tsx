@@ -11,9 +11,14 @@ import {
   type AttendanceSourceFilter,
   type AttendanceStatusFilter,
 } from "../../components/moderator/attendance/ModeratorAttendanceFilters";
-import { moderatorAttendanceMock } from "../../mocks/moderatorAttendanceMock";
+import {
+  type ModeratorAttendanceEntry,
+  moderatorAttendanceMock,
+} from "../../mocks/moderatorAttendanceMock";
 import { moderatorContent } from "../../content/moderator";
 import { ModeratorAttendanceTable } from "../../components/moderator/attendance/ModeratorAttendanceTable";
+import { useModeratorPermissions } from "../../hooks/useModeratorPermissions";
+import { ExcuseAttendanceModal } from "../../components/moderator/attendance/ExcuseAttendanceModal";
 
 export function ModeratorAttendancePage() {
   const defaultDateRange = getDefaultAttendanceDateRange();
@@ -30,6 +35,9 @@ export function ModeratorAttendancePage() {
 
   const [source, setSource] = useState<AttendanceSourceFilter>("all");
   const users = getAttendanceUserOptions(moderatorAttendanceMock);
+  const [selectedAbsence, setSelectedAbsence] =
+    useState<ModeratorAttendanceEntry | null>(null);
+  const { hasPermission } = useModeratorPermissions();
 
   const events = getAttendanceEventOptions({
     data: moderatorAttendanceMock,
@@ -102,9 +110,32 @@ export function ModeratorAttendancePage() {
         />
 
         <div className="mt-4">
-          <ModeratorAttendanceTable entries={entries} />
+          <ModeratorAttendanceTable
+            entries={entries}
+            canManageExcuses={hasPermission("excuses.manage")}
+            onExcuse={setSelectedAbsence}
+          />
+          {selectedAbsence && (
+            <ExcuseAttendanceModal
+              entry={selectedAbsence}
+              excuseAt={getTodayDate()}
+              onClose={() => setSelectedAbsence(null)}
+              onConfirm={() => {
+                console.log("Mock excuse attendance:", selectedAbsence);
+                setSelectedAbsence(null);
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
   );
+}
+function getTodayDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }

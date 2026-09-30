@@ -315,9 +315,24 @@ export const moderatorContent = {
         status: "Status",
         source: "Źródło",
         points: "Punkty",
+        action: "Akcja",
       },
 
       empty: "Brak wpisów obecności dla wybranych filtrów.",
+      actions: {
+        excuse: "Usprawiedliw",
+      },
+      excuseModal: {
+        title: "Usprawiedliw nieobecność",
+        description: "Czy na pewno chcesz usprawiedliwić tę nieobecność?",
+        user: "Użytkownik",
+        event: "Wydarzenie",
+        absenceDate: "Data nieobecności",
+        excusedAt: "Data usprawiedliwienia",
+        pointsInfo: "Punkty za tę nieobecność zostaną zmienione na 0.",
+        cancel: "Anuluj",
+        confirm: "Usprawiedliw",
+      },
     },
   },
 };
