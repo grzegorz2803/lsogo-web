@@ -334,5 +334,53 @@ export const moderatorContent = {
         confirm: "Usprawiedliw",
       },
     },
+    tabs: {
+      history: "Historia",
+      service: "Nabożeństwo",
+      meeting: "Zbiórka",
+    },
+    manualMeeting: {
+      title: "Obecność na zbiórce",
+      description: "Sprawdź ręcznie obecność użytkowników na zbiórce.",
+
+      fields: {
+        date: "Data",
+        time: "Godzina",
+        points: "Punkty za zbiórkę",
+      },
+
+      filters: {
+        search: "Szukaj użytkownika",
+        searchPlaceholder: "Imię i nazwisko...",
+        function: "Funkcja",
+        allFunctions: "Wszystkie funkcje",
+      },
+
+      statuses: {
+        present: "Obecny",
+        excused: "Usprawiedliwiony",
+        absent: "Nieobecny",
+      },
+
+      table: {
+        user: "Użytkownik",
+        function: "Funkcja",
+        status: "Status",
+      },
+
+      save: "Zapisz obecność",
+      progress: {
+        marked: "Oznaczono",
+        of: "z",
+        users: "osób",
+      },
+
+      validation: {
+        incomplete:
+          "Przed zapisaniem obecności oznacz status wszystkich użytkowników.",
+      },
+
+      saveSuccess: "Obecność na zbiórce jest gotowa do zapisania.",
+    },
   },
 };
