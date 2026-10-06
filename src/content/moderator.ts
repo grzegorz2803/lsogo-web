@@ -347,6 +347,8 @@ export const moderatorContent = {
         date: "Data",
         time: "Godzina",
         points: "Punkty za zbiórkę",
+        participants: "Uczestnicy zbiórki",
+        allFunctionsHint: "Brak wyboru oznacza wszystkie funkcje.",
       },
 
       filters: {

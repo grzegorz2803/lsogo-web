@@ -6,13 +6,13 @@ type ManualMeetingAttendanceProps = {
   time: string;
   points: number;
   search: string;
-  selectedFunction: string;
+  selectedFunctions: string[];
 
   onDateChange: (date: string) => void;
   onTimeChange: (time: string) => void;
   onPointsChange: (points: number) => void;
   onSearchChange: (search: string) => void;
-  onFunctionChange: (functionCode: string) => void;
+  onFunctionToogle: (functionCode: string) => void;
 };
 
 export function ManualMeetingAttendance({
@@ -20,12 +20,12 @@ export function ManualMeetingAttendance({
   time,
   points,
   search,
-  selectedFunction,
+  selectedFunctions,
   onDateChange,
   onTimeChange,
   onPointsChange,
   onSearchChange,
-  onFunctionChange,
+  onFunctionToogle,
 }: ManualMeetingAttendanceProps) {
   const { manualMeeting } = moderatorContent.attendance;
 
@@ -70,20 +70,27 @@ export function ManualMeetingAttendance({
         </div>
         <div>
           <label className="text-sm text-white/60">
-            {manualMeeting.filters.function}
+            {manualMeeting.fields.participants}
           </label>
-          <select
-            value={selectedFunction}
-            onChange={(event) => onFunctionChange(event.target.value)}
-            className="mt-2 w-full cursor-pointer rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white outline-none"
-          >
-            <option value="all">{manualMeeting.filters.allFunctions}</option>
-            {parishFunctionsMock.map((parishFunction) => (
-              <option key={parishFunction.id} value={parishFunction.code}>
-                {parishFunction.name}
-              </option>
-            ))}
-          </select>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {parishFunctionsMock.map((parishFunction) => {
+              const active = selectedFunctions.includes(parishFunction.code);
+              return (
+                <button
+                  key={parishFunction.id}
+                  type="button"
+                  onClick={() => onFunctionToogle(parishFunction.code)}
+                  className={`cursor-pointer rounded-lg border px-3 py-2 text-sm transition ${
+                    active
+                      ? "border-amber-400/40 bg-amber-400/15 text-amber-300"
+                      : "border-white/10 text-white/50 hover:bg-white/5 hover:text-white"
+                  }`}
+                >
+                  {parishFunction.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
         <div>
           <label className="text-sm text-white/60">

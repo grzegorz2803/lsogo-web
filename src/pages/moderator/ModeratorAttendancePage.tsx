@@ -64,7 +64,7 @@ export function ModeratorAttendancePage() {
   );
 
   const [meetingSearch, setMeetingSearch] = useState("");
-  const [meetingFunction, setMeetingFunction] = useState("all");
+  const [meetingFunctions, setMeetingFunction] = useState<string[]>([]);
 
   const allMeetingUsers = [...moderatorUsersMock]
     .sort((a, b) => a.name.localeCompare(b.name, "pl"))
@@ -75,29 +75,41 @@ export function ModeratorAttendancePage() {
       functionCode: user.function.code,
     }));
 
-  const meetingUsers = allMeetingUsers.filter((user) => {
-    const matchesSearch = user.name
+  function handleMeetingFunctionToggle(functionCode: string) {
+    setMeetingFunction((current) =>
+      current.includes(functionCode)
+        ? current.filter((code) => code !== functionCode)
+        : [...current, functionCode],
+    );
+
+    setMeetingStatuses({});
+    setMeetingValidationError(false);
+  }
+  const meetingParticipants = allMeetingUsers.filter(
+    (user) =>
+      meetingFunctions.length === 0 ||
+      meetingFunctions.includes(user.functionCode),
+  );
+
+  const visibleMeetingUsers = meetingParticipants.filter((user) =>
+    user.name
       .toLocaleLowerCase("pl")
-      .includes(meetingSearch.toLocaleLowerCase("pl"));
-
-    const matchesFunction =
-      meetingFunction === "all" || user.functionCode === meetingFunction;
-    return matchesSearch && matchesFunction;
-  });
-
-  const markedMeetingUsersCount = allMeetingUsers.filter(
+      .includes(meetingSearch.toLocaleLowerCase("pl")),
+  );
+  const markedMeetingUsersCount = meetingParticipants.filter(
     (user) => meetingStatuses[user.id] !== undefined,
   ).length;
 
   const allMeetingUsersMarked =
-    markedMeetingUsersCount === allMeetingUsers.length;
+    meetingParticipants.length > 0 &&
+    markedMeetingUsersCount === meetingParticipants.length;
 
   const [meetingValidationError, setMeetingValidationError] = useState(false);
   function handleSaveMeetingAttendance() {
-    const unmarkedUsers = allMeetingUsers.filter(
+    const unmarkedUsers = meetingParticipants.filter(
       (user) => meetingStatuses[user.id] === undefined,
     );
-    if (unmarkedUsers.length > 0) {
+    if (meetingParticipants.length === 0 || unmarkedUsers.length > 0) {
       setMeetingValidationError(true);
       return;
     }
@@ -108,6 +120,7 @@ export function ModeratorAttendancePage() {
       date: meetingDate,
       time: meetingTime,
       points: meetingPoints,
+      targetFunctions: meetingFunctions,
       attendance: allMeetingUsers.map((user) => ({
         userId: user.id,
         status: meetingStatuses[user.id],
@@ -245,16 +258,16 @@ export function ModeratorAttendancePage() {
             time={meetingTime}
             points={meetingPoints}
             search={meetingSearch}
-            selectedFunction={meetingFunction}
+            selectedFunctions={meetingFunctions}
             onDateChange={setMeetingDate}
             onTimeChange={setMeetingTime}
             onPointsChange={setMeetingPoints}
             onSearchChange={setMeetingSearch}
-            onFunctionChange={setMeetingFunction}
+            onFunctionToogle={handleMeetingFunctionToggle}
           />
 
           <MeetingAttendanceUserList
-            users={meetingUsers}
+            users={visibleMeetingUsers}
             statuses={meetingStatuses}
             onStatusChange={handleMeetingStatusChange}
           />
@@ -272,7 +285,7 @@ export function ModeratorAttendancePage() {
                   {markedMeetingUsersCount}
                 </span>{" "}
                 {moderatorContent.attendance.manualMeeting.progress.of}{" "}
-                {allMeetingUsers.length}{" "}
+                {meetingParticipants.length}{" "}
                 {moderatorContent.attendance.manualMeeting.progress.users}
               </p>
               {meetingValidationError && !allMeetingUsersMarked && (
