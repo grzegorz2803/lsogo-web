@@ -30,6 +30,11 @@ import {
 import { moderatorUsersMock } from "../../mocks/moderatorUsersMock";
 import { ManualMeetingAttendance } from "../../components/moderator/attendance/ManualMeetingAttendance";
 import { MeetingAttendanceUserList } from "../../components/moderator/attendance/MeetingAttendanceUserList";
+import { moderatorServiceAttendanceMock } from "../../mocks/moderatorServiceAttendance";
+import { ManualServiceAttendance } from "../../components/moderator/attendance/ManualServiceAttendance";
+import { FindClosesService } from "../../utils/moderatorServiceAttendance";
+import { ManualServiceAttendanceUsers } from "../../components/moderator/attendance/ManualServiceAttendanceUsers";
+
 export function ModeratorAttendancePage() {
   const defaultDateRange = getDefaultAttendanceDateRange();
 
@@ -74,17 +79,6 @@ export function ModeratorAttendancePage() {
       functionName: user.function.name,
       functionCode: user.function.code,
     }));
-
-  function handleMeetingFunctionToggle(functionCode: string) {
-    setMeetingFunction((current) =>
-      current.includes(functionCode)
-        ? current.filter((code) => code !== functionCode)
-        : [...current, functionCode],
-    );
-
-    setMeetingStatuses({});
-    setMeetingValidationError(false);
-  }
   const meetingParticipants = allMeetingUsers.filter(
     (user) =>
       meetingFunctions.length === 0 ||
@@ -105,6 +99,140 @@ export function ModeratorAttendancePage() {
     markedMeetingUsersCount === meetingParticipants.length;
 
   const [meetingValidationError, setMeetingValidationError] = useState(false);
+  const events = getAttendanceEventOptions({
+    data: moderatorAttendanceMock,
+    dateFrom,
+    dateTo,
+    eventType,
+  });
+
+  const entries = getModeratorAttendance({
+    data: moderatorAttendanceMock,
+    dateFrom,
+    dateTo,
+    userId: selectedUserId,
+    eventId: selectedEventId,
+    eventType,
+    status,
+    source,
+  });
+
+  const [serviceDate, setServiceDate] = useState(formatLocalDate(now));
+  const [serviceTime, setServiceTime] = useState(formatLocalTime(now));
+
+  const [manuallySelectedServiceId, setManuallySelectedServiceId] = useState<
+    number | null
+  >(null);
+
+  const servicesForSelectedDate = moderatorServiceAttendanceMock.filter(
+    (service) => service.date === serviceDate,
+  );
+  const automaticallyMatchedService = FindClosesService({
+    services: moderatorServiceAttendanceMock,
+    date: serviceDate,
+    time: serviceTime,
+  });
+
+  const selectedService =
+    (manuallySelectedServiceId !== null
+      ? servicesForSelectedDate.find(
+          (service) => service.id === manuallySelectedServiceId,
+        )
+      : automaticallyMatchedService) ?? null;
+
+  const [servicePointsOverride, setServicePointsOverride] = useState<
+    number | null
+  >(null);
+  const servicePoints = servicePointsOverride ?? selectedService?.points ?? 0;
+
+  const [presentServiceUserIds, setPresentServiceUserIds] = useState<number[]>(
+    [],
+  );
+
+  const [serviceSaveError, setServiceSaveError] = useState<string | null>(null);
+
+  const [serviceSaveSuccess, setServiceSaveSuccess] = useState(false);
+
+  function handleSaveServiceAttendance() {
+    const content = moderatorContent.attendance.manualService.save;
+
+    setServiceSaveError(null);
+    setServiceSaveSuccess(false);
+
+    if (!selectedService) {
+      setServiceSaveError(content.errors.noService);
+      return;
+    }
+    if (presentServiceUserIds.length === 0) {
+      setServiceSaveError(content.errors.noUsers);
+      return;
+    }
+    if (!Number.isFinite(servicePoints) || servicePoints < 0) {
+      setServiceSaveError(content.errors.invalidPoints);
+      return;
+    }
+    const attendancePayload = {
+      serviceId: selectedService.id,
+      date: selectedService.date,
+      time: selectedService.time,
+      points: servicePoints,
+      source: "MANUAL" as const,
+      userIds: presentServiceUserIds,
+    };
+    console.log("Mock service attendance: ", attendancePayload);
+    setServiceSaveSuccess(true);
+  }
+
+  function handleToggleServiceUser(userId: number) {
+    setPresentServiceUserIds((current) =>
+      current.includes(userId)
+        ? current.filter((id) => id !== userId)
+        : [...current, userId],
+    );
+  }
+
+  function handleServiceDateChange(date: string) {
+    setServiceDate(date);
+    setManuallySelectedServiceId(null);
+    setServicePointsOverride(null);
+    setPresentServiceUserIds([]);
+    setServiceSaveError(null);
+    setServiceSaveSuccess(false);
+  }
+
+  function handleServiceTimeChange(time: string) {
+    setServiceTime(time);
+    setManuallySelectedServiceId(null);
+    setServicePointsOverride(null);
+    setPresentServiceUserIds([]);
+    setServiceSaveError(null);
+    setServiceSaveSuccess(false);
+  }
+
+  function handleServiceChange(serviceId: number | null) {
+    setManuallySelectedServiceId(serviceId);
+    setServicePointsOverride(null);
+    setPresentServiceUserIds([]);
+    setServiceSaveError(null);
+    setServiceSaveSuccess(false);
+  }
+
+  function handleServicePointsChange(points: number) {
+    setServicePointsOverride(points);
+    setServiceSaveError(null);
+    setServiceSaveSuccess(false);
+  }
+  function handleMeetingFunctionToggle(functionCode: string) {
+    setMeetingFunction((current) =>
+      current.includes(functionCode)
+        ? current.filter((code) => code !== functionCode)
+        : [...current, functionCode],
+    );
+
+    setMeetingStatuses({});
+    setMeetingValidationError(false);
+  }
+
   function handleSaveMeetingAttendance() {
     const unmarkedUsers = meetingParticipants.filter(
       (user) => meetingStatuses[user.id] === undefined,
@@ -144,23 +272,7 @@ export function ModeratorAttendancePage() {
       };
     });
   }
-  const events = getAttendanceEventOptions({
-    data: moderatorAttendanceMock,
-    dateFrom,
-    dateTo,
-    eventType,
-  });
 
-  const entries = getModeratorAttendance({
-    data: moderatorAttendanceMock,
-    dateFrom,
-    dateTo,
-    userId: selectedUserId,
-    eventId: selectedEventId,
-    eventType,
-    status,
-    source,
-  });
   function handleClearFilters() {
     const defaultRange = getDefaultAttendanceDateRange();
 
@@ -238,8 +350,53 @@ export function ModeratorAttendancePage() {
         </div>
       )}
       {activeTab === "service" && (
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-white/60">
-          Ręczne sprawdzanie obecności na nabożeństwie
+        <div className="space-y-6">
+          <ManualServiceAttendance
+            date={serviceDate}
+            time={serviceTime}
+            points={servicePoints}
+            services={servicesForSelectedDate}
+            selectedService={selectedService}
+            isAutomaticalllyMatched={manuallySelectedServiceId === null}
+            onDateChange={handleServiceDateChange}
+            onTimeChange={handleServiceTimeChange}
+            onPointsChange={handleServicePointsChange}
+            onServiceChange={handleServiceChange}
+            onCreateService={() => console.log("Open create service modal")}
+          />
+          <ManualServiceAttendanceUsers
+            users={allMeetingUsers}
+            selectedUserIds={presentServiceUserIds}
+            onToggleUser={handleToggleServiceUser}
+          />
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+            {serviceSaveError && (
+              <p role="alert" className="mb-4 text-sm text-red-400">
+                {serviceSaveError}
+              </p>
+            )}
+            {serviceSaveSuccess && (
+              <p role="status" className="mb-4 text-sm text-emerald-300">
+                {moderatorContent.attendance.manualService.save.success}
+              </p>
+            )}
+
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <p className="text-sm text-white/60">
+                {moderatorContent.attendance.manualService.save.selected}:{" "}
+                <span className="font-medium text-emerald-300">
+                  {presentServiceUserIds.length}
+                </span>
+              </p>
+              <button
+                type="button"
+                onClick={handleSaveServiceAttendance}
+                className="cursor-pointer rounded-xl bg-amber-400 px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-amber-300"
+              >
+                {moderatorContent.attendance.manualService.save.button}
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

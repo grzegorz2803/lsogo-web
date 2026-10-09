@@ -384,5 +384,57 @@ export const moderatorContent = {
 
       saveSuccess: "Obecność na zbiórce jest gotowa do zapisania.",
     },
+    manualService: {
+      title: "Obecność na nabożeństwie",
+      description: "Zaznacz użytkowników obecnych na wybranym nabożeństwie.",
+
+      fields: {
+        date: "Data",
+        time: "Godzina",
+        service: "Nabożeństwo",
+        points: "Punkty",
+      },
+
+      detected: "Automatycznie dopasowane nabożeństwo",
+      noService:
+        "Nie znaleziono nabożeństwa pasującego do wybranej daty i godziny.",
+
+      selectService: "Wybierz nabożeństwo",
+      createService: "Utwórz nowe nabożeństwo",
+
+      users: {
+        title: "Lista użytkowników",
+
+        search: "Szukaj użytkownika",
+        searchPlaceholder: "Imię i nazwisko...",
+
+        function: "Funkcja",
+        allFunctions: "Wszystkie funkcje",
+
+        table: {
+          user: "Użytkownik",
+          function: "Funkcja",
+          attendance: "Obecność",
+          present: "Obecny",
+        },
+
+        empty: "Nie znaleziono użytkowników.",
+
+        selected: "Zaznaczono obecnych",
+      },
+      save: {
+        button: "Zapisz obecność",
+        selected: "Zaznaczono obecnych",
+
+        errors: {
+          noService: "Wybierz nabożeństwo przed zapisaniem obecności.",
+          noUsers: "Zaznacz przynajmniej jednego obecnego użytkownika.",
+          invalidPoints: "Podaj prawidłową liczbę punktów.",
+        },
+
+        success:
+          "Obecność została przygotowana do zapisu (tryb demonstracyjny).",
+      },
+    },
   },
 };
