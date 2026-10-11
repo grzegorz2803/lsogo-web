@@ -57,3 +57,10 @@ export const ModeratorPermissionPresets: Record<
     "users.password.reset",
   ],
 };
+
+export type CreateServiceInput = {
+  name: string;
+  date: string;
+  time: string;
+  points: number;
+};

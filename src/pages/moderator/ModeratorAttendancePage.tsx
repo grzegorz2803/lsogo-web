@@ -34,6 +34,8 @@ import { moderatorServiceAttendanceMock } from "../../mocks/moderatorServiceAtte
 import { ManualServiceAttendance } from "../../components/moderator/attendance/ManualServiceAttendance";
 import { FindClosesService } from "../../utils/moderatorServiceAttendance";
 import { ManualServiceAttendanceUsers } from "../../components/moderator/attendance/ManualServiceAttendanceUsers";
+import { CreateServiceModal } from "../../components/moderator/services/CreateServiceModal";
+import type { CreateServiceInput } from "../../types/moderator";
 
 export function ModeratorAttendancePage() {
   const defaultDateRange = getDefaultAttendanceDateRange();
@@ -124,14 +126,41 @@ export function ModeratorAttendancePage() {
     number | null
   >(null);
 
-  const servicesForSelectedDate = moderatorServiceAttendanceMock.filter(
+  const [isCreateServiceOpen, setIsCreateServiceOpen] = useState(false);
+  const [createServices, setCreateServices] = useState<
+    (CreateServiceInput & { id: number })[]
+  >([]);
+
+  const allServices = [...moderatorServiceAttendanceMock, ...createServices];
+
+  const servicesForSelectedDate = allServices.filter(
     (service) => service.date === serviceDate,
   );
   const automaticallyMatchedService = FindClosesService({
-    services: moderatorServiceAttendanceMock,
+    services: allServices,
     date: serviceDate,
     time: serviceTime,
   });
+  function handleCreateService(input: CreateServiceInput) {
+    const newService = {
+      id: -Date.now(),
+      ...input,
+    };
+
+    setCreateServices((current) => [...current, newService]);
+
+    setServiceDate(input.date);
+    setServiceTime(input.time);
+
+    setManuallySelectedServiceId(newService.id);
+    setServicePointsOverride(null);
+
+    setPresentServiceUserIds([]);
+    setServiceSaveError(null);
+    setServiceSaveSuccess(false);
+
+    setIsCreateServiceOpen(false);
+  }
 
   const selectedService =
     (manuallySelectedServiceId !== null
@@ -362,7 +391,7 @@ export function ModeratorAttendancePage() {
             onTimeChange={handleServiceTimeChange}
             onPointsChange={handleServicePointsChange}
             onServiceChange={handleServiceChange}
-            onCreateService={() => console.log("Open create service modal")}
+            onCreateService={() => setIsCreateServiceOpen(true)}
           />
           <ManualServiceAttendanceUsers
             users={allMeetingUsers}
@@ -463,6 +492,15 @@ export function ModeratorAttendancePage() {
             </button>
           </div>
         </div>
+      )}
+      {isCreateServiceOpen && (
+        <CreateServiceModal
+          initialDate={serviceDate}
+          initialTime={serviceTime}
+          initialPoints={servicePoints}
+          onClose={() => setIsCreateServiceOpen(false)}
+          onCreate={handleCreateService}
+        />
       )}
     </div>
   );

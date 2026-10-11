@@ -437,4 +437,31 @@ export const moderatorContent = {
       },
     },
   },
+  createService: {
+    title: "Utwórz nowe nabożeństwo",
+    description: "Dodaj nabożeństwo, którego nie ma jeszcze na liście.",
+
+    fields: {
+      name: "Nazwa nabożeństwa",
+      date: "Data",
+      time: "Godzina",
+      points: "Punkty",
+    },
+
+    placeholders: {
+      name: "Np. Msza Święta, Nabożeństwo różańcowe",
+    },
+
+    actions: {
+      cancel: "Anuluj",
+      create: "Utwórz nabożeństwo",
+    },
+
+    errors: {
+      name: "Podaj nazwę nabożeństwa.",
+      date: "Wybierz datę.",
+      time: "Podaj godzinę.",
+      points: "Punkty muszą być liczbą nieujemną.",
+    },
+  },
 };
