@@ -115,7 +115,9 @@ export function ManualServiceAttendance({
         )}
 
         <div className="mt-5 rounded-xl border border-amber-400/20 bg-amber-400/5 p-4">
-          <p className="text-sm text-amber-200">{manualService.noService}</p>
+          {!selectedService && (
+            <p className="text-sm text-amber-200">{manualService.noService}</p>
+          )}
           <button
             type="button"
             onClick={onCreateService}
