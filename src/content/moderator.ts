@@ -464,4 +464,98 @@ export const moderatorContent = {
       points: "Punkty muszą być liczbą nieujemną.",
     },
   },
+  services: {
+    title: "Nabożeństwa",
+    description: "Zarządzaj nabożeństwami oraz ich harmonogramem w parafii.",
+
+    tabs: {
+      weeklyMass: "Stały porządek Mszy",
+      weekly: "Cotygodniowe",
+      monthly: "Comiesięczne",
+      seasonal: "Okresowe",
+      yearly: "Doroczne",
+      oneTime: "Jednorazowe",
+    },
+
+    weeklyMass: {
+      title: "Stały porządek Mszy Świętych",
+      description:
+        "Zarządzaj godzinami Mszy Świętych w poszczególnych dniach tygodnia.",
+
+      addMass: "Dodaj Mszę Świętą",
+      editMass: "Edytuj",
+      deleteMass: "Usuń",
+
+      points: "pkt",
+      empty: "Brak Mszy Świętych w tym dniu.",
+      form: {
+        addTitle: "Dodaj Mszę Świętą",
+        editTitle: "Edytuj Mszę Świętą",
+
+        fields: {
+          name: "Nazwa nabożeństwa",
+          time: "Godzina",
+          points: "Punkty",
+          weekdays: "Dni tygodnia",
+          isActive: "Nabożeństwo aktywne",
+        },
+
+        placeholders: {
+          name: "Np. Msza Święta",
+        },
+
+        actions: {
+          cancel: "Anuluj",
+          add: "Dodaj Mszę",
+          save: "Zapisz zmiany",
+        },
+
+        errors: {
+          name: "Podaj nazwę nabożeństwa.",
+          time: "Wybierz godzinę.",
+          points: "Punkty muszą być liczbą nieujemną.",
+          weekdays: "Wybierz przynajmniej jeden dzień tygodnia.",
+        },
+
+        assignedDays: "Msza przypisana do",
+        daysCount: "dni tygodnia",
+        singleDay: {
+          title: "Zakres edycji",
+          only: "Tylko",
+          description:
+            "Zmiany nie wpłyną na Msze w pozostałych dniach tygodnia.",
+        },
+      },
+
+      editScope: {
+        title: "Zakres edycji Mszy",
+        descriptionStart: "Ta Msza jest przypisana do",
+        descriptionEnd:
+          "dni tygodnia. Wybierz, gdzie chcesz wprowadzić zmiany.",
+        single: "Edytuj tylko w dniu:",
+        all: "Edytuj we wszystkich przypisanych dniach",
+        cancel: "Anuluj",
+      },
+
+      deleteConfirmation: {
+        title: "Usuń Mszę Świętą",
+        description: "Czy na pewno chcesz usunąć Mszę Świętą o godzinie",
+        warning:
+          "Wybierz, czy chcesz usunąć Mszę tylko z jednego dnia, czy ze wszystkich przypisanych dni.",
+        single: "Usuń tylko z dnia:",
+        all: "Usuń ze wszystkich przypisanych dni",
+        cancel: "Anuluj",
+      },
+    },
+
+    weekdays: {
+      1: "Poniedziałek",
+      2: "Wtorek",
+      3: "Środa",
+      4: "Czwartek",
+      5: "Piątek",
+      6: "Sobota",
+      7: "Niedziela",
+    },
+  },
 };
