@@ -8,9 +8,10 @@ export const calendarPageContent = {
     monthLabel: "Miesiąc",
     yearLabel: "Rok",
     dayLabel: "Dzień",
-    dioceseLabel: "Dicezja",
+    dioceseLabel: "Diecezja",
   },
   dayDetails: {
+    readingsTitle: "Czytania",
     firstReadingTitle: "Pierwsze czytanie",
     psalmTitle: "Psalm responsoryjny",
     secondReadingTitle: "Drugie czytanie",
@@ -19,11 +20,16 @@ export const calendarPageContent = {
     optionalCelebrationsTitle: "Wspomnienia dowolne",
     notesTitle: "Uwagi",
     noFutureData:
-      "Dame zostaną uzupełnione niezwłocznie po otrzymaniu nowego kalendarza liturgicznego z Diecezji.",
+      "Dane zostaną uzupełnione niezwłocznie po otrzymaniu nowego kalendarza liturgicznego z Diecezji.",
     noPassDate:
       "Dane w kalendarzu przechowywane są od I niedzieli Adwentu roku liturgicznego 2026.",
   },
   monthView: {
     weekLabels: ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"],
+  },
+
+  navigation: {
+    previousDay: "Poprzedni dzień",
+    nextDay: "Następny dzień",
   },
 };

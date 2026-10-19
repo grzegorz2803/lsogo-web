@@ -24,8 +24,8 @@ export function LoginForm() {
         navigate("/panel/user");
       } else if (loggedUser.role === "moderator") {
         navigate("/panel/moderator");
-      } else if (loggedUser.role === "admin") {
-        navigate("/panel/admin");
+      } else if (loggedUser.role === "parish_admin") {
+        navigate("/panel/parish-admin");
       }
     } catch (err: unknown) {
       if (err instanceof Error) {

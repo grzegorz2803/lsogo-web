@@ -4,6 +4,7 @@ import { Logo } from "../UI/Logo";
 import { sidebarContent } from "../../content/sidebar";
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { useModeratorPermissions } from "../../hooks/useModeratorPermissions";
 function getLinkClass(isActive: boolean) {
   return [
     "block rounded-2xl border border-transparent px-4 py-3 text-sm font-medium transition-colors",
@@ -19,6 +20,7 @@ type SidebarProps = {
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { user } = useAuth();
   const role = user?.role;
+  const { hasPermission } = useModeratorPermissions();
   useEffect(() => {
     if (!isOpen) return;
 
@@ -138,34 +140,109 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               <>
                 <NavLink
                   to="/panel/moderator"
+                  end
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >
                   Dashboard
                 </NavLink>
 
+                {hasPermission("users.view") && (
+                  <NavLink
+                    to="/panel/moderator/users"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.users}
+                  </NavLink>
+                )}
+                {hasPermission("ranking.view") && (
+                  <NavLink
+                    to="/panel/moderator/ranking"
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.ranking}
+                  </NavLink>
+                )}
+                {(hasPermission("attendance.service.check") ||
+                  hasPermission("attendance.meeting.check") ||
+                  hasPermission("attendance.history.view")) && (
+                  <NavLink
+                    to="/panel/moderator/attendance"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.attendance}
+                  </NavLink>
+                )}
+                {hasPermission("schedule.view") && (
+                  <NavLink
+                    to="/panel/moderator/schedule"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.schedule}
+                  </NavLink>
+                )}
+                {hasPermission("services.manage") && (
+                  <NavLink
+                    to="/panel/moderator/services"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.services}
+                  </NavLink>
+                )}
+                {hasPermission("calendar.view") && (
+                  <NavLink
+                    to="/panel/moderator/calendar"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.calendar}
+                  </NavLink>
+                )}
+                {hasPermission("messages.view") && (
+                  <NavLink
+                    to="/panel/moderator/messages"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.messages}
+                  </NavLink>
+                )}
+                {hasPermission("excuses.manage") && (
+                  <NavLink
+                    to="/panel/moderator/notifications"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.notifications}
+                  </NavLink>
+                )}
+                {hasPermission("reports.view") && (
+                  <NavLink
+                    to="/panel/moderator/reports"
+                    onClick={onClose}
+                    className={({ isActive }) => getLinkClass(isActive)}
+                  >
+                    {sidebarContent.moderator.reports}
+                  </NavLink>
+                )}
                 <NavLink
-                  to="/panel/moderator/attendance"
+                  to="/panel/moderator/profile"
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >
-                  Obecności
-                </NavLink>
-
-                <NavLink
-                  to="/panel/moderator/schedule"
-                  onClick={onClose}
-                  className={({ isActive }) => getLinkClass(isActive)}
-                >
-                  Harmonogram
+                  {sidebarContent.moderator.profile}
                 </NavLink>
               </>
             )}
 
-            {role === "admin" && (
+            {role === "parish_admin" && (
               <>
                 <NavLink
-                  to="/panel/admin"
+                  to="/panel/parish-admin"
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >
@@ -173,7 +250,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </NavLink>
 
                 <NavLink
-                  to="/panel/admin/users"
+                  to="/panel/parish-admin/users"
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >
@@ -181,7 +258,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </NavLink>
 
                 <NavLink
-                  to="/panel/admin/settings"
+                  to="/panel/parish-admin/settings"
                   onClick={onClose}
                   className={({ isActive }) => getLinkClass(isActive)}
                 >

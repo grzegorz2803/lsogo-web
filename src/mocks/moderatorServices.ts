@@ -1,0 +1,86 @@
+import type { WeeklyMass } from "../types/moderatorServices";
+
+export const weeklyMassesMock: WeeklyMass[] = [
+  {
+    id: 1,
+    name: "Msza Święta",
+    time: "06:30",
+    weekdays: [1, 2, 3, 4, 5, 6],
+    points: 3,
+    isActive: true,
+  },
+  {
+    id: 2,
+    name: "Msza Święta",
+    time: "07:00",
+    weekdays: [1, 2, 3, 4, 5, 6],
+    points: 3,
+    isActive: true,
+  },
+  {
+    id: 3,
+    name: "Msza Święta",
+    time: "08:00",
+    weekdays: [1, 2, 3, 4, 5, 6],
+    points: 3,
+    isActive: true,
+  },
+  {
+    id: 4,
+    name: "Msza Święta",
+    time: "18:00",
+    weekdays: [1, 2, 3, 4, 5, 6],
+    points: 3,
+    isActive: true,
+  },
+
+  // Niedziela
+  {
+    id: 5,
+    name: "Msza Święta",
+    time: "06:30",
+    weekdays: [7],
+    points: 5,
+    isActive: true,
+  },
+  {
+    id: 6,
+    name: "Msza Święta",
+    time: "08:00",
+    weekdays: [7],
+    points: 5,
+    isActive: true,
+  },
+  {
+    id: 7,
+    name: "Msza Święta",
+    time: "09:30",
+    weekdays: [7],
+    points: 5,
+    isActive: true,
+  },
+  {
+    id: 8,
+    name: "Msza Święta",
+    time: "11:00",
+    weekdays: [7],
+    points: 5,
+    isActive: true,
+  },
+  {
+    id: 9,
+    name: "Msza Święta",
+    time: "13:00",
+    weekdays: [7],
+    points: 5,
+    isActive: true,
+  },
+  {
+    id: 10,
+    name: "Msza Święta",
+    time: "18:00",
+    weekdays: [7],
+    points: 5,
+    isActive: true,
+  },
+];

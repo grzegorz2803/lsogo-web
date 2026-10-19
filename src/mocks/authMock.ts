@@ -1,4 +1,5 @@
 import type { AuthUser } from "../types/auth";
+import { ModeratorPermissionPresets } from "../types/moderator";
 
 export const mockUsers: AuthUser[] = [
   {
@@ -14,13 +15,15 @@ export const mockUsers: AuthUser[] = [
     password: "1234",
     name: "Piotr Nowak",
     role: "moderator",
+    moderatorPreset: "full",
+    permissions: ModeratorPermissionPresets.full,
   },
   {
     id: 3,
     email: "admin@test.pl",
     password: "1234",
     name: "Grzegorz Admin",
-    role: "admin",
+    role: "parish_admin",
   },
 ];
 

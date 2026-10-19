@@ -23,7 +23,7 @@ export function CalendarDayNavigation({ onPrevious, onNext }: Props) {
           onClick={onNext}
           className="rounded-xl border border-slate-700 bg-slate-950/60 px-5 py-3 text-sm text-slate-100 transition hover:border-amber-400/50 hover:text-amber-200"
         >
-          {navigation.nexDay} →
+          {navigation.nextDay} →
         </button>
       </div>
     </section>
