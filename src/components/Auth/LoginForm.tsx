@@ -25,7 +25,7 @@ export function LoginForm() {
       } else if (loggedUser.role === "moderator") {
         navigate("/panel/moderator");
       } else if (loggedUser.role === "parish_admin") {
-        navigate("/panel/admin");
+        navigate("/panel/parish-admin");
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
