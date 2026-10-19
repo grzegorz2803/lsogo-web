@@ -13,7 +13,7 @@ export function ServicesTabs({ activeTab, onTabChange }: ServicesTabsProps) {
     id: ServiceCategory;
     label: string;
   }[] = [
-    { id: "wekly_mass", label: content.weeklyMass },
+    { id: "weekly_mass", label: content.weeklyMass },
     { id: "weekly", label: content.weekly },
     { id: "monthly", label: content.monthly },
     { id: "seasonal", label: content.seasonal },

@@ -1,5 +1,5 @@
 export type ServiceCategory =
-  | "wekly_mass"
+  | "weekly_mass"
   | "weekly"
   | "monthly"
   | "seasonal"
